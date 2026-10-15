@@ -2,8 +2,10 @@
 from contextlib import contextmanager
 from dataclasses import dataclass, field
 import asyncio
+import hashlib
+import re
 
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, event
 from sqlalchemy.engine import URL, make_url
 from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
@@ -122,6 +124,70 @@ class MySQLDatabase:
             raise
         except SQLAlchemyError:
             raise ServiceError('MySQL 数据库暂不可用，请检查连接配置、数据库权限和服务状态', 503) from None
+
+    def close(self):
+        self.engine.dispose()
+
+
+@dataclass(frozen=True)
+class SQLiteConfig:
+    """本机测试用 SQLite 文件；生产仍应使用 MySQL。"""
+    path: str = 'memory_pet.sqlite3'
+
+    @property
+    def url(self):
+        return URL.create('sqlite', database=self.path)
+
+
+_UPSERT = re.compile(r'\s+ON DUPLICATE KEY UPDATE\s+(.*)$', re.S | re.I)
+
+
+def sqlite_sql(sql):
+    """把业务层的 MySQL 方言语句翻译成 SQLite 可执行的等价语句。"""
+    sql = re.sub(r'\s+FOR UPDATE\s*$', '', sql, flags=re.I)
+    match = _UPSERT.search(sql)
+    if match:
+        head, tail = sql[:match.start()], match.group(1)
+        # `col=col` 形式表示冲突时保持原行不变。
+        if re.fullmatch(r'(\w+)=\1', tail.strip()):
+            tail = 'ON CONFLICT DO NOTHING'
+        else:
+            tail = re.sub(r'VALUES\((\w+)\)', r'excluded.\1', tail)
+            tail = 'ON CONFLICT DO UPDATE SET ' + re.sub(r'\bIF\(', 'iif(', tail)
+        sql = f'{head} {tail}'
+    return sql.replace('%s', '?')
+
+
+class SQLiteSession(DatabaseSession):
+    def execute(self, sql, params=()):
+        return super().execute(sqlite_sql(sql), params)
+
+    def executemany(self, sql, rows):
+        return super().executemany(sqlite_sql(sql), rows)
+
+
+class SQLiteDatabase:
+    def __init__(self, config):
+        self.config = config
+        self.engine = create_engine(self.config.url, hide_parameters=True,
+                                    connect_args={'timeout': 10, 'check_same_thread': False})
+
+        @event.listens_for(self.engine, 'connect')
+        def prepare(connection, _):
+            # 与 MySQL 的 SHA2/UNHEX 对齐，使绑定表的服务地址摘要写法无需分支。
+            connection.create_function('SHA2', 2, lambda value, bits: hashlib.sha256(value.encode()).hexdigest(), deterministic=True)
+            connection.create_function('UNHEX', 1, lambda value: bytes.fromhex(value), deterministic=True)
+            connection.execute('PRAGMA journal_mode=WAL')
+
+    @contextmanager
+    def db(self):
+        try:
+            with self.engine.begin() as connection:
+                yield SQLiteSession(connection)
+        except IntegrityError:
+            raise
+        except SQLAlchemyError:
+            raise ServiceError('SQLite 数据库暂不可用，请检查数据库文件路径和权限', 503) from None
 
     def close(self):
         self.engine.dispose()

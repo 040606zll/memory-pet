@@ -5,7 +5,8 @@ import { newRequestId } from './requestId.js';
 import { AccountControls, useAuth } from './AuthProvider.jsx';
 import { HistoryDialog } from './HistoryDialog.jsx';
 import { ConnectionDialog } from './ConnectionDialog.jsx';
-import { RobotDog, RobotDogAvatar } from './RobotDog.jsx';
+import { RobotDogAvatar } from './RobotDog.jsx';
+import { PetStage } from './pet3d/PetStage.jsx';
 import { previewMessages } from './preview.js';
 import { petNameKey, readPetName, savePetName, validPetName } from './petName.js';
 
@@ -14,7 +15,16 @@ const formatTime = timestamp => timestamp ? new Date(timestamp).toLocaleTimeStri
 const MODE_TITLE = { training: '教小忆更懂你', chat: '和小忆聊聊' };
 
 export function App() {
-  const nameKey = petNameKey(useAuth()?.user?.id);
+  const userId = useAuth()?.user?.id;
+  const nameKey = petNameKey(userId);
+  const [petSpeech, setPetSpeech] = useState(null);
+  const petSpeechTimer = useRef(null);
+  const showPetSpeech = useCallback((text, duration = 3500) => {
+    clearTimeout(petSpeechTimer.current);
+    setPetSpeech(text);
+    petSpeechTimer.current = setTimeout(() => setPetSpeech(null), duration);
+  }, []);
+  useEffect(() => () => clearTimeout(petSpeechTimer.current), []);
   const [mode, setMode] = useState(initialPreview === 'chat' ? 'chat' : 'training');
   const [preview, setPreview] = useState(['training', 'chat'].includes(initialPreview));
   const [status, setStatus] = useState(null);
@@ -215,7 +225,7 @@ export function App() {
   function togglePreview() { setPreview(!preview); setMenuOpen(false); setError(''); }
   function rename(value) { const next = validPetName(Array.from(value.trim()).slice(0, 12).join('')) || '小忆'; nameRevision.current++; setName(next); savePetName(nameKey, next); setRenaming(false); }
   const lastAssistant = messages.findLast(message => message.role === 'assistant');
-  const speech = preview ? mode === 'training' ? '我在听，慢慢说。' : '我陪你歇一会儿。' : busy ? '我在认真听你说。' : lastAssistant ? lastAssistant.content.slice(0, 16) : messages.length ? '我在听，慢慢说。' : `你好，我是${name}。`;
+  const speech = petSpeech && !preview && !busy ? petSpeech : preview ? mode === 'training' ? '我在听，慢慢说。' : '我陪你歇一会儿。' : busy ? '我在认真听你说。' : lastAssistant ? lastAssistant.content.slice(0, 16) : messages.length ? '我在听，慢慢说。' : `你好，我是${name}。`;
   const modeTitle = MODE_TITLE[mode].replaceAll('小忆', name);
 
   return <main className="app-shell">
@@ -235,7 +245,7 @@ export function App() {
       <section className="pet-room" aria-label={`${name}的房间`}>
         <div className="pet-profile"><RobotDogAvatar name={name} /><div className="pet-profile-info"><div className="pet-name-row">{renaming ? <input autoFocus className="name-input" defaultValue={name} maxLength={12} aria-label="宠物名字" onBlur={e => rename(e.target.value)} onKeyDown={e => { if (e.key === 'Enter') rename(e.target.value); }} /> : <><strong>{name}</strong><button aria-label="修改宠物名字" className="rename-button" onClick={() => setRenaming(true)}><PencilSimple weight="bold" /></button></>}<span className="level">Lv.{preview ? 3 : Math.floor(learned / 5) + 1}</span></div><div className="bond">亲密度 <b>{preview ? 60 : Math.min(100, learned * 5)}</b> / 100</div><div className="bond-track"><span style={{ width: `${preview ? 60 : Math.min(100, learned * 5)}%` }} /></div></div></div>
         <div className="pet-speech" aria-live="polite" title={speech}><span className="pet-speech-copy">{speech}</span><span className="heart-sticker"><Heart weight="fill" /></span></div>
-        <RobotDog name={name} actions={actions} preview={preview} mode={mode} reducedMotion={reducedMotion || paused} />
+        <PetStage name={name} actions={actions} preview={preview} mode={mode} reducedMotion={reducedMotion || paused} onSay={showPetSpeech} userId={userId} />
       </section>
       <section className={`conversation ${mode} ${preview ? "prototype-preview" : ""}`} aria-label={modeTitle}>
         <div role="tablist" className="mode-tabs" aria-label="选择对话模式"><button role="tab" aria-selected={mode === 'training'} id="tab-training" aria-controls="conversation-panel" className={mode === 'training' ? 'selected' : ''} onClick={() => changeMode('training')} disabled={busy || candidateBusy}><GraduationCap weight="fill" />训练</button><button role="tab" aria-selected={mode === 'chat'} id="tab-chat" aria-controls="conversation-panel" className={mode === 'chat' ? 'selected' : ''} onClick={() => changeMode('chat')} disabled={busy || candidateBusy}><ChatCircleDots weight="fill" />正式对话</button></div>

@@ -6,7 +6,7 @@ from pathlib import Path
 import uuid
 
 from .errors import ServiceError
-from .database import MySQLDatabase
+from .database import MySQLDatabase, SQLiteConfig, SQLiteDatabase
 
 
 def now():
@@ -18,9 +18,21 @@ def page_data(items, total, page, limit):
 
 
 class Store(MySQLDatabase):
+    def __init__(self, config):
+        # 配置为 SQLiteConfig 时改用 SQLite（仅本机测试）；其余行为沿用 MySQL。
+        self.sqlite = isinstance(config, SQLiteConfig)
+        if self.sqlite:
+            SQLiteDatabase.__init__(self, config)
+        else:
+            super().__init__(config)
+
+    def db(self):
+        return SQLiteDatabase.db(self) if self.sqlite else super().db()
+
     def initialize(self):
-        # 仅在启动阶段建表，导入模块不访问数据库；新库无需任何 SQLite 文件。
-        schema = Path(__file__).resolve().parents[1] / 'sql' / 'mysql' / '005_mysql_store.sql'
+        # 仅在启动阶段建表，导入模块不访问数据库。
+        sql_dir = Path(__file__).resolve().parents[1] / 'sql'
+        schema = sql_dir / 'sqlite' / '005_sqlite_store.sql' if self.sqlite else sql_dir / 'mysql' / '005_mysql_store.sql'
         with self.db() as db:
             for statement in schema.read_text().split(';'):
                 if statement.strip():

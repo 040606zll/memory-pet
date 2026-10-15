@@ -1,0 +1,40 @@
+/* 3D 宠物舞台：画布铺满房间，界面浮层沿用原 2D 版的位置和配色。 */
+.pet3d-stage{pointer-events:none}
+.pet3d-canvas{position:absolute!important;inset:0;pointer-events:auto;touch-action:none}
+.pet3d-stage .asset-loading{left:50%;transform:translateX(-50%);white-space:nowrap}
+
+.pet3d-stats{position:absolute;left:20px;top:158px;z-index:2;display:flex;flex-direction:column;gap:6px;background:#ffffffd9;border-radius:18px;padding:10px 14px;box-shadow:0 5px 20px #48627a0d;pointer-events:auto;width:196px}
+.pet3d-stat{display:flex;align-items:center;gap:8px;font-size:13px;color:#6b84a6}
+.pet3d-stat svg{width:16px;height:16px}
+.pet3d-stat-label{width:30px;white-space:nowrap}
+.pet3d-stat-track{flex:1;height:8px;background:#e3ebf4;border-radius:8px;overflow:hidden}
+.pet3d-stat-track span{display:block;height:100%;border-radius:8px;transition:width .6s}
+.pet3d-stat.food svg{color:#d18a4a}.pet3d-stat.food .pet3d-stat-track span{background:#f4b67a}
+.pet3d-stat.mood svg{color:#e0709a}.pet3d-stat.mood .pet3d-stat-track span{background:#f59ab9}
+.pet3d-stat.energy svg{color:#4fa6d8}.pet3d-stat.energy .pet3d-stat-track span{background:#7cc6ee}
+.pet3d-stat.low .pet3d-stat-track span{background:#ff8f7a;animation:pulse 1.2s infinite}
+
+.pet3d-controls button{width:72px}
+.pet3d-controls button:nth-child(4){background:#ffe9b8;box-shadow:inset 0 -4px 0 #f0d08c,0 3px 5px #63748616}
+.pet3d-controls button:nth-child(4) svg{color:#c08a1c}
+.pet3d-controls button:nth-child(5){background:#dbe7ff;box-shadow:inset 0 -4px 0 #bccff5,0 3px 5px #63748616}
+.pet3d-controls button:nth-child(5) svg{color:#5b77c9}
+.pet3d-controls button:last-child svg{color:#5b77c9}
+.pet3d-controls button:nth-child(3) svg{color:#498e86}
+.pet3d-controls button[aria-expanded=true]{filter:brightness(.94)}
+
+.pet3d-tray{position:absolute;left:50%;bottom:calc(3% + 98px);transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:8px 10px;background:#ffffffeb;border-radius:24px;box-shadow:0 8px 20px #516d7c22;pointer-events:auto;flex-wrap:wrap;justify-content:center;max-width:calc(100% - 24px);z-index:3}
+.pet3d-tray button{flex-direction:column;gap:3px;width:62px;height:62px;border-radius:20px;background:#fff6ea;font-size:12px;font-weight:600;color:#7a5a3a;touch-action:none}
+.pet3d-tray button svg{width:24px;height:24px;color:#cf8a45}
+.pet3d-tray.commands button{width:auto;height:38px;padding:0 14px;flex-direction:row;background:#eef3ff;color:#3f5fa8;border-radius:19px;font-size:14px}
+.pet3d-tray-hint{width:100%;text-align:center;font-size:11px;color:#94a6bf}
+.pet3d-drag{position:fixed;z-index:20;transform:translate(-50%,-60%);pointer-events:none;width:56px;height:56px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 8px 18px #3b5a7a33}
+.pet3d-drag svg{width:30px;height:30px;color:#cf8a45}
+
+@media(max-width:1200px){.pet3d-stats{left:14px;top:146px;width:178px}.pet3d-controls button{width:62px}}
+@media(max-width:800px){
+  .pet3d-stats{top:106px;left:12px;flex-direction:row;width:auto;padding:6px 10px;gap:10px;border-radius:14px}
+  .pet3d-stat-label{display:none}.pet3d-stat-track{width:34px;flex:none;height:6px}
+  .pet3d-controls{gap:5px}.pet3d-controls button{width:52px}
+  .pet3d-tray{bottom:calc(5% + 72px)}.pet3d-tray button{width:52px;height:52px}
+}

@@ -11,6 +11,7 @@ FIELDS = {
     "llm": {"base_url": "LLM_BASE_URL", "api_key": "LLM_API_KEY", "model": "LLM_MODEL"},
     "memoryos": {"base_url": "MEMORYOS_BASE_URL", "api_key": "MEMORYOS_API_KEY", "user_id": "MEMORYOS_USER_ID"},
     "mysql": {"host": "PET_MYSQL_HOST", "port": "PET_MYSQL_PORT", "database": "PET_MYSQL_DATABASE", "user": "PET_MYSQL_USER", "password": "PET_MYSQL_PASSWORD"},
+    "sqlite": {"path": "PET_SQLITE_PATH"},
     "server": {"allowed_hosts": "PET_ALLOWED_HOSTS", "allowed_origins": "PET_ALLOWED_ORIGINS"},
 }
 

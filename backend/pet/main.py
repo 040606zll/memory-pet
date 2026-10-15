@@ -15,7 +15,7 @@ from .accounts import Accounts
 from .auth import Auth, COOKIE_NAME, SESSION_AGE, public_user
 from .config import Connection
 from .connections import AccountConnections
-from .database import DatabaseConfig, run_db
+from .database import DatabaseConfig, SQLiteConfig, run_db
 from .errors import ServiceError
 from .providers import Providers
 from .schemas import ACTIONS, AccountBody, CandidateBody, ChatBody, ConfirmBody, Mode, ModeBody, RetryConnectionBody, SessionBody, Surface
@@ -71,7 +71,9 @@ def create_app(*, database=None, connection=None, transport=None):
     settings = load_settings()
     app = FastAPI(title="MemoryPet 账号与记忆服务", lifespan=lifespan)
     app.add_middleware(AccessMiddleware, policy=AccessPolicy.from_settings(settings))
-    app.state.store = Store(database if database is not None else DatabaseConfig.from_settings(settings))
+    if database is None:
+        database = SQLiteConfig(settings['PET_SQLITE_PATH']) if settings.get('PET_SQLITE_PATH') else DatabaseConfig.from_settings(settings)
+    app.state.store = Store(database)
     app.state.accounts = Accounts(app.state.store)
     app.state.auth = Auth(app.state.accounts)
     # 此处只存服务端配置，不存当前用户或全局登录状态。
@@ -83,7 +85,7 @@ def create_app(*, database=None, connection=None, transport=None):
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(request, exc):
-        message = "账号需为三到三十二位字母、数字或下划线，密码需为八到一百二十八位" if request.url.path.startswith('/api/auth/') else "请求参数无效，请检查必填项、文本长度和模式"
+        message = "账号需为三到三十二位字母、数字或下划线，密码需为一到一百二十八位" if request.url.path.startswith('/api/auth/') else "请求参数无效，请检查必填项、文本长度和模式"
         return JSONResponse(response(message=message, code=422), status_code=422)
 
     @app.exception_handler(Exception)

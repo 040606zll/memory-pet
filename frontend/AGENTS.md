@@ -55,3 +55,12 @@ Build app UI in `src/`. Keep `.openai/hosting.json`, `worker/index.js`, `scripts
 登录凭据由 HttpOnly Cookie 管理，CSRF 只在内存；变更请求附带 X-CSRF-Token。401、退出和账号变化时卸载旧业务树，旧请求成功或失败都不能覆盖新账号。重新聚焦校验期间隐藏业务界面，同一账号校验成功应保留草稿。连接与身份逻辑改动时运行 tests/auth.test.jsx 及业务回归；接口约定见 ../docs/2026-10-15/账号密码登录/API接口文档.md。
 
 开发代理将公开 /pet-api 路径改写为后端 /api；配置地址只能放在 src/config.js。
+
+## 2026-10-15 3D 宠物（用户确认方案）
+
+主页面宠物改为 Three.js + @react-three/fiber 实时 3D。模型由 `tools/blender/build_dog.py` 在 Blender 中脚本生成（元球造型、自动权重骨架、顶点色花色，alpha 为毛长），导出 `public/assets/pet3d/dog.glb`，前端 `dogModel.js` 加载并叠毛绒外壳着色器；用户要求腿部不要机械关节和发光环。房间仍为 2D 背景 `robot-dog-room.png`。代码在 `src/pet3d/`，`PetStage` 在不支持 WebGL2 或 `?pet=2d` 时回退原 2D 精灵版。驱动协议见 ../docs/2026-10-15/3D宠物/API接口文档.md，服务端未实现前使用本地 mock（`PET_DRIVER_MODE`）。`?pet-debug` 暴露 `window.__pet` 便于调试。改造型须改 Blender 脚本并重新导出，不在运行时生成网格（避免卡顿）。比例以 tools/blender/reference/design.webp 实测为准（脚本头部注释列出数值）；眼罩、嘴等面部花色由 furMaterial 着色器按眼睛实际位置逐像素绘制，环境光遮蔽烘焙在顶点色里，主光投射阴影。
+
+2026-10-15 更新：主模型换成用户提供的 Tripo 生成模型（原始文件 `tools/blender/source/puppy_tripo.glb`，71MB、200 万面、无骨架）。`tools/blender/rig_tripo_dog.py` 负责减面到约 8 万面、贴图压到 2048/1024 WebP、按实测位置绑定与 GLB_BONE_MAP 同名的骨架，导出 `public/assets/pet3d/puppy.glb`（约 3.5MB）。花色、嘴、舌头烘焙在 PBR 贴图里，`PUPPY_BONE_MAP.fur=false` 时不叠毛绒外壳；下巴骨不参与变形。旧 `dog.glb` 与 `build_dog.py` 保留作回退。卧/睡姿态的 hipsY、低头幅度已按新模型较大的头部调小。
+
+眼睛（用户多次否定贴纸式方案：浮在脸上的眼片、画布自绘眼睛、在原眼图上画 2D 眼睑都不自然）：脚本把脸上画死的眼睛挖掉，换成独立眼球球体（Eye_L/Eye_R，挂 head 骨，extras 带 lid_color、radius）。眼球贴图由原始 8K 贴图正面投影烘焙后生成：去掉画死的高光、轮廓外补眼白、方位投影 ρ=0.5·sqrt(θ/π)。眼窝边缘有平滑细管（Eye_*_rim）盖住减面锯齿。前端 `eyeRig.js`：看向时整颗眼球转动；眼睑是绕眼睛横轴转动的半球壳（上/下各一，表情对应角度见 LID_POSES）；反光点固定在眼窝不随眼球转；眼球用清漆材质。不要再回到 2D 贴图式眼睑。
+
