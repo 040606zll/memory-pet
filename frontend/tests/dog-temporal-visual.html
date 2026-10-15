@@ -1,0 +1,35 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>机器狗整帧时序诊断</title>
+<style>body{background:#eaf4fe;font:14px sans-serif;color:#183958;margin:16px}.stage{display:inline-block;width:301px;height:558px;background:url('/assets/robot-dog-room.png') center/cover}#pet{width:301px;height:558px}output{white-space:pre-wrap;display:block;max-height:180px;overflow:auto}.sheet{width:100%;height:auto}#filmstrip{display:none}button{padding:12px}</style>
+<h1>生产 Canvas 整帧时序诊断</h1><p>使用默认 GPU 路径、真实画布尺寸和完整角色像素，不使用 diagnose=true。</p><button id="run">重放全部动作</button><div class="stage"><canvas id="pet" width="301" height="558"></canvas></div><output>准备中</output><canvas class="sheet" width="1200" height="1440"></canvas>
+<script type="module">
+import {SPRITE_DURATIONS} from '/src/dogSpriteAssets.js';
+import {spriteFrame,DogSpriteRenderer} from '/src/dogSpritePlayer.js';
+import {poseGeometry} from '/src/dogSpriteComposition.js';
+import {loadCoherentDogSprites} from '/src/dogFrameAtlas.js';
+const assets=await loadCoherentDogSprites(new AbortController().signal),canvas=document.querySelector('#pet'),player=new DogSpriteRenderer(canvas),output=document.querySelector('output'),sheet=document.querySelector('.sheet'),sc=sheet.getContext('2d');
+const probe=document.createElement('canvas');probe.width=100;probe.height=186;const pc=probe.getContext('2d',{willReadFrequently:true});
+const reference=document.createElement('canvas');reference.width=301;reference.height=558;const rc=reference.getContext('2d'),referenceProbe=document.createElement('canvas');referenceProbe.width=100;referenceProbe.height=186;const rpc=referenceProbe.getContext('2d',{willReadFrequently:true});
+const names=['blink','wag_tail','happy','wave','nod','shake_head','stretch','sleep'];let running=false;
+async function run(){if(running)return;running=true;sc.clearRect(0,0,sheet.width,sheet.height);const report={renderer:'production-default',format:assets.manifest.format,uniqueFrames:assets.manifest.uniqueFrames,decodedBytes:assets.manifest.decodedBytes,actions:{}};let time=0;
+ for(const [row,name] of names.entries()){
+  const metrics={frames:0,minAlpha:Infinity,maxAlpha:0,minLuma:Infinity,maxLuma:0,maxNeighborDifference:0,maxAlphaStep:0,maxLumaStep:0,maxSelectedPoseDeviation:0,steps:[]};let previous,previousAlpha,previousLuma,shot=0;
+  const duration=SPRITE_DURATIONS[name];
+  for(let frame=0;frame<=Math.ceil(duration/16.6667)+24;frame++){
+   const elapsed=frame*16.6667,progress=Math.max(0,Math.min(1,(elapsed-200)/duration)),active=elapsed>=200&&elapsed<=duration+200;
+   const sample=spriteFrame(assets,active?{name,started:time+200,progress}:{name:'idle'},time+elapsed);
+   player.draw(sample,time+elapsed);pc.clearRect(0,0,100,186);pc.drawImage(canvas,0,0,100,186);const pixels=pc.getImageData(0,0,100,186).data;let alpha=0,luma=0,diff=0;
+   if(active&&progress>.25&&progress<.75){rc.clearRect(0,0,301,558);const g=poseGeometry(sample,301,558);rc.drawImage(sample.image,sample.frame.x,sample.frame.y,sample.frame.width,sample.frame.height,g.x,g.y,g.width,g.height);rpc.clearRect(0,0,100,186);rpc.drawImage(reference,0,0,100,186);const expected=rpc.getImageData(0,0,100,186).data;let total=0,count=0;for(let y=100;y<150;y++)for(let x=20;x<78;x++){const i=(y*100+x)*4;if(expected[i+3]>250&&pixels[i+3]>250){for(let k=0;k<3;k++)total+=Math.abs(expected[i+k]-pixels[i+k]);count+=3}}if(count)metrics.maxSelectedPoseDeviation=Math.max(metrics.maxSelectedPoseDeviation,total/count)}
+   for(let i=0;i<pixels.length;i+=4){alpha+=pixels[i+3]/255;luma+=(.2126*pixels[i]+.7152*pixels[i+1]+.0722*pixels[i+2])*pixels[i+3]/255;if(previous)for(let k=0;k<4;k++){const a=k===3?pixels[i+3]:pixels[i+k]*pixels[i+3]/255,b=k===3?previous[i+3]:previous[i+k]*previous[i+3]/255;diff+=Math.abs(a-b)}}
+   metrics.frames++;metrics.minAlpha=Math.min(metrics.minAlpha,alpha);metrics.maxAlpha=Math.max(metrics.maxAlpha,alpha);metrics.minLuma=Math.min(metrics.minLuma,luma);metrics.maxLuma=Math.max(metrics.maxLuma,luma);metrics.maxNeighborDifference=Math.max(metrics.maxNeighborDifference,diff/(100*186*4));
+   if(previousAlpha!=null){metrics.maxAlphaStep=Math.max(metrics.maxAlphaStep,Math.abs(alpha-previousAlpha)/previousAlpha);metrics.maxLumaStep=Math.max(metrics.maxLumaStep,Math.abs(luma-previousLuma)/previousLuma)}
+   if((active&&progress>=shot/5&&shot<6)||(shot===5&&!active&&elapsed>duration+200)){sc.fillStyle='#183958';sc.fillText(name+' '+progress.toFixed(2),shot*200,row*180+12);sc.drawImage(canvas,0,280,301,278,shot*200,row*180+18,180,166);shot++}
+   metrics.steps.push({progress:+progress.toFixed(3),alpha:+alpha.toFixed(1),luma:Math.round(luma),diff:+(diff/(100*186*4)).toFixed(3)});previous=pixels;previousAlpha=alpha;previousLuma=luma;
+   // 每个样本先真正提交到浏览器，再读取下一帧，避免同步循环绕过合成器。
+   await new Promise(requestAnimationFrame);
+  }
+  report.actions[name]=metrics;time+=duration+600;output.textContent=JSON.stringify(report,null,2);
+ }
+ report.complete=true;report.singlePosePassed=Object.values(report.actions).every(m=>m.maxSelectedPoseDeviation<.5);output.textContent=JSON.stringify(report,null,2);let image=document.querySelector('#filmstrip');if(!image){image=document.createElement('img');image.id='filmstrip';image.alt='完整动作连续帧';image.style.width='1200px';document.body.append(image)}image.src=sheet.toDataURL();running=false;
+}
+document.querySelector('#run').onclick=run;run();
+</script></html>

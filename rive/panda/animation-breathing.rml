@@ -1,0 +1,17 @@
+<Rive version="1" kind="fragment">
+  <LinearAnimation artboardId="0:2" name="breathing" id="0:200" fps="60" duration="240" loopValue="loop">
+    <KeyedObject objectId="0:100">
+      <KeyedProperty propertyKey="17">
+        <KeyFrameDouble frame="0" value="1" interpolationType="cubic">
+          <CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" />
+        </KeyFrameDouble>
+        <KeyFrameDouble frame="120" value="1.012" interpolationType="cubic">
+          <CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" />
+        </KeyFrameDouble>
+        <KeyFrameDouble frame="240" value="1" interpolationType="cubic">
+          <CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" />
+        </KeyFrameDouble>
+      </KeyedProperty>
+    </KeyedObject>
+  </LinearAnimation>
+</Rive>

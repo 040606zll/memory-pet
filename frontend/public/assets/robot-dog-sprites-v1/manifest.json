@@ -1,0 +1,1431 @@
+{
+  "version": 1,
+  "format": "untrimmed-pose-rects",
+  "actions": {
+    "idle": {
+      "src": "/assets/robot-dog-sprites-v1/idle.png",
+      "duration_ms": 1600,
+      "fps": 10.625,
+      "referenceHeight": 306,
+      "referenceWidth": 290,
+      "frames": [
+        {
+          "x": 23,
+          "y": 16,
+          "width": 273,
+          "height": 312,
+          "anchorX": 117.5,
+          "anchorY": 309
+        },
+        {
+          "x": 339,
+          "y": 30,
+          "width": 273,
+          "height": 300,
+          "anchorX": 118.5,
+          "anchorY": 297
+        },
+        {
+          "x": 634,
+          "y": 29,
+          "width": 288,
+          "height": 302,
+          "anchorX": 132.0,
+          "anchorY": 299
+        },
+        {
+          "x": 962,
+          "y": 32,
+          "width": 277,
+          "height": 299,
+          "anchorX": 119.0,
+          "anchorY": 296
+        },
+        {
+          "x": 22,
+          "y": 336,
+          "width": 285,
+          "height": 307,
+          "anchorX": 125.0,
+          "anchorY": 304
+        },
+        {
+          "x": 334,
+          "y": 335,
+          "width": 290,
+          "height": 304,
+          "anchorX": 122.5,
+          "anchorY": 301
+        },
+        {
+          "x": 641,
+          "y": 343,
+          "width": 279,
+          "height": 298,
+          "anchorX": 136.0,
+          "anchorY": 295
+        },
+        {
+          "x": 967,
+          "y": 343,
+          "width": 272,
+          "height": 298,
+          "anchorX": 122.0,
+          "anchorY": 295
+        },
+        {
+          "x": 24,
+          "y": 647,
+          "width": 278,
+          "height": 307,
+          "anchorX": 123.5,
+          "anchorY": 304
+        },
+        {
+          "x": 335,
+          "y": 657,
+          "width": 281,
+          "height": 298,
+          "anchorX": 128.0,
+          "anchorY": 295
+        },
+        {
+          "x": 646,
+          "y": 655,
+          "width": 281,
+          "height": 302,
+          "anchorX": 125.5,
+          "anchorY": 299
+        },
+        {
+          "x": 962,
+          "y": 655,
+          "width": 268,
+          "height": 300,
+          "anchorX": 125.0,
+          "anchorY": 297
+        },
+        {
+          "x": 26,
+          "y": 956,
+          "width": 276,
+          "height": 298,
+          "anchorX": 119.0,
+          "anchorY": 296
+        },
+        {
+          "x": 339,
+          "y": 959,
+          "width": 276,
+          "height": 295,
+          "anchorX": 121.0,
+          "anchorY": 293
+        },
+        {
+          "x": 648,
+          "y": 960,
+          "width": 276,
+          "height": 294,
+          "anchorX": 121.0,
+          "anchorY": 291
+        },
+        {
+          "x": 965,
+          "y": 957,
+          "width": 271,
+          "height": 297,
+          "anchorX": 120.0,
+          "anchorY": 294
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        0
+      ],
+      "excludedFrames": []
+    },
+    "blink": {
+      "src": "/assets/robot-dog-sprites-v1/blink.png",
+      "duration_ms": 800,
+      "fps": 21.25,
+      "referenceHeight": 282,
+      "referenceWidth": 273,
+      "frames": [
+        {
+          "x": 29,
+          "y": 24,
+          "width": 272,
+          "height": 288,
+          "anchorX": 117.5,
+          "anchorY": 285
+        },
+        {
+          "x": 342,
+          "y": 24,
+          "width": 272,
+          "height": 288,
+          "anchorX": 118.0,
+          "anchorY": 285
+        },
+        {
+          "x": 655,
+          "y": 24,
+          "width": 273,
+          "height": 288,
+          "anchorX": 117.5,
+          "anchorY": 285
+        },
+        {
+          "x": 968,
+          "y": 24,
+          "width": 272,
+          "height": 288,
+          "anchorX": 118.0,
+          "anchorY": 285
+        },
+        {
+          "x": 28,
+          "y": 337,
+          "width": 273,
+          "height": 288,
+          "anchorX": 118.0,
+          "anchorY": 285
+        },
+        {
+          "x": 341,
+          "y": 338,
+          "width": 273,
+          "height": 287,
+          "anchorX": 118.5,
+          "anchorY": 284
+        },
+        {
+          "x": 655,
+          "y": 338,
+          "width": 273,
+          "height": 287,
+          "anchorX": 118.0,
+          "anchorY": 284
+        },
+        {
+          "x": 968,
+          "y": 338,
+          "width": 272,
+          "height": 287,
+          "anchorX": 118.0,
+          "anchorY": 284
+        },
+        {
+          "x": 29,
+          "y": 651,
+          "width": 272,
+          "height": 288,
+          "anchorX": 117.5,
+          "anchorY": 285
+        },
+        {
+          "x": 341,
+          "y": 651,
+          "width": 273,
+          "height": 288,
+          "anchorX": 118.5,
+          "anchorY": 285
+        },
+        {
+          "x": 655,
+          "y": 651,
+          "width": 273,
+          "height": 288,
+          "anchorX": 117.5,
+          "anchorY": 285
+        },
+        {
+          "x": 968,
+          "y": 651,
+          "width": 273,
+          "height": 288,
+          "anchorX": 118.0,
+          "anchorY": 285
+        },
+        {
+          "x": 28,
+          "y": 964,
+          "width": 273,
+          "height": 288,
+          "anchorX": 118.0,
+          "anchorY": 285
+        },
+        {
+          "x": 341,
+          "y": 965,
+          "width": 273,
+          "height": 287,
+          "anchorX": 118.5,
+          "anchorY": 284
+        },
+        {
+          "x": 655,
+          "y": 965,
+          "width": 273,
+          "height": 287,
+          "anchorX": 118.0,
+          "anchorY": 284
+        },
+        {
+          "x": 968,
+          "y": 965,
+          "width": 272,
+          "height": 287,
+          "anchorX": 118.0,
+          "anchorY": 284
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        0
+      ],
+      "excludedFrames": []
+    },
+    "wave": {
+      "src": "/assets/robot-dog-sprites-v1/wave.png",
+      "duration_ms": 1600,
+      "fps": 10.625,
+      "referenceHeight": 242,
+      "referenceWidth": 237,
+      "frames": [
+        {
+          "x": 63,
+          "y": 50,
+          "width": 227,
+          "height": 248,
+          "anchorX": 94.0,
+          "anchorY": 245
+        },
+        {
+          "x": 376,
+          "y": 50,
+          "width": 227,
+          "height": 246,
+          "anchorX": 94.0,
+          "anchorY": 243
+        },
+        {
+          "x": 690,
+          "y": 50,
+          "width": 227,
+          "height": 246,
+          "anchorX": 93.5,
+          "anchorY": 243
+        },
+        {
+          "x": 1003,
+          "y": 50,
+          "width": 227,
+          "height": 246,
+          "anchorX": 94.0,
+          "anchorY": 243
+        },
+        {
+          "x": 62,
+          "y": 364,
+          "width": 228,
+          "height": 246,
+          "anchorX": 94.0,
+          "anchorY": 243
+        },
+        {
+          "x": 366,
+          "y": 364,
+          "width": 237,
+          "height": 246,
+          "anchorX": 104.0,
+          "anchorY": 243
+        },
+        {
+          "x": 689,
+          "y": 364,
+          "width": 228,
+          "height": 246,
+          "anchorX": 94.0,
+          "anchorY": 243
+        },
+        {
+          "x": 1002,
+          "y": 364,
+          "width": 228,
+          "height": 246,
+          "anchorX": 95.0,
+          "anchorY": 243
+        },
+        {
+          "x": 63,
+          "y": 677,
+          "width": 227,
+          "height": 246,
+          "anchorX": 94.0,
+          "anchorY": 243
+        },
+        {
+          "x": 374,
+          "y": 678,
+          "width": 230,
+          "height": 245,
+          "anchorX": 96.0,
+          "anchorY": 242
+        },
+        {
+          "x": 690,
+          "y": 677,
+          "width": 227,
+          "height": 246,
+          "anchorX": 94.0,
+          "anchorY": 243
+        },
+        {
+          "x": 1003,
+          "y": 678,
+          "width": 227,
+          "height": 245,
+          "anchorX": 94.0,
+          "anchorY": 242
+        },
+        {
+          "x": 62,
+          "y": 991,
+          "width": 228,
+          "height": 246,
+          "anchorX": 94.0,
+          "anchorY": 243
+        },
+        {
+          "x": 376,
+          "y": 991,
+          "width": 227,
+          "height": 245,
+          "anchorX": 94.0,
+          "anchorY": 242
+        },
+        {
+          "x": 689,
+          "y": 991,
+          "width": 228,
+          "height": 246,
+          "anchorX": 94.0,
+          "anchorY": 243
+        },
+        {
+          "x": 1003,
+          "y": 991,
+          "width": 226,
+          "height": 246,
+          "anchorX": 94.0,
+          "anchorY": 243
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        0
+      ],
+      "excludedFrames": []
+    },
+    "nod": {
+      "src": "/assets/robot-dog-sprites-v1/nod.png",
+      "duration_ms": 1600,
+      "fps": 8.125,
+      "referenceHeight": 290,
+      "referenceWidth": 281,
+      "frames": [
+        {
+          "x": 25,
+          "y": 30,
+          "width": 280,
+          "height": 296,
+          "anchorX": 117.5,
+          "anchorY": 293
+        },
+        {
+          "x": 339,
+          "y": 34,
+          "width": 281,
+          "height": 291,
+          "anchorX": 117.0,
+          "anchorY": 288
+        },
+        {
+          "x": 651,
+          "y": 41,
+          "width": 281,
+          "height": 284,
+          "anchorX": 117.5,
+          "anchorY": 281
+        },
+        {
+          "x": 964,
+          "y": 42,
+          "width": 279,
+          "height": 283,
+          "anchorX": 118.0,
+          "anchorY": 280
+        },
+        {
+          "x": 25,
+          "y": 353,
+          "width": 280,
+          "height": 285,
+          "anchorX": 117.5,
+          "anchorY": 282
+        },
+        {
+          "x": 338,
+          "y": 360,
+          "width": 281,
+          "height": 278,
+          "anchorX": 118.0,
+          "anchorY": 275
+        },
+        {
+          "x": 651,
+          "y": 367,
+          "width": 280,
+          "height": 271,
+          "anchorX": 117.5,
+          "anchorY": 268
+        },
+        {
+          "x": 964,
+          "y": 372,
+          "width": 278,
+          "height": 266,
+          "anchorX": 118.0,
+          "anchorY": 263
+        },
+        {
+          "x": 25,
+          "y": 691,
+          "width": 278,
+          "height": 261,
+          "anchorX": 117.5,
+          "anchorY": 258
+        },
+        {
+          "x": 338,
+          "y": 686,
+          "width": 278,
+          "height": 266,
+          "anchorX": 117.5,
+          "anchorY": 263
+        },
+        {
+          "x": 651,
+          "y": 666,
+          "width": 281,
+          "height": 286,
+          "anchorX": 117.5,
+          "anchorY": 283
+        },
+        {
+          "x": 965,
+          "y": 657,
+          "width": 279,
+          "height": 295,
+          "anchorX": 117.5,
+          "anchorY": 292
+        },
+        {
+          "x": 25,
+          "y": 967,
+          "width": 280,
+          "height": 287,
+          "anchorX": 117.5,
+          "anchorY": 287
+        },
+        {
+          "x": 338,
+          "y": 967,
+          "width": 281,
+          "height": 287,
+          "anchorX": 118.0,
+          "anchorY": 287
+        },
+        {
+          "x": 651,
+          "y": 966,
+          "width": 280,
+          "height": 288,
+          "anchorX": 117.5,
+          "anchorY": 288
+        },
+        {
+          "x": 964,
+          "y": 967,
+          "width": 280,
+          "height": 287,
+          "anchorX": 118.0,
+          "anchorY": 287
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        0
+      ],
+      "excludedFrames": [
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "shake_head": {
+      "src": "/assets/robot-dog-sprites-v1/shake_head.png",
+      "duration_ms": 1600,
+      "fps": 10.625,
+      "referenceHeight": 274,
+      "referenceWidth": 261,
+      "frames": [
+        {
+          "x": 30,
+          "y": 44,
+          "width": 257,
+          "height": 280,
+          "anchorX": 110.0,
+          "anchorY": 277
+        },
+        {
+          "x": 343,
+          "y": 44,
+          "width": 254,
+          "height": 280,
+          "anchorX": 110.0,
+          "anchorY": 277
+        },
+        {
+          "x": 657,
+          "y": 44,
+          "width": 247,
+          "height": 280,
+          "anchorX": 110.5,
+          "anchorY": 277
+        },
+        {
+          "x": 971,
+          "y": 44,
+          "width": 245,
+          "height": 280,
+          "anchorX": 110.0,
+          "anchorY": 277
+        },
+        {
+          "x": 33,
+          "y": 347,
+          "width": 253,
+          "height": 281,
+          "anchorX": 110.0,
+          "anchorY": 278
+        },
+        {
+          "x": 346,
+          "y": 347,
+          "width": 256,
+          "height": 281,
+          "anchorX": 109.5,
+          "anchorY": 278
+        },
+        {
+          "x": 659,
+          "y": 347,
+          "width": 256,
+          "height": 281,
+          "anchorX": 110.0,
+          "anchorY": 278
+        },
+        {
+          "x": 973,
+          "y": 352,
+          "width": 261,
+          "height": 276,
+          "anchorX": 110.0,
+          "anchorY": 273
+        },
+        {
+          "x": 32,
+          "y": 657,
+          "width": 258,
+          "height": 282,
+          "anchorX": 111.0,
+          "anchorY": 279
+        },
+        {
+          "x": 346,
+          "y": 657,
+          "width": 256,
+          "height": 282,
+          "anchorX": 110.5,
+          "anchorY": 279
+        },
+        {
+          "x": 659,
+          "y": 657,
+          "width": 260,
+          "height": 282,
+          "anchorX": 111.0,
+          "anchorY": 279
+        },
+        {
+          "x": 973,
+          "y": 659,
+          "width": 253,
+          "height": 280,
+          "anchorX": 110.5,
+          "anchorY": 277
+        },
+        {
+          "x": 30,
+          "y": 959,
+          "width": 257,
+          "height": 280,
+          "anchorX": 110.0,
+          "anchorY": 277
+        },
+        {
+          "x": 343,
+          "y": 959,
+          "width": 257,
+          "height": 280,
+          "anchorX": 110.5,
+          "anchorY": 277
+        },
+        {
+          "x": 657,
+          "y": 959,
+          "width": 255,
+          "height": 280,
+          "anchorX": 110.5,
+          "anchorY": 277
+        },
+        {
+          "x": 970,
+          "y": 959,
+          "width": 257,
+          "height": 280,
+          "anchorX": 110.0,
+          "anchorY": 277
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        0
+      ],
+      "excludedFrames": []
+    },
+    "stretch": {
+      "src": "/assets/robot-dog-sprites-v1/stretch.png",
+      "duration_ms": 2000,
+      "fps": 8.5,
+      "referenceHeight": 291,
+      "referenceWidth": 297,
+      "frames": [
+        {
+          "x": 26,
+          "y": 32,
+          "width": 276,
+          "height": 297,
+          "anchorX": 110.0,
+          "anchorY": 294
+        },
+        {
+          "x": 344,
+          "y": 43,
+          "width": 271,
+          "height": 286,
+          "anchorX": 121.5,
+          "anchorY": 283
+        },
+        {
+          "x": 657,
+          "y": 62,
+          "width": 267,
+          "height": 266,
+          "anchorX": 126.5,
+          "anchorY": 263
+        },
+        {
+          "x": 966,
+          "y": 41,
+          "width": 283,
+          "height": 288,
+          "anchorX": 127.0,
+          "anchorY": 285
+        },
+        {
+          "x": 22,
+          "y": 342,
+          "width": 297,
+          "height": 290,
+          "anchorX": 139.5,
+          "anchorY": 287
+        },
+        {
+          "x": 334,
+          "y": 343,
+          "width": 296,
+          "height": 287,
+          "anchorX": 146.5,
+          "anchorY": 284
+        },
+        {
+          "x": 650,
+          "y": 349,
+          "width": 293,
+          "height": 281,
+          "anchorX": 145.0,
+          "anchorY": 278
+        },
+        {
+          "x": 962,
+          "y": 353,
+          "width": 292,
+          "height": 276,
+          "anchorX": 145.5,
+          "anchorY": 273
+        },
+        {
+          "x": 21,
+          "y": 661,
+          "width": 296,
+          "height": 273,
+          "anchorX": 137.0,
+          "anchorY": 270
+        },
+        {
+          "x": 339,
+          "y": 658,
+          "width": 294,
+          "height": 277,
+          "anchorX": 134.5,
+          "anchorY": 274
+        },
+        {
+          "x": 657,
+          "y": 662,
+          "width": 269,
+          "height": 278,
+          "anchorX": 122.0,
+          "anchorY": 275
+        },
+        {
+          "x": 969,
+          "y": 659,
+          "width": 275,
+          "height": 282,
+          "anchorX": 126.0,
+          "anchorY": 279
+        },
+        {
+          "x": 36,
+          "y": 950,
+          "width": 268,
+          "height": 296,
+          "anchorX": 111.0,
+          "anchorY": 293
+        },
+        {
+          "x": 349,
+          "y": 946,
+          "width": 266,
+          "height": 300,
+          "anchorX": 113.5,
+          "anchorY": 297
+        },
+        {
+          "x": 658,
+          "y": 952,
+          "width": 270,
+          "height": 296,
+          "anchorX": 114.5,
+          "anchorY": 293
+        },
+        {
+          "x": 969,
+          "y": 950,
+          "width": 273,
+          "height": 298,
+          "anchorX": 114.0,
+          "anchorY": 295
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        0
+      ],
+      "excludedFrames": []
+    },
+    "happy": {
+      "src": "/assets/robot-dog-sprites-v1/happy.png",
+      "duration_ms": 1600,
+      "fps": 14.375,
+      "referenceHeight": 297,
+      "referenceWidth": 294,
+      "frames": [
+        {
+          "x": 26,
+          "y": 44,
+          "width": 277,
+          "height": 303,
+          "anchorX": 121.5,
+          "anchorY": 300
+        },
+        {
+          "x": 346,
+          "y": 47,
+          "width": 273,
+          "height": 300,
+          "anchorX": 123.0,
+          "anchorY": 297
+        },
+        {
+          "x": 661,
+          "y": 45,
+          "width": 268,
+          "height": 302,
+          "anchorX": 122.5,
+          "anchorY": 299
+        },
+        {
+          "x": 976,
+          "y": 42,
+          "width": 267,
+          "height": 306,
+          "anchorX": 123.5,
+          "anchorY": 303
+        },
+        {
+          "x": 30,
+          "y": 361,
+          "width": 283,
+          "height": 306,
+          "anchorX": 125.0,
+          "anchorY": 303
+        },
+        {
+          "x": 343,
+          "y": 357,
+          "width": 284,
+          "height": 316,
+          "anchorX": 126.0,
+          "anchorY": 313
+        },
+        {
+          "x": 660,
+          "y": 367,
+          "width": 279,
+          "height": 305,
+          "anchorX": 124.0,
+          "anchorY": 302
+        },
+        {
+          "x": 964,
+          "y": 366,
+          "width": 284,
+          "height": 307,
+          "anchorX": 135.0,
+          "anchorY": 304
+        },
+        {
+          "x": 30,
+          "y": 679,
+          "width": 294,
+          "height": 308,
+          "anchorX": 126.0,
+          "anchorY": 305
+        },
+        {
+          "x": 346,
+          "y": 680,
+          "width": 280,
+          "height": 306,
+          "anchorX": 125.0,
+          "anchorY": 303
+        },
+        {
+          "x": 658,
+          "y": 683,
+          "width": 282,
+          "height": 304,
+          "anchorX": 123.5,
+          "anchorY": 301
+        },
+        {
+          "x": 973,
+          "y": 684,
+          "width": 275,
+          "height": 303,
+          "anchorX": 125.0,
+          "anchorY": 300
+        },
+        {
+          "x": 35,
+          "y": 991,
+          "width": 269,
+          "height": 263,
+          "anchorX": 111.5,
+          "anchorY": 260
+        },
+        {
+          "x": 348,
+          "y": 994,
+          "width": 272,
+          "height": 260,
+          "anchorX": 114.5,
+          "anchorY": 257
+        },
+        {
+          "x": 660,
+          "y": 992,
+          "width": 271,
+          "height": 262,
+          "anchorX": 114.5,
+          "anchorY": 259
+        },
+        {
+          "x": 977,
+          "y": 991,
+          "width": 268,
+          "height": 263,
+          "anchorX": 114.0,
+          "anchorY": 260
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        10,
+        9,
+        8,
+        7,
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "excludedFrames": [
+        12,
+        13,
+        14,
+        15
+      ]
+    },
+    "sleep": {
+      "src": "/assets/robot-dog-sprites-v1/sleep.png",
+      "duration_ms": 2400,
+      "fps": 7.083333333333333,
+      "referenceHeight": 300,
+      "referenceWidth": 284,
+      "frames": [
+        {
+          "x": 25,
+          "y": 7,
+          "width": 283,
+          "height": 306,
+          "anchorX": 117.5,
+          "anchorY": 303
+        },
+        {
+          "x": 336,
+          "y": 7,
+          "width": 279,
+          "height": 306,
+          "anchorX": 118.0,
+          "anchorY": 303
+        },
+        {
+          "x": 646,
+          "y": 10,
+          "width": 275,
+          "height": 303,
+          "anchorX": 117.5,
+          "anchorY": 300
+        },
+        {
+          "x": 956,
+          "y": 16,
+          "width": 277,
+          "height": 297,
+          "anchorX": 117.5,
+          "anchorY": 294
+        },
+        {
+          "x": 25,
+          "y": 337,
+          "width": 283,
+          "height": 295,
+          "anchorX": 118.0,
+          "anchorY": 292
+        },
+        {
+          "x": 336,
+          "y": 342,
+          "width": 283,
+          "height": 290,
+          "anchorX": 118.5,
+          "anchorY": 287
+        },
+        {
+          "x": 646,
+          "y": 355,
+          "width": 279,
+          "height": 277,
+          "anchorX": 118.0,
+          "anchorY": 274
+        },
+        {
+          "x": 957,
+          "y": 362,
+          "width": 280,
+          "height": 270,
+          "anchorX": 118.0,
+          "anchorY": 267
+        },
+        {
+          "x": 24,
+          "y": 674,
+          "width": 281,
+          "height": 270,
+          "anchorX": 118.0,
+          "anchorY": 267
+        },
+        {
+          "x": 336,
+          "y": 674,
+          "width": 281,
+          "height": 270,
+          "anchorX": 118.5,
+          "anchorY": 267
+        },
+        {
+          "x": 646,
+          "y": 674,
+          "width": 281,
+          "height": 270,
+          "anchorX": 118.0,
+          "anchorY": 267
+        },
+        {
+          "x": 956,
+          "y": 663,
+          "width": 278,
+          "height": 281,
+          "anchorX": 118.0,
+          "anchorY": 278
+        },
+        {
+          "x": 26,
+          "y": 946,
+          "width": 283,
+          "height": 302,
+          "anchorX": 118.0,
+          "anchorY": 299
+        },
+        {
+          "x": 336,
+          "y": 948,
+          "width": 281,
+          "height": 300,
+          "anchorX": 118.5,
+          "anchorY": 297
+        },
+        {
+          "x": 646,
+          "y": 943,
+          "width": 279,
+          "height": 305,
+          "anchorX": 118.0,
+          "anchorY": 302
+        },
+        {
+          "x": 957,
+          "y": 946,
+          "width": 284,
+          "height": 301,
+          "anchorX": 118.0,
+          "anchorY": 298
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        0
+      ],
+      "excludedFrames": []
+    },
+    "wag_tail": {
+      "src": "/assets/robot-dog-sprites-v1/wag_tail.png",
+      "duration_ms": 1200,
+      "fps": 14.166666666666666,
+      "referenceHeight": 256,
+      "referenceWidth": 251,
+      "frames": [
+        {
+          "x": 50,
+          "y": 42,
+          "width": 234,
+          "height": 262,
+          "anchorX": 99.5,
+          "anchorY": 259
+        },
+        {
+          "x": 354,
+          "y": 42,
+          "width": 243,
+          "height": 262,
+          "anchorX": 109.0,
+          "anchorY": 259
+        },
+        {
+          "x": 668,
+          "y": 42,
+          "width": 243,
+          "height": 262,
+          "anchorX": 108.0,
+          "anchorY": 259
+        },
+        {
+          "x": 981,
+          "y": 42,
+          "width": 243,
+          "height": 262,
+          "anchorX": 109.0,
+          "anchorY": 259
+        },
+        {
+          "x": 33,
+          "y": 355,
+          "width": 251,
+          "height": 262,
+          "anchorX": 116.5,
+          "anchorY": 259
+        },
+        {
+          "x": 354,
+          "y": 355,
+          "width": 243,
+          "height": 262,
+          "anchorX": 109.0,
+          "anchorY": 259
+        },
+        {
+          "x": 677,
+          "y": 355,
+          "width": 234,
+          "height": 262,
+          "anchorX": 99.0,
+          "anchorY": 259
+        },
+        {
+          "x": 991,
+          "y": 355,
+          "width": 233,
+          "height": 262,
+          "anchorX": 99.0,
+          "anchorY": 259
+        },
+        {
+          "x": 50,
+          "y": 669,
+          "width": 234,
+          "height": 261,
+          "anchorX": 99.5,
+          "anchorY": 258
+        },
+        {
+          "x": 364,
+          "y": 669,
+          "width": 234,
+          "height": 262,
+          "anchorX": 99.0,
+          "anchorY": 259
+        },
+        {
+          "x": 671,
+          "y": 669,
+          "width": 240,
+          "height": 262,
+          "anchorX": 105.0,
+          "anchorY": 259
+        },
+        {
+          "x": 990,
+          "y": 669,
+          "width": 234,
+          "height": 262,
+          "anchorX": 100.0,
+          "anchorY": 259
+        },
+        {
+          "x": 50,
+          "y": 983,
+          "width": 234,
+          "height": 261,
+          "anchorX": 99.5,
+          "anchorY": 258
+        },
+        {
+          "x": 362,
+          "y": 982,
+          "width": 235,
+          "height": 262,
+          "anchorX": 101.0,
+          "anchorY": 259
+        },
+        {
+          "x": 677,
+          "y": 982,
+          "width": 234,
+          "height": 262,
+          "anchorX": 99.5,
+          "anchorY": 259
+        },
+        {
+          "x": 991,
+          "y": 982,
+          "width": 233,
+          "height": 262,
+          "anchorX": 99.0,
+          "anchorY": 259
+        }
+      ],
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        0
+      ],
+      "excludedFrames": []
+    }
+  }
+}

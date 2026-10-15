@@ -1,0 +1,78 @@
+{
+  "system_layout": "merged",
+  "started_at": "2026-10-14T19:42:41.578335",
+  "model": "deepseek-v4-flash",
+  "session_id": "3d71dd4e-d373-4dc2-b969-d931a46521d3",
+  "message": "不要挥手，也不要眨眼，只安静陪着我。",
+  "history_count": 4,
+  "memories_count": 2,
+  "attempts": [
+    {
+      "mode": "json_object",
+      "repeat": 1,
+      "status": 200,
+      "seconds": 0.824,
+      "finish_reason": "stop",
+      "content_chars": 13,
+      "nonblank_chars": 0,
+      "valid_reply": false,
+      "content": "             "
+    },
+    {
+      "mode": "json_object",
+      "repeat": 2,
+      "status": 200,
+      "seconds": 1.19,
+      "finish_reason": "stop",
+      "content_chars": 13,
+      "nonblank_chars": 0,
+      "valid_reply": false,
+      "content": "             "
+    },
+    {
+      "mode": "json_object",
+      "repeat": 3,
+      "status": 200,
+      "seconds": 0.802,
+      "finish_reason": "stop",
+      "content_chars": 13,
+      "nonblank_chars": 0,
+      "valid_reply": false,
+      "content": "             "
+    },
+    {
+      "mode": "prompt_json",
+      "repeat": 1,
+      "status": 200,
+      "seconds": 0.949,
+      "finish_reason": "stop",
+      "content_chars": 20,
+      "nonblank_chars": 20,
+      "valid_reply": false,
+      "content": "好，我不挥手也不眨眼，就安安静静陪着你。"
+    },
+    {
+      "mode": "prompt_json",
+      "repeat": 2,
+      "status": 200,
+      "seconds": 0.882,
+      "finish_reason": "stop",
+      "content_chars": 21,
+      "nonblank_chars": 21,
+      "valid_reply": false,
+      "content": "好，那我不挥手也不眨眼，就安安静静陪着你。"
+    },
+    {
+      "mode": "prompt_json",
+      "repeat": 3,
+      "status": 200,
+      "seconds": 0.995,
+      "finish_reason": "stop",
+      "content_chars": 21,
+      "nonblank_chars": 21,
+      "valid_reply": false,
+      "content": "好，那我不挥手也不眨眼，就安安静静陪着你。"
+    }
+  ],
+  "finished_at": "2026-10-14T19:42:47.274189"
+}

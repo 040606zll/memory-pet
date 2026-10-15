@@ -1,0 +1,561 @@
+{
+  "started_at": "2026-10-14T19:46:29.648559",
+  "backend": "http://127.0.0.1:8797",
+  "steps": [
+    {
+      "method": "GET",
+      "path": "/api/status",
+      "status": 200,
+      "seconds": 0.002,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "memoryos": {
+            "base_url": "http://127.0.0.1:8863",
+            "user_id": "e9e81bef-8932-4287-8f1a-fe1a1e51d508",
+            "configured": true
+          },
+          "llm": {
+            "base_url": "https://api.deepseek.com",
+            "model": "deepseek-v4-flash",
+            "configured": true
+          },
+          "actions": [
+            "blink",
+            "wave",
+            "nod",
+            "shake_head",
+            "stretch",
+            "happy",
+            "sleep"
+          ],
+          "connected": false,
+          "memory_validated": false,
+          "llm_validated": false
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/connection",
+      "status": 200,
+      "seconds": 1.225,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "memoryos": {
+            "base_url": "http://127.0.0.1:8863",
+            "user_id": "e9e81bef-8932-4287-8f1a-fe1a1e51d508",
+            "configured": true
+          },
+          "llm": {
+            "base_url": "https://api.deepseek.com",
+            "model": "deepseek-v4-flash",
+            "configured": true
+          },
+          "actions": [
+            "blink",
+            "wave",
+            "nod",
+            "shake_head",
+            "stretch",
+            "happy",
+            "sleep"
+          ],
+          "connected": true,
+          "memory_validated": true,
+          "llm_validated": true
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions",
+      "status": 200,
+      "seconds": 0.006,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "id": "e489b179-e71a-498d-ba31-c4fc1c355141",
+          "mode": "training",
+          "title": "真实训练召回与动作联调",
+          "created_at": "2026-10-14T11:46:30.910544+00:00"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions/e489b179-e71a-498d-ba31-c4fc1c355141/chat",
+      "status": 200,
+      "seconds": 2.648,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "user_message": {
+            "id": "92dda6f7-fae6-4875-8053-937d0abfc7c4",
+            "role": "user",
+            "content": "我是这次熊猫宠物的联调用户。我疲惫的时候，希望你先安慰我，不要马上给建议。我喜欢听雨声。请把这两个偏好作为训练候选。",
+            "emotion": "neutral",
+            "actions": [],
+            "memories": [],
+            "candidates": [],
+            "created_at": "2026-10-14T11:46:33.558163+00:00"
+          },
+          "assistant_message": {
+            "id": "0660a3bc-5b48-4ec4-ba1c-bb1135916333",
+            "role": "assistant",
+            "content": "好呀，我记住你疲惫时想先被安慰、也喜欢听雨声啦，不过这些还只是候选，要等你确认才算真正记住哦。",
+            "emotion": "happy",
+            "actions": [
+              {
+                "name": "nod",
+                "trigger": "emotion",
+                "duration_ms": 1200
+              },
+              {
+                "name": "happy",
+                "trigger": "emotion",
+                "duration_ms": 2300
+              }
+            ],
+            "memories": [
+              {
+                "id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+                "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:37:06.186164+00:00"
+              },
+              {
+                "id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+                "content": "用户喜欢听雨声",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:24:53.528375+00:00"
+              },
+              {
+                "id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+                "content": "用户喜欢茉莉花的香味",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:43:12.057359+00:00"
+              }
+            ],
+            "candidates": [
+              {
+                "id": "4446a09e-fb54-4241-b8ec-36869e9f64c0",
+                "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+                "status": "pending",
+                "memory_ids": []
+              },
+              {
+                "id": "122d2eb3-f9f0-430b-811c-e9b14ea764ee",
+                "content": "用户喜欢听雨声",
+                "status": "pending",
+                "memory_ids": []
+              }
+            ],
+            "created_at": "2026-10-14T11:46:33.558450+00:00"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions/e489b179-e71a-498d-ba31-c4fc1c355141/chat",
+      "status": 200,
+      "seconds": 0.004,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "user_message": {
+            "id": "92dda6f7-fae6-4875-8053-937d0abfc7c4",
+            "role": "user",
+            "content": "我是这次熊猫宠物的联调用户。我疲惫的时候，希望你先安慰我，不要马上给建议。我喜欢听雨声。请把这两个偏好作为训练候选。",
+            "emotion": "neutral",
+            "actions": [],
+            "memories": [],
+            "candidates": [],
+            "created_at": "2026-10-14T11:46:33.558163+00:00"
+          },
+          "assistant_message": {
+            "id": "0660a3bc-5b48-4ec4-ba1c-bb1135916333",
+            "role": "assistant",
+            "content": "好呀，我记住你疲惫时想先被安慰、也喜欢听雨声啦，不过这些还只是候选，要等你确认才算真正记住哦。",
+            "emotion": "happy",
+            "actions": [
+              {
+                "name": "nod",
+                "trigger": "emotion",
+                "duration_ms": 1200
+              },
+              {
+                "name": "happy",
+                "trigger": "emotion",
+                "duration_ms": 2300
+              }
+            ],
+            "memories": [
+              {
+                "id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+                "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:37:06.186164+00:00"
+              },
+              {
+                "id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+                "content": "用户喜欢听雨声",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:24:53.528375+00:00"
+              },
+              {
+                "id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+                "content": "用户喜欢茉莉花的香味",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:43:12.057359+00:00"
+              }
+            ],
+            "candidates": [
+              {
+                "id": "4446a09e-fb54-4241-b8ec-36869e9f64c0",
+                "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+                "status": "pending",
+                "memory_ids": []
+              },
+              {
+                "id": "122d2eb3-f9f0-430b-811c-e9b14ea764ee",
+                "content": "用户喜欢听雨声",
+                "status": "pending",
+                "memory_ids": []
+              }
+            ],
+            "created_at": "2026-10-14T11:46:33.558450+00:00"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions/e489b179-e71a-498d-ba31-c4fc1c355141/memories/confirm",
+      "status": 200,
+      "seconds": 1.791,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "id": "4446a09e-fb54-4241-b8ec-36869e9f64c0",
+          "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+          "status": "confirmed",
+          "memory_ids": [
+            "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions/e489b179-e71a-498d-ba31-c4fc1c355141/memories/confirm",
+      "status": 200,
+      "seconds": 1.429,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "id": "122d2eb3-f9f0-430b-811c-e9b14ea764ee",
+          "content": "用户喜欢听雨声",
+          "status": "confirmed",
+          "memory_ids": [
+            "6d052b3b-4edc-43e2-882c-819e1435ee13"
+          ]
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions/e489b179-e71a-498d-ba31-c4fc1c355141/memories/confirm",
+      "status": 200,
+      "seconds": 0.003,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "id": "4446a09e-fb54-4241-b8ec-36869e9f64c0",
+          "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+          "status": "confirmed",
+          "memory_ids": [
+            "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae"
+          ]
+        }
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/api/sessions/e489b179-e71a-498d-ba31-c4fc1c355141/memories",
+      "status": 200,
+      "seconds": 0.021,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "items": [
+            {
+              "id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+              "content": "用户喜欢茉莉花的香味",
+              "source": "ingest_api",
+              "status": "active",
+              "created_at": "2026-10-14T11:43:12.057359Z"
+            },
+            {
+              "id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+              "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+              "source": "ingest_api",
+              "status": "active",
+              "created_at": "2026-10-14T11:37:06.186164Z"
+            },
+            {
+              "id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+              "content": "用户喜欢听雨声",
+              "source": "ingest_api",
+              "status": "active",
+              "created_at": "2026-10-14T11:24:53.528375Z"
+            }
+          ],
+          "total": 3,
+          "page": 1,
+          "total_pages": 1
+        }
+      }
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/sessions/e489b179-e71a-498d-ba31-c4fc1c355141",
+      "status": 200,
+      "seconds": 0.005,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "id": "e489b179-e71a-498d-ba31-c4fc1c355141",
+          "mode": "chat",
+          "title": "真实训练召回与动作联调",
+          "created_at": "2026-10-14T11:46:30.910544+00:00"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions/e489b179-e71a-498d-ba31-c4fc1c355141/chat",
+      "status": 200,
+      "seconds": 1.505,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "user_message": {
+            "id": "2354d565-a79a-40db-a1a9-477aa38f3290",
+            "role": "user",
+            "content": "你还记得我喜欢听什么声音吗？顺便向我挥挥手，然后眨眨眼。",
+            "emotion": "neutral",
+            "actions": [],
+            "memories": [],
+            "candidates": [],
+            "created_at": "2026-10-14T11:46:38.316910+00:00"
+          },
+          "assistant_message": {
+            "id": "dfa774c1-5cd7-4576-8d94-2d56f11b7896",
+            "role": "assistant",
+            "content": "记得呀，你喜欢听雨声。我向你挥挥手，再眨眨眼～",
+            "emotion": "happy",
+            "actions": [
+              {
+                "name": "wave",
+                "trigger": "explicit",
+                "duration_ms": 1800
+              },
+              {
+                "name": "blink",
+                "trigger": "explicit",
+                "duration_ms": 900
+              }
+            ],
+            "memories": [
+              {
+                "id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+                "content": "用户喜欢听雨声",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:24:53.528375+00:00"
+              },
+              {
+                "id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+                "content": "用户喜欢茉莉花的香味",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:43:12.057359+00:00"
+              },
+              {
+                "id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+                "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:37:06.186164+00:00"
+              }
+            ],
+            "candidates": [],
+            "created_at": "2026-10-14T11:46:38.317280+00:00"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions",
+      "status": 200,
+      "seconds": 0.003,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "id": "5155bca2-5c24-4c7b-90a2-fc6838d1a3af",
+          "mode": "chat",
+          "title": "跨会话长期记忆联调",
+          "created_at": "2026-10-14T11:46:38.320878+00:00"
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions/5155bca2-5c24-4c7b-90a2-fc6838d1a3af/chat",
+      "status": 200,
+      "seconds": 1.568,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "user_message": {
+            "id": "841a7223-178f-4ba1-9e50-46a071a9719c",
+            "role": "user",
+            "content": "我喜欢听什么声音？",
+            "emotion": "neutral",
+            "actions": [],
+            "memories": [],
+            "candidates": [],
+            "created_at": "2026-10-14T11:46:39.887822+00:00"
+          },
+          "assistant_message": {
+            "id": "8c806193-3b35-4d2b-96ac-ee630b53a1bb",
+            "role": "assistant",
+            "content": "你之前说过喜欢听雨声哦，淅淅沥沥的，听着就很安心～",
+            "emotion": "happy",
+            "actions": [
+              {
+                "name": "nod",
+                "trigger": "emotion",
+                "duration_ms": 1200
+              },
+              {
+                "name": "happy",
+                "trigger": "emotion",
+                "duration_ms": 2300
+              }
+            ],
+            "memories": [
+              {
+                "id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+                "content": "用户喜欢听雨声",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:24:53.528375+00:00"
+              },
+              {
+                "id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+                "content": "用户喜欢茉莉花的香味",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:43:12.057359+00:00"
+              },
+              {
+                "id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+                "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:37:06.186164+00:00"
+              }
+            ],
+            "candidates": [],
+            "created_at": "2026-10-14T11:46:39.887876+00:00"
+          }
+        }
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/api/sessions/e489b179-e71a-498d-ba31-c4fc1c355141/chat",
+      "status": 200,
+      "seconds": 1.4,
+      "response": {
+        "code": 0,
+        "message": "成功",
+        "data": {
+          "user_message": {
+            "id": "cf629316-5ca4-458d-99d5-792d3fad2154",
+            "role": "user",
+            "content": "不要挥手，也不要眨眼，只安静陪着我。",
+            "emotion": "neutral",
+            "actions": [],
+            "memories": [],
+            "candidates": [],
+            "created_at": "2026-10-14T11:46:41.288884+00:00"
+          },
+          "assistant_message": {
+            "id": "de1e8088-547f-40d5-88e9-31d3df18c660",
+            "role": "assistant",
+            "content": "好，我不挥手也不眨眼，就安安静静陪着你。",
+            "emotion": "neutral",
+            "actions": [],
+            "memories": [
+              {
+                "id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+                "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:37:06.186164+00:00"
+              },
+              {
+                "id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+                "content": "用户喜欢听雨声",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:24:53.528375+00:00"
+              },
+              {
+                "id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+                "content": "用户喜欢茉莉花的香味",
+                "source": "MemoryOS",
+                "status": "active",
+                "created_at": "2026-10-14T11:43:12.057359+00:00"
+              }
+            ],
+            "candidates": [],
+            "created_at": "2026-10-14T11:46:41.288937+00:00"
+          }
+        }
+      }
+    }
+  ],
+  "result": "passed",
+  "confirmed_memory_ids": [
+    "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+    "6d052b3b-4edc-43e2-882c-819e1435ee13"
+  ],
+  "training_session_id": "e489b179-e71a-498d-ba31-c4fc1c355141",
+  "finished_at": "2026-10-14T19:46:41.291437"
+}

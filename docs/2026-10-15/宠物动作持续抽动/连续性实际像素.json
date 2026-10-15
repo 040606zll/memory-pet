@@ -1,0 +1,116 @@
+{
+  "bodySamples": 186,
+  "maxStaticPixelChange": 0,
+  "maxRawChannelDifference": 0,
+  "changedStaticPixels": 0,
+  "motionEvidence": {
+    "blink": {
+      "changedPixels": 2869
+    },
+    "wag_tail": {
+      "changedPixels": 4674
+    },
+    "wave": {
+      "changedPixels": 25691
+    },
+    "happy": {
+      "changedPixels": 49896
+    },
+    "nod": {
+      "changedPixels": 57737
+    },
+    "shake_head": {
+      "changedPixels": 55301
+    }
+  },
+  "bodyEvidence": {
+    "blink": {
+      "max": 0,
+      "changed": 0,
+      "failed": []
+    },
+    "wag_tail": {
+      "max": 0,
+      "changed": 0,
+      "failed": []
+    },
+    "wave": {
+      "max": 0,
+      "changed": 0,
+      "failed": []
+    },
+    "happy": {
+      "max": 0,
+      "changed": 0,
+      "failed": []
+    },
+    "nod": {
+      "max": 0,
+      "changed": 0,
+      "failed": []
+    },
+    "shake_head": {
+      "max": 0,
+      "changed": 0,
+      "failed": []
+    }
+  },
+  "staticRoiOpaquePixels": 2894,
+  "idleStarted": 10,
+  "idleActions": [
+    {
+      "name": "blink",
+      "time": 8914
+    },
+    {
+      "name": "blink",
+      "time": 16969
+    },
+    {
+      "name": "blink",
+      "time": 24663
+    },
+    {
+      "name": "wag_tail",
+      "time": 36219
+    },
+    {
+      "name": "blink",
+      "time": 44514
+    },
+    {
+      "name": "blink",
+      "time": 53339
+    },
+    {
+      "name": "blink",
+      "time": 61823
+    },
+    {
+      "name": "wag_tail",
+      "time": 69628
+    },
+    {
+      "name": "blink",
+      "time": 78242
+    },
+    {
+      "name": "blink",
+      "time": 88608
+    }
+  ],
+  "pause": true,
+  "frames": 982,
+  "sourceFrames": 171,
+  "blankFrames": 0,
+  "resizes": 0,
+  "action": "idle",
+  "spriteIndex": 0,
+  "time": 100214,
+  "roi": {
+    "x": 296,
+    "y": 362,
+    "width": 64,
+    "height": 61
+  }
+}

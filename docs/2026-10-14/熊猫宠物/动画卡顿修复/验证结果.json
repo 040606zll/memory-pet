@@ -1,0 +1,100 @@
+{
+  "日期": "2026-10-14",
+  "复现": {
+    "命令": "pnpm exec vitest run tests/animation-smoothness.test.jsx",
+    "旧版不同绘图参数数量": 4,
+    "仅改RAF后的数量": 4,
+    "合格阈值": 40,
+    "修复后": "通过"
+  },
+  "前端测试": {
+    "命令": "pnpm --dir frontend test:coverage",
+    "通过": 39,
+    "失败": 0,
+    "测试文件": 6,
+    "总覆盖率": {
+      "lines": {
+        "total": 346,
+        "covered": 340,
+        "skipped": 0,
+        "pct": 98.26
+      },
+      "statements": {
+        "total": 573,
+        "covered": 541,
+        "skipped": 0,
+        "pct": 94.41
+      },
+      "functions": {
+        "total": 127,
+        "covered": 116,
+        "skipped": 0,
+        "pct": 91.33
+      },
+      "branches": {
+        "total": 445,
+        "covered": 397,
+        "skipped": 0,
+        "pct": 89.21
+      },
+      "branchesTrue": {
+        "total": 0,
+        "covered": 0,
+        "skipped": 0,
+        "pct": "Unknown"
+      }
+    },
+    "播放器覆盖率": {
+      "lines": {
+        "total": 55,
+        "covered": 55,
+        "skipped": 0,
+        "pct": 100
+      },
+      "functions": {
+        "total": 7,
+        "covered": 7,
+        "skipped": 0,
+        "pct": 100
+      },
+      "statements": {
+        "total": 62,
+        "covered": 62,
+        "skipped": 0,
+        "pct": 100
+      },
+      "branches": {
+        "total": 27,
+        "covered": 27,
+        "skipped": 0,
+        "pct": 100
+      }
+    }
+  },
+  "包装测试": {
+    "命令": "pnpm --dir frontend test:sites",
+    "通过": 4,
+    "失败": 0
+  },
+  "构建": {
+    "命令": "pnpm --dir frontend build",
+    "结果": "通过"
+  },
+  "浏览器": {
+    "正式页面": "http://127.0.0.1:8796/",
+    "已检查": [
+      "挥手",
+      "点头",
+      "眨眼",
+      "自主活动",
+      "暂停",
+      "恢复",
+      "正式对话历史恢复"
+    ],
+    "暂停绘图计数": "持续保持1",
+    "暂停刷新指标": 0,
+    "修正热更新清理后的诊断页控制台错误": [],
+    "截图": "修复后页面.jpg"
+  },
+  "边界": "连续位图过渡；显示回调计数不作为原生独立姿态数量证明，素材依旧每动作4个关键帧。未更改模型、记忆服务、接口或依赖。"
+}

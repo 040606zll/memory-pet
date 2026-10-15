@@ -1,0 +1,27 @@
+{
+  "date": "2026-10-15",
+  "pause": {
+    "before": "1930",
+    "after": "1930",
+    "resumed": "1941"
+  },
+  "renderer": "spritesheet",
+  "load": "ready",
+  "errors": [],
+  "fixtureErrors": [],
+  "modes": [
+    "训练",
+    "正式对话"
+  ],
+  "activeButtons": [
+    "眨眨眼",
+    "摇尾巴",
+    "摸摸头"
+  ],
+  "viewport": {
+    "dpr": 1,
+    "height": 1074,
+    "scrollWidth": 857,
+    "width": 857
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "date": "2026-10-15",
+  "fixture": {
+    "action": "idle",
+    "spriteIndex": 0,
+    "frames": 4404,
+    "sourceFrames": 3371,
+    "blankFrames": 0,
+    "resizes": 0
+  },
+  "fixtureErrors": [],
+  "mobileViewport": {
+    "dpr": 1,
+    "height": 844,
+    "scrollWidth": 390,
+    "width": 390
+  },
+  "pause": {
+    "beforeFrame": "2028",
+    "beforeIndex": "8",
+    "afterFrame": "2028",
+    "afterIndex": "8",
+    "resumedFrame": "2039"
+  },
+  "mobile": {
+    "renderer": "spritesheet",
+    "renderFrame": "2791",
+    "sourceFrames": "2128",
+    "blankFrames": "0"
+  },
+  "mobileErrors": [],
+  "rootViewport": {
+    "dpr": 1,
+    "height": 1074,
+    "scrollWidth": 857,
+    "width": 857
+  }
+}

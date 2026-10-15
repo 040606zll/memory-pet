@@ -1,0 +1,64 @@
+{
+  "memory_id": "d7bcd0b5-b224-418b-8b31-bde57571c47b",
+  "sessions": [
+    {
+      "session_id": "9cdb6871-20e1-4797-b334-51152e921e54",
+      "surface": "memory",
+      "mode": "training",
+      "message_count": 0,
+      "confirmed_ids": []
+    },
+    {
+      "session_id": "c7aa5e43-252b-45e2-b7b8-7e3e6284ff7e",
+      "surface": "memory",
+      "mode": "training",
+      "message_count": 0,
+      "confirmed_ids": []
+    },
+    {
+      "session_id": "ab77c9fa-3ab3-4a58-a6a2-33aa976ccf25",
+      "surface": "memory",
+      "mode": "training",
+      "message_count": 0,
+      "confirmed_ids": []
+    },
+    {
+      "session_id": "a3265d73-7166-4004-a9a8-f4e498627b53",
+      "surface": "memory",
+      "mode": "chat",
+      "message_count": 2,
+      "question": "之前记录的饮料偏好是什么？",
+      "reply": "根据已召回的记忆，你之前记录的饮料偏好是青竹薄荷苏打。",
+      "recalled_ids": [
+        "d7bcd0b5-b224-418b-8b31-bde57571c47b",
+        "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+        "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+        "6d052b3b-4edc-43e2-882c-819e1435ee13"
+      ],
+      "actions": []
+    },
+    {
+      "session_id": "e3858028-926c-40ec-b92a-86e88399513c",
+      "surface": "memory",
+      "mode": "chat",
+      "message_count": 2,
+      "question": "我最喜欢的测试饮料是什么？",
+      "reply": "我不清楚你最喜欢的测试饮料是什么，长期记忆里没有相关记录。目前能确认的是你喜欢茉莉花的香味、喜欢听雨声，疲惫时希望先被安慰而不是马上收到建议。",
+      "recalled_ids": [
+        "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+        "6d052b3b-4edc-43e2-882c-819e1435ee13",
+        "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae"
+      ],
+      "actions": []
+    },
+    {
+      "session_id": "8ae148de-a144-4cb3-8962-818fe954365c",
+      "surface": "memory",
+      "mode": "training",
+      "message_count": 2,
+      "confirmed_ids": [
+        "d7bcd0b5-b224-418b-8b31-bde57571c47b"
+      ]
+    }
+  ]
+}

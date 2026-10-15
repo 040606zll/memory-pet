@@ -1,0 +1,21 @@
+import { expect, it } from 'vitest';
+import manifest from '../public/assets/robot-dog-sprites-v1/manifest.json';
+import { spriteFrame } from '../src/dogSpritePlayer.js';
+import { PetMachine } from '../src/petMachine.js';
+
+// 用真实图集配置采样安静状态，不能以没有空白帧代替连续性检查。
+const assets = { manifest, images: Object.fromEntries(Object.keys(manifest.actions).map(name => [name, { name }])) };
+it('没有动作时保持同一中立姿态，不以全身图集快速循环冒充呼吸', () => {
+  const keys = new Set(Array.from({ length: 200 }, (_, index) => spriteFrame(assets, { name: 'idle', trigger: 'idle', progress: 0 }, index * 16).key));
+  expect(keys.size).toBe(1);
+});
+it('安静陪伴的大动作不会在短间隔自动反复触发', () => {
+  const machine = new PetMachine({ random: () => .7, now: () => 0 });
+  const events = []; let previous = '';
+  for (let time = 0; time <= 30000; time += 50) {
+    const state = machine.tick(time), key = `${state.name}:${state.started}`;
+    if (state.started != null && previous !== key) events.push(state.name);
+    previous = key;
+  }
+  expect(events.filter(name => ['nod', 'stretch', 'shake_head', 'happy'].includes(name))).toEqual([]);
+});

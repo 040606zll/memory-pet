@@ -1,0 +1,40 @@
+{
+  "scope": "仅真实模型；记忆为构造数据，未验证数据库或MemoryOS",
+  "cases": [
+    {
+      "case": "当前明确起名",
+      "expected": "羊狗",
+      "pet_name": "羊狗",
+      "reply_uses_name": true,
+      "passed": true
+    },
+    {
+      "case": "空历史命名记忆召回",
+      "expected": "羊狗",
+      "pet_name": "羊狗",
+      "reply_uses_name": true,
+      "passed": true
+    },
+    {
+      "case": "新名字覆盖旧名字",
+      "expected": "团团",
+      "pet_name": "团团",
+      "reply_uses_name": true,
+      "passed": true
+    },
+    {
+      "case": "区分用户与宠物名字",
+      "expected": "羊狗",
+      "pet_name": "羊狗",
+      "reply_uses_name": true,
+      "passed": true
+    },
+    {
+      "case": "本会话新名字不被旧记忆回滚",
+      "expected": "团团",
+      "pet_name": "团团",
+      "reply_uses_name": true,
+      "passed": true
+    }
+  ]
+}

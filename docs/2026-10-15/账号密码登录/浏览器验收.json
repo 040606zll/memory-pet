@@ -1,0 +1,25 @@
+{
+  "date": "2026-10-15",
+  "database": "独立 .runtime/account-login-browser.sqlite3，未创建产品账号",
+  "interface": "构建后的真实前端与真实登录后端",
+  "checks": {
+    "registration_enters_pet_page": "passed",
+    "same_login_opens_memory_page": "passed",
+    "logout_removes_business_page": "passed",
+    "incorrect_password_chinese_error": "passed",
+    "existing_account_login": "passed",
+    "connection_dialog_has_no_credentials": "passed",
+    "production_profile_error_visible": "passed",
+    "desktop_1280x800_login_layout": "passed",
+    "mobile_390x844_login_and_memory_layout": "passed",
+    "real_project_8796_login_page_visible": "passed",
+    "real_project_proxy_health": 200,
+    "anonymous_auth_me_and_sessions": 401
+  },
+  "upstream": {
+    "profile": "simple",
+    "configured_directory_access_status": 401,
+    "real_memory_write_recall": "blocked_by_upstream_configuration"
+  },
+  "cleanup": "独立验收服务停止，浏览器临时尺寸恢复，实际项目登录入口保留"
+}

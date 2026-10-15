@@ -1,0 +1,32 @@
+{
+  "visual": {
+    "action": "rest",
+    "frames": 26450,
+    "blankFrames": 0,
+    "resizes": 0,
+    "fps": 100,
+    "maxGap": 14
+  },
+  "visualViewport": {
+    "dpr": 1,
+    "height": 1024,
+    "scrollWidth": 1265,
+    "width": 1265
+  },
+  "mobile": {
+    "frames": "28209",
+    "blankFrames": "0",
+    "resizes": "4",
+    "fps": "100",
+    "width": 375,
+    "height": 844,
+    "scrollWidth": 375,
+    "dpr": 1
+  },
+  "pause": {
+    "before": "12613",
+    "after": "12613",
+    "resumed": "12638"
+  },
+  "consoleErrors": []
+}

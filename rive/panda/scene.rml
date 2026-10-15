@@ -1,0 +1,805 @@
+<Rive version="1" kind="fragment">
+  <Artboard width="640" height="700" name="Panda" id="0:2" defaultStateMachineId="0:7" viewModelId="0:40" viewModelInstanceId="0:41" styleId="0:3">
+    <LayoutComponentStyle name="画板样式" id="0:3" />
+    <Node x="0" y="650" name="熊猫整体呼吸" id="0:100">
+      <Node x="211" y="-245" rotation="0.18" name="左前肢肩关节" id="0:110">
+        <Node x="0" y="116" opacity="0" name="抬爪掌垫" id="0:111">
+          <Shape name="爪趾" x="-21" y="-17" rotation="0" opacity="1">
+            <Ellipse width="13" height="14.95" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-2.6" startY="-3.2889999999999997" endX="8.32" endY="4.784" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+          <Shape name="爪趾" x="-7" y="-26" rotation="0" opacity="1">
+            <Ellipse width="14" height="16.099999999999998" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-2.8000000000000003" startY="-3.5419999999999994" endX="8.96" endY="5.151999999999999" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+          <Shape name="爪趾" x="10" y="-25" rotation="0" opacity="1">
+            <Ellipse width="14" height="16.099999999999998" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-2.8000000000000003" startY="-3.5419999999999994" endX="8.96" endY="5.151999999999999" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+          <Shape name="爪趾" x="24" y="-13" rotation="0" opacity="1">
+            <Ellipse width="12" height="13.799999999999999" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-2.4000000000000004" startY="-3.0359999999999996" endX="7.68" endY="4.4159999999999995" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+          <Shape name="爪心" x="0" y="7" rotation="0" opacity="1">
+            <Ellipse width="42" height="44" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-8.4" startY="-9.68" endX="26.88" endY="14.08" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Shape name="爪部高光" x="-17" y="66" rotation="-0.1" opacity="1">
+          <Ellipse width="17" height="80" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <SolidColor colorValue="154F6A83" name="颜色" />
+            <Feather strength="8" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="柔软前肢" x="0" y="71" rotation="0" opacity="1">
+          <Ellipse width="87" height="160" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-17.400000000000002" startY="-35.2" endX="55.68" endY="51.2" name="立体柔光">
+              <GradientStop colorValue="FF4A5F73" position="0.0" />
+              <GradientStop colorValue="FF253447" position="0.5" />
+              <GradientStop colorValue="FF142231" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.2" name="柔和边缘" />
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="429" y="-245" rotation="-0.18" name="右前肢肩关节" id="0:112">
+        <Node x="0" y="116" opacity="0" name="抬爪掌垫" id="0:113">
+          <Shape name="爪趾" x="-21" y="-17" rotation="0" opacity="1">
+            <Ellipse width="13" height="14.95" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-2.6" startY="-3.2889999999999997" endX="8.32" endY="4.784" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+          <Shape name="爪趾" x="-7" y="-26" rotation="0" opacity="1">
+            <Ellipse width="14" height="16.099999999999998" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-2.8000000000000003" startY="-3.5419999999999994" endX="8.96" endY="5.151999999999999" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+          <Shape name="爪趾" x="10" y="-25" rotation="0" opacity="1">
+            <Ellipse width="14" height="16.099999999999998" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-2.8000000000000003" startY="-3.5419999999999994" endX="8.96" endY="5.151999999999999" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+          <Shape name="爪趾" x="24" y="-13" rotation="0" opacity="1">
+            <Ellipse width="12" height="13.799999999999999" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-2.4000000000000004" startY="-3.0359999999999996" endX="7.68" endY="4.4159999999999995" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+          <Shape name="爪心" x="0" y="7" rotation="0" opacity="1">
+            <Ellipse width="42" height="44" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-8.4" startY="-9.68" endX="26.88" endY="14.08" name="立体柔光">
+                <GradientStop colorValue="FFF4C3B4" position="0.0" />
+                <GradientStop colorValue="FFD69A91" position="0.5" />
+                <GradientStop colorValue="FFBA807C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Shape name="爪部高光" x="-17" y="66" rotation="-0.1" opacity="1">
+          <Ellipse width="17" height="80" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <SolidColor colorValue="154F6A83" name="颜色" />
+            <Feather strength="8" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="柔软前肢" x="0" y="71" rotation="0" opacity="1">
+          <Ellipse width="87" height="160" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-17.400000000000002" startY="-35.2" endX="55.68" endY="51.2" name="立体柔光">
+              <GradientStop colorValue="FF4A5F73" position="0.0" />
+              <GradientStop colorValue="FF253447" position="0.5" />
+              <GradientStop colorValue="FF142231" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.2" name="柔和边缘" />
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="320" y="-379" rotation="0.07" name="独立头部" id="0:120">
+        <Shape name="鼻尖光点" x="-5" y="57" rotation="0" opacity="1">
+          <Ellipse width="14" height="5" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <SolidColor colorValue="88FFF7E7" name="颜色" />
+          </Fill>
+        </Shape>
+        <Shape x="0" y="68" name="圆润鼻子">
+          <PointsPath isClosed="true" isClockwise="true" name="鼻轮廓">
+            <StraightVertex x="-22" y="-11" radius="10" />
+            <StraightVertex x="22" y="-11" radius="10" />
+            <StraightVertex x="0" y="17" radius="10" />
+          </PointsPath>
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-8.8" startY="-6.82" endX="28.16" endY="9.92" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="嘴中央" x="0" y="96" opacity="1">
+          <PointsPath isClosed="false" name="曲线">
+            <CubicMirroredVertex x="0" y="-15" rotation="1.57" distance="4" />
+            <CubicMirroredVertex x="0" y="0" rotation="1.57" distance="4" />
+          </PointsPath>
+          <Stroke thickness="2.5" cap="round" join="round" name="线条">
+            <SolidColor colorValue="FF8E665F" name="颜色" />
+          </Stroke>
+        </Shape>
+        <Shape name="温柔微笑" x="0" y="96" opacity="1">
+          <PointsPath isClosed="false" name="曲线">
+            <CubicMirroredVertex x="-23" y="-2" rotation="0.6" distance="8" />
+            <CubicMirroredVertex x="0" y="5" rotation="0" distance="8" />
+            <CubicMirroredVertex x="23" y="-2" rotation="-0.6" distance="8" />
+          </PointsPath>
+          <Stroke thickness="3" cap="round" join="round" name="线条">
+            <SolidColor colorValue="FF8E665F" name="颜色" />
+          </Stroke>
+        </Shape>
+        <Shape name="开心嘴内部" x="0" y="106" rotation="0" opacity="0" id="0:126">
+          <Ellipse width="42" height="26" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <SolidColor colorValue="FF7C4B50" name="颜色" />
+          </Fill>
+        </Shape>
+        <Shape name="小舌头" x="0" y="115" rotation="0" opacity="0" id="0:127">
+          <Ellipse width="26" height="9" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <SolidColor colorValue="FFF2ADAF" name="颜色" />
+          </Fill>
+        </Shape>
+        <Shape name="左闭眼弧线" x="-76" y="22" opacity="0" id="0:124">
+          <PointsPath isClosed="false" name="曲线">
+            <CubicMirroredVertex x="-16" y="0" rotation="0.22" distance="5" />
+            <CubicMirroredVertex x="0" y="5" rotation="0" distance="6" />
+            <CubicMirroredVertex x="16" y="0" rotation="-0.22" distance="5" />
+          </PointsPath>
+          <Stroke thickness="3.8" cap="round" join="round" name="线条">
+            <SolidColor colorValue="FF9EB6C4" name="颜色" />
+          </Stroke>
+        </Shape>
+        <Node x="-76" y="22" name="左眼睛" id="0:122">
+          <Shape name="小高光" x="7" y="6" rotation="0" opacity="1">
+            <Ellipse width="5" height="5" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <SolidColor colorValue="DDEAF8FF" name="颜色" />
+            </Fill>
+          </Shape>
+          <Shape name="大高光" x="-7" y="-10" rotation="0" opacity="1">
+            <Ellipse width="11" height="12" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <SolidColor colorValue="FFFEFFFF" name="颜色" />
+            </Fill>
+          </Shape>
+          <Shape name="瞳孔" x="0" y="1" rotation="0" opacity="1">
+            <Ellipse width="21" height="27" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <SolidColor colorValue="FF08141F" name="颜色" />
+            </Fill>
+          </Shape>
+          <Shape name="虹膜" x="0" y="0" rotation="0" opacity="1">
+            <Ellipse width="37" height="44" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-7.4" startY="-9.68" endX="23.68" endY="14.08" name="立体柔光">
+                <GradientStop colorValue="FF77A5B5" position="0.0" />
+                <GradientStop colorValue="FF29455E" position="0.5" />
+                <GradientStop colorValue="FF0C1D2C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Shape name="左眼圈" x="-76" y="16" rotation="0.31" opacity="1">
+          <Ellipse width="80" height="104" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-16.0" startY="-22.88" endX="51.2" endY="33.28" name="立体柔光">
+              <GradientStop colorValue="FF4A5F73" position="0.0" />
+              <GradientStop colorValue="FF253447" position="0.5" />
+              <GradientStop colorValue="FF142231" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.2" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="左脸腮" x="-93.48" y="65" rotation="0" opacity="1">
+          <Ellipse width="47" height="23" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <SolidColor colorValue="35EDAEA6" name="颜色" />
+            <Feather strength="11" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="右闭眼弧线" x="76" y="22" opacity="0" id="0:125">
+          <PointsPath isClosed="false" name="曲线">
+            <CubicMirroredVertex x="-16" y="0" rotation="0.22" distance="5" />
+            <CubicMirroredVertex x="0" y="5" rotation="0" distance="6" />
+            <CubicMirroredVertex x="16" y="0" rotation="-0.22" distance="5" />
+          </PointsPath>
+          <Stroke thickness="3.8" cap="round" join="round" name="线条">
+            <SolidColor colorValue="FF9EB6C4" name="颜色" />
+          </Stroke>
+        </Shape>
+        <Node x="76" y="22" name="右眼睛" id="0:123">
+          <Shape name="小高光" x="7" y="6" rotation="0" opacity="1">
+            <Ellipse width="5" height="5" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <SolidColor colorValue="DDEAF8FF" name="颜色" />
+            </Fill>
+          </Shape>
+          <Shape name="大高光" x="-7" y="-10" rotation="0" opacity="1">
+            <Ellipse width="11" height="12" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <SolidColor colorValue="FFFEFFFF" name="颜色" />
+            </Fill>
+          </Shape>
+          <Shape name="瞳孔" x="0" y="1" rotation="0" opacity="1">
+            <Ellipse width="21" height="27" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <SolidColor colorValue="FF08141F" name="颜色" />
+            </Fill>
+          </Shape>
+          <Shape name="虹膜" x="0" y="0" rotation="0" opacity="1">
+            <Ellipse width="37" height="44" name="矢量轮廓" />
+            <Fill name="柔和渐变" fillRule="clockwise">
+              <RadialGradient startX="-7.4" startY="-9.68" endX="23.68" endY="14.08" name="立体柔光">
+                <GradientStop colorValue="FF77A5B5" position="0.0" />
+                <GradientStop colorValue="FF29455E" position="0.5" />
+                <GradientStop colorValue="FF0C1D2C" position="1.0" />
+              </RadialGradient>
+            </Fill>
+          </Shape>
+        </Node>
+        <Shape name="右眼圈" x="76" y="16" rotation="-0.31" opacity="1">
+          <Ellipse width="80" height="104" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-16.0" startY="-22.88" endX="51.2" endY="33.28" name="立体柔光">
+              <GradientStop colorValue="FF4A5F73" position="0.0" />
+              <GradientStop colorValue="FF253447" position="0.5" />
+              <GradientStop colorValue="FF142231" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.2" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="右脸腮" x="93.48" y="65" rotation="0" opacity="1">
+          <Ellipse width="47" height="23" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <SolidColor colorValue="35EDAEA6" name="颜色" />
+            <Feather strength="11" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="圆润口鼻区域" x="0" y="81" rotation="0" opacity="1">
+          <Ellipse width="147" height="78" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-29.400000000000002" startY="-17.16" endX="94.08" endY="24.96" name="立体柔光">
+              <GradientStop colorValue="FFFDFBF2" position="0.0" />
+              <GradientStop colorValue="FFF2EADD" position="1.0" />
+            </RadialGradient>
+            <Feather strength="6" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="柔软绒团" x="-34" y="-145" rotation="0" opacity="1">
+          <Ellipse width="40" height="25" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-8.0" startY="-5.5" endX="25.6" endY="8.0" name="立体柔光">
+              <GradientStop colorValue="FFFFFDF5" position="0.0" />
+              <GradientStop colorValue="FFF3EEE3" position="0.5" />
+              <GradientStop colorValue="FFD6DEE1" position="1.0" />
+            </RadialGradient>
+            <Feather strength="3" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="柔软绒团" x="0" y="-153" rotation="0" opacity="1">
+          <Ellipse width="39" height="23" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-7.800000000000001" startY="-5.06" endX="24.96" endY="7.36" name="立体柔光">
+              <GradientStop colorValue="FFFFFDF5" position="0.0" />
+              <GradientStop colorValue="FFF3EEE3" position="0.5" />
+              <GradientStop colorValue="FFD6DEE1" position="1.0" />
+            </RadialGradient>
+            <Feather strength="3" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="柔软绒团" x="33" y="-147" rotation="0" opacity="1">
+          <Ellipse width="35" height="24" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-7.0" startY="-5.28" endX="22.400000000000002" endY="7.68" name="立体柔光">
+              <GradientStop colorValue="FFFFFDF5" position="0.0" />
+              <GradientStop colorValue="FFF3EEE3" position="0.5" />
+              <GradientStop colorValue="FFD6DEE1" position="1.0" />
+            </RadialGradient>
+            <Feather strength="3" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="柔软绒团" x="-158" y="-11" rotation="0" opacity="1">
+          <Ellipse width="23" height="40" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-4.6000000000000005" startY="-8.8" endX="14.72" endY="12.8" name="立体柔光">
+              <GradientStop colorValue="FFFFFDF5" position="0.0" />
+              <GradientStop colorValue="FFF3EEE3" position="0.5" />
+              <GradientStop colorValue="FFD6DEE1" position="1.0" />
+            </RadialGradient>
+            <Feather strength="3" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="柔软绒团" x="160" y="5" rotation="0" opacity="1">
+          <Ellipse width="24" height="40" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-4.800000000000001" startY="-8.8" endX="15.36" endY="12.8" name="立体柔光">
+              <GradientStop colorValue="FFFFFDF5" position="0.0" />
+              <GradientStop colorValue="FFF3EEE3" position="0.5" />
+              <GradientStop colorValue="FFD6DEE1" position="1.0" />
+            </RadialGradient>
+            <Feather strength="3" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="奶白圆脸" x="0" y="0" rotation="0" opacity="1">
+          <Ellipse width="350" height="308" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-70.0" startY="-67.76" endX="224.0" endY="98.56" name="立体柔光">
+              <GradientStop colorValue="FFFFFDF5" position="0.0" />
+              <GradientStop colorValue="FFF3EEE3" position="0.5" />
+              <GradientStop colorValue="FFD6DEE1" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.8" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="耳内柔光" x="-139" y="-117" rotation="0" opacity="1">
+          <Ellipse width="48" height="50" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-9.600000000000001" startY="-11.0" endX="30.72" endY="16.0" name="立体柔光">
+              <GradientStop colorValue="FF718191" position="0.0" />
+              <GradientStop colorValue="FF37485A" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="黑色圆耳" x="-139" y="-117" rotation="0" opacity="1">
+          <Ellipse width="87" height="88" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-17.400000000000002" startY="-19.36" endX="55.68" endY="28.16" name="立体柔光">
+              <GradientStop colorValue="FF4A5F73" position="0.0" />
+              <GradientStop colorValue="FF253447" position="0.5" />
+              <GradientStop colorValue="FF142231" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.5" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="耳内柔光" x="139" y="-117" rotation="0" opacity="1">
+          <Ellipse width="48" height="50" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-9.600000000000001" startY="-11.0" endX="30.72" endY="16.0" name="立体柔光">
+              <GradientStop colorValue="FF718191" position="0.0" />
+              <GradientStop colorValue="FF37485A" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="黑色圆耳" x="139" y="-117" rotation="0" opacity="1">
+          <Ellipse width="87" height="88" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-17.400000000000002" startY="-19.36" endX="55.68" endY="28.16" name="立体柔光">
+              <GradientStop colorValue="FF4A5F73" position="0.0" />
+              <GradientStop colorValue="FF253447" position="0.5" />
+              <GradientStop colorValue="FF142231" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.5" name="柔和边缘" />
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="235" y="-57" rotation="0.1" name="左后足">
+        <Shape name="趾垫" x="-32" y="-26" rotation="0" opacity="1">
+          <Ellipse width="18" height="22.5" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-3.6" startY="-4.95" endX="11.52" endY="7.2" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="趾垫" x="-10" y="-36" rotation="0" opacity="1">
+          <Ellipse width="20" height="25.0" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-4.0" startY="-5.5" endX="12.8" endY="8.0" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="趾垫" x="13" y="-34" rotation="0" opacity="1">
+          <Ellipse width="20" height="25.0" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-4.0" startY="-5.5" endX="12.8" endY="8.0" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="趾垫" x="34" y="-21" rotation="0" opacity="1">
+          <Ellipse width="18" height="22.5" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-3.6" startY="-4.95" endX="11.52" endY="7.2" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="掌心软垫" x="0" y="12" rotation="0" opacity="1">
+          <Ellipse width="57" height="61" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-11.4" startY="-13.42" endX="36.480000000000004" endY="19.52" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="后足" x="0" y="0" rotation="0" opacity="1">
+          <Ellipse width="117" height="115" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-23.400000000000002" startY="-25.3" endX="74.88" endY="36.800000000000004" name="立体柔光">
+              <GradientStop colorValue="FF4A5F73" position="0.0" />
+              <GradientStop colorValue="FF253447" position="0.5" />
+              <GradientStop colorValue="FF142231" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.2" name="柔和边缘" />
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="405" y="-57" rotation="-0.1" name="右后足">
+        <Shape name="趾垫" x="-32" y="-26" rotation="0" opacity="1">
+          <Ellipse width="18" height="22.5" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-3.6" startY="-4.95" endX="11.52" endY="7.2" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="趾垫" x="-10" y="-36" rotation="0" opacity="1">
+          <Ellipse width="20" height="25.0" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-4.0" startY="-5.5" endX="12.8" endY="8.0" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="趾垫" x="13" y="-34" rotation="0" opacity="1">
+          <Ellipse width="20" height="25.0" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-4.0" startY="-5.5" endX="12.8" endY="8.0" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="趾垫" x="34" y="-21" rotation="0" opacity="1">
+          <Ellipse width="18" height="22.5" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-3.6" startY="-4.95" endX="11.52" endY="7.2" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="掌心软垫" x="0" y="12" rotation="0" opacity="1">
+          <Ellipse width="57" height="61" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-11.4" startY="-13.42" endX="36.480000000000004" endY="19.52" name="立体柔光">
+              <GradientStop colorValue="FFF4C3B4" position="0.0" />
+              <GradientStop colorValue="FFD69A91" position="0.5" />
+              <GradientStop colorValue="FFBA807C" position="1.0" />
+            </RadialGradient>
+          </Fill>
+        </Shape>
+        <Shape name="后足" x="0" y="0" rotation="0" opacity="1">
+          <Ellipse width="117" height="115" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-23.400000000000002" startY="-25.3" endX="74.88" endY="36.800000000000004" name="立体柔光">
+              <GradientStop colorValue="FF4A5F73" position="0.0" />
+              <GradientStop colorValue="FF253447" position="0.5" />
+              <GradientStop colorValue="FF142231" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.2" name="柔和边缘" />
+          </Fill>
+        </Shape>
+      </Node>
+      <Node x="320" y="-164" name="胸腹" id="0:130">
+        <Shape name="胸口柔光" x="-19" y="-44" rotation="0" opacity="1">
+          <Ellipse width="85" height="100" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <SolidColor colorValue="2CFFFFFF" name="颜色" />
+            <Feather strength="18" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="奶白腹部" x="0" y="20" rotation="0" opacity="1">
+          <Ellipse width="242" height="249" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-48.400000000000006" startY="-54.78" endX="154.88" endY="79.68" name="立体柔光">
+              <GradientStop colorValue="FFFFFDF5" position="0.0" />
+              <GradientStop colorValue="FFF3EEE3" position="0.5" />
+              <GradientStop colorValue="FFD6DEE1" position="1.0" />
+            </RadialGradient>
+            <Feather strength="2" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="黑色肩胸" x="0" y="-70" rotation="0" opacity="1">
+          <Ellipse width="276" height="156" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-55.2" startY="-34.32" endX="176.64000000000001" endY="49.92" name="立体柔光">
+              <GradientStop colorValue="FF4A5F73" position="0.0" />
+              <GradientStop colorValue="FF253447" position="0.5" />
+              <GradientStop colorValue="FF142231" position="1.0" />
+            </RadialGradient>
+            <Feather strength="2" name="柔和边缘" />
+          </Fill>
+        </Shape>
+        <Shape name="圆润躯干" x="0" y="0" rotation="0" opacity="1">
+          <Ellipse width="288" height="286" name="矢量轮廓" />
+          <Fill name="柔和渐变" fillRule="clockwise">
+            <RadialGradient startX="-57.6" startY="-62.92" endX="184.32" endY="91.52" name="立体柔光">
+              <GradientStop colorValue="FFFFFDF5" position="0.0" />
+              <GradientStop colorValue="FFF3EEE3" position="0.5" />
+              <GradientStop colorValue="FFD6DEE1" position="1.0" />
+            </RadialGradient>
+            <Feather strength="1.5" name="柔和边缘" />
+          </Fill>
+        </Shape>
+      </Node>
+    </Node>
+    <StateMachine name="Panda" id="0:7">
+      <StateMachineLayer name="常驻自然呼吸" id="0:8">
+        <AnyState x="0" y="-140" />
+        <ExitState x="450" y="-140" />
+        <EntryState x="0" y="0">
+          <StateTransition stateToId="0:500" />
+        </EntryState>
+        <AnimationState animationId="0:200" id="0:500" x="200" y="0" />
+      </StateMachineLayer>
+      <StateMachineLayer name="动作与表情" id="0:9">
+        <AnyState x="160" y="-240">
+          <StateTransition stateToId="0:502" duration="140">
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyNumber>
+                  <DataBindContext sourcePathIds="0:40-0:42" propertyKey="636" />
+                </BindablePropertyNumber>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueNumberComparator value="1" />
+            </TransitionViewModelCondition>
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyTrigger>
+                  <DataBindContext sourcePathIds="0:40-0:43" propertyKey="686" />
+                </BindablePropertyTrigger>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueTriggerComparator value="0" />
+            </TransitionViewModelCondition>
+          </StateTransition>
+          <StateTransition stateToId="0:503" duration="140">
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyNumber>
+                  <DataBindContext sourcePathIds="0:40-0:42" propertyKey="636" />
+                </BindablePropertyNumber>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueNumberComparator value="2" />
+            </TransitionViewModelCondition>
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyTrigger>
+                  <DataBindContext sourcePathIds="0:40-0:43" propertyKey="686" />
+                </BindablePropertyTrigger>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueTriggerComparator value="0" />
+            </TransitionViewModelCondition>
+          </StateTransition>
+          <StateTransition stateToId="0:504" duration="140">
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyNumber>
+                  <DataBindContext sourcePathIds="0:40-0:42" propertyKey="636" />
+                </BindablePropertyNumber>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueNumberComparator value="3" />
+            </TransitionViewModelCondition>
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyTrigger>
+                  <DataBindContext sourcePathIds="0:40-0:43" propertyKey="686" />
+                </BindablePropertyTrigger>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueTriggerComparator value="0" />
+            </TransitionViewModelCondition>
+          </StateTransition>
+          <StateTransition stateToId="0:505" duration="140">
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyNumber>
+                  <DataBindContext sourcePathIds="0:40-0:42" propertyKey="636" />
+                </BindablePropertyNumber>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueNumberComparator value="4" />
+            </TransitionViewModelCondition>
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyTrigger>
+                  <DataBindContext sourcePathIds="0:40-0:43" propertyKey="686" />
+                </BindablePropertyTrigger>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueTriggerComparator value="0" />
+            </TransitionViewModelCondition>
+          </StateTransition>
+          <StateTransition stateToId="0:506" duration="140">
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyNumber>
+                  <DataBindContext sourcePathIds="0:40-0:42" propertyKey="636" />
+                </BindablePropertyNumber>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueNumberComparator value="5" />
+            </TransitionViewModelCondition>
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyTrigger>
+                  <DataBindContext sourcePathIds="0:40-0:43" propertyKey="686" />
+                </BindablePropertyTrigger>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueTriggerComparator value="0" />
+            </TransitionViewModelCondition>
+          </StateTransition>
+          <StateTransition stateToId="0:507" duration="140">
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyNumber>
+                  <DataBindContext sourcePathIds="0:40-0:42" propertyKey="636" />
+                </BindablePropertyNumber>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueNumberComparator value="6" />
+            </TransitionViewModelCondition>
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyTrigger>
+                  <DataBindContext sourcePathIds="0:40-0:43" propertyKey="686" />
+                </BindablePropertyTrigger>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueTriggerComparator value="0" />
+            </TransitionViewModelCondition>
+          </StateTransition>
+          <StateTransition stateToId="0:508" duration="140">
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyNumber>
+                  <DataBindContext sourcePathIds="0:40-0:42" propertyKey="636" />
+                </BindablePropertyNumber>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueNumberComparator value="7" />
+            </TransitionViewModelCondition>
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyTrigger>
+                  <DataBindContext sourcePathIds="0:40-0:43" propertyKey="686" />
+                </BindablePropertyTrigger>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueTriggerComparator value="0" />
+            </TransitionViewModelCondition>
+          </StateTransition>
+          <StateTransition stateToId="0:501" duration="180">
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyNumber>
+                  <DataBindContext sourcePathIds="0:40-0:42" propertyKey="636" />
+                </BindablePropertyNumber>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueNumberComparator value="0" />
+            </TransitionViewModelCondition>
+            <TransitionViewModelCondition opValue="equal">
+              <TransitionPropertyViewModelComparator>
+                <BindablePropertyTrigger>
+                  <DataBindContext sourcePathIds="0:40-0:43" propertyKey="686" />
+                </BindablePropertyTrigger>
+              </TransitionPropertyViewModelComparator>
+              <TransitionValueTriggerComparator value="0" />
+            </TransitionViewModelCondition>
+          </StateTransition>
+        </AnyState>
+        <ExitState x="1050" y="-240" />
+        <EntryState x="0" y="0">
+          <StateTransition stateToId="0:501" />
+        </EntryState>
+        <AnimationState animationId="0:201" id="0:501" x="180" y="0" reset="true" />
+        <AnimationState animationId="0:202" id="0:502" reset="true" x="640" y="80">
+          <StateTransition stateToId="0:501" duration="180" enableExitTime="true" exitTimeIsPercetange="true" exitTime="100" />
+        </AnimationState>
+        <AnimationState animationId="0:203" id="0:503" reset="true" x="880" y="80">
+          <StateTransition stateToId="0:501" duration="180" enableExitTime="true" exitTimeIsPercetange="true" exitTime="100" />
+        </AnimationState>
+        <AnimationState animationId="0:204" id="0:504" reset="true" x="400" y="240">
+          <StateTransition stateToId="0:501" duration="180" enableExitTime="true" exitTimeIsPercetange="true" exitTime="100" />
+        </AnimationState>
+        <AnimationState animationId="0:205" id="0:505" reset="true" x="640" y="240">
+          <StateTransition stateToId="0:501" duration="180" enableExitTime="true" exitTimeIsPercetange="true" exitTime="100" />
+        </AnimationState>
+        <AnimationState animationId="0:206" id="0:506" reset="true" x="880" y="240">
+          <StateTransition stateToId="0:501" duration="180" enableExitTime="true" exitTimeIsPercetange="true" exitTime="100" />
+        </AnimationState>
+        <AnimationState animationId="0:207" id="0:507" reset="true" x="400" y="400">
+          <StateTransition stateToId="0:501" duration="180" enableExitTime="true" exitTimeIsPercetange="true" exitTime="100" />
+        </AnimationState>
+        <AnimationState animationId="0:208" id="0:508" reset="true" x="640" y="400">
+          <StateTransition stateToId="0:501" duration="180" enableExitTime="true" exitTimeIsPercetange="true" exitTime="100" />
+        </AnimationState>
+      </StateMachineLayer>
+    </StateMachine>
+    <LinearAnimation name="breathing" id="0:200" fps="60" duration="240" loopValue="loop"><KeyedObject objectId="0:100"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="120" value="1.012" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+    <LinearAnimation name="idle" id="0:201" fps="60" duration="240" loopValue="loop"><KeyedObject objectId="0:120"><KeyedProperty propertyKey="13"><KeyFrameDouble frame="0" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="14"><KeyFrameDouble frame="0" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="70" value="0.09" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="150" value="0.035" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="16"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:110"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="120" value="0.21" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:112"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:111"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:113"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:122"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:123"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:124"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:125"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:126"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:127"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+    <LinearAnimation name="blink" id="0:202" fps="60" duration="33" loopValue="oneShot"><KeyedObject objectId="0:120"><KeyedProperty propertyKey="13"><KeyFrameDouble frame="0" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="14"><KeyFrameDouble frame="0" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="16"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:110"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:112"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:111"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:113"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:122"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="9" value="0.08" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="16" value="0.08" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="27" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:123"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="9" value="0.08" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="16" value="0.08" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="27" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:124"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="8" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="18" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="26" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:125"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="8" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="18" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="26" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:126"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:127"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="33" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+    <LinearAnimation name="wave" id="0:203" fps="60" duration="108" loopValue="oneShot"><KeyedObject objectId="0:120"><KeyedProperty propertyKey="13"><KeyFrameDouble frame="0" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="14"><KeyFrameDouble frame="0" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="25" value="-0.02" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="85" value="-0.02" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="16"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:110"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="26" value="2.68" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="42" value="2.43" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="58" value="2.82" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="74" value="2.43" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="2.68" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:112"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:111"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="22" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="88" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:113"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:122"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:123"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:124"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:125"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:126"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:127"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="108" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+    <LinearAnimation name="nod" id="0:204" fps="60" duration="75" loopValue="oneShot"><KeyedObject objectId="0:120"><KeyedProperty propertyKey="13"><KeyFrameDouble frame="0" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="14"><KeyFrameDouble frame="0" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="17" value="-361" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="29" value="-373" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="43" value="-361" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="59" value="-373" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="16"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="17" value="0.94" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="29" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="43" value="0.94" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="59" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:110"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:112"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:111"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:113"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:122"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:123"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:124"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:125"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:126"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:127"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="75" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+    <LinearAnimation name="shake_head" id="0:205" fps="60" duration="90" loopValue="oneShot"><KeyedObject objectId="0:120"><KeyedProperty propertyKey="13"><KeyFrameDouble frame="0" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="22" value="301" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="45" value="339" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="67" value="310" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="14"><KeyFrameDouble frame="0" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="22" value="-0.09" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="45" value="0.19" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="67" value="-0.04" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="16"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="22" value="0.95" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="45" value="0.95" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="67" value="0.98" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:110"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:112"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:111"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:113"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:122"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:123"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:124"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:125"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:126"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:127"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="90" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+    <LinearAnimation name="stretch" id="0:206" fps="60" duration="168" loopValue="oneShot"><KeyedObject objectId="0:120"><KeyedProperty propertyKey="13"><KeyFrameDouble frame="0" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="14"><KeyFrameDouble frame="0" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="58" value="0.13" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="115" value="0.13" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="16"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:110"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="42" value="2.88" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="72" value="2.7" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="111" value="2.88" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:112"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="42" value="-2.65" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="72" value="-2.5" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="111" value="-2.65" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:111"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="32" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="120" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:113"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="32" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="120" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:122"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:123"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:124"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:125"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:126"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:127"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="168" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+    <LinearAnimation name="happy" id="0:207" fps="60" duration="114" loopValue="oneShot"><KeyedObject objectId="0:120"><KeyedProperty propertyKey="13"><KeyFrameDouble frame="0" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="14"><KeyFrameDouble frame="0" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="30" value="-387" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="54" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="78" value="-387" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="16"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:110"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="28" value="2.1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="53" value="2.4" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="77" value="2.08" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:112"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="28" value="-2.1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="53" value="-2.4" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="77" value="-2.08" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:111"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="20" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="85" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:113"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="20" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="85" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:122"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:123"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:124"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:125"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:126"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="20" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="89" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:127"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="20" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="89" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="114" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+    <LinearAnimation name="sleep" id="0:208" fps="60" duration="240" loopValue="oneShot"><KeyedObject objectId="0:120"><KeyedProperty propertyKey="13"><KeyFrameDouble frame="0" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="320" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="14"><KeyFrameDouble frame="0" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="50" value="-365" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="196" value="-365" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="-379" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="50" value="0.24" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="100" value="0.23" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="160" value="0.24" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="196" value="0.23" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0.07" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="16"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:110"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:112"><KeyedProperty propertyKey="15"><KeyFrameDouble frame="0" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="-0.18" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:111"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:113"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:122"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="40" value="0.04" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="196" value="0.04" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:123"><KeyedProperty propertyKey="17"><KeyFrameDouble frame="0" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="40" value="0.04" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="196" value="0.04" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:124"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="40" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="196" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:125"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="40" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="196" value="1" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:126"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject><KeyedObject objectId="0:127"><KeyedProperty propertyKey="18"><KeyFrameDouble frame="0" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble><KeyFrameDouble frame="240" value="0" interpolationType="cubic"><CubicEaseInterpolator x1="0.42" y1="0" x2="0.58" y2="1" /></KeyFrameDouble></KeyedProperty></KeyedObject></LinearAnimation>
+  </Artboard>
+  <ViewModel name="PandaControl" id="0:40" defaultInstanceId="0:41">
+    <ViewModelPropertyNumber name="action" id="0:42" />
+    <ViewModelPropertyTrigger name="perform" id="0:43" />
+    <ViewModelInstance name="Default" id="0:41" exports="true">
+      <ViewModelInstanceNumber viewModelPropertyId="0:42" propertyValue="0" />
+      <ViewModelInstanceTrigger viewModelPropertyId="0:43" propertyValue="0" />
+    </ViewModelInstance>
+  </ViewModel>
+</Rive>

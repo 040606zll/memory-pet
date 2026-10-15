@@ -1,0 +1,25 @@
+import React, { Profiler } from 'react';
+import { act, render } from '@testing-library/react';
+import { expect, it, vi } from 'vitest';
+vi.mock('@rive-app/webgl2', () => import('./riveMock.js'));
+import { Panda } from '../src/Panda.jsx';
+import { instances } from './riveMock.js';
+it('Rive 每帧推进不重复刷新 React、发动作或开启额外动画循环', async () => {
+  instances.length = 0;
+  let time = 0, commits = 0;
+  vi.spyOn(performance, 'now').mockImplementation(() => time);
+  const requestFrame = vi.fn(); vi.stubGlobal('requestAnimationFrame', requestFrame);
+  const actions = [{ name: 'wave', trigger: 'explicit', duration_ms: 1800 }];
+  const content = paused => <Profiler id="pet" onRender={() => commits++}><Panda actions={actions} reducedMotion={paused} /></Profiler>;
+  let view;
+  await act(async () => { view = render(content(false)); });
+  const instance = instances[0];
+  act(() => instance.advance()); const baseline = commits;
+  for (time = 16; time <= 1600; time += 16) act(() => instance.advance());
+  expect(commits).toBe(baseline);
+  expect(instance.perform.trigger).toHaveBeenCalledTimes(1);
+  expect(requestFrame).not.toHaveBeenCalled();
+  expect(Number(document.querySelector('.panda-stage').dataset.renderFps)).toBeGreaterThan(50);
+  view.rerender(content(true)); expect(instance.pause).toHaveBeenCalled();
+  expect(instances).toHaveLength(1); view.unmount(); vi.unstubAllGlobals();
+});

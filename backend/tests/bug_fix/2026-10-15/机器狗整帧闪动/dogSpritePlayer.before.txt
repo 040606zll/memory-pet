@@ -1,0 +1,93 @@
+import { DogFramePainter, MOTION_REGIONS, motionWeight, poseGeometry } from './dogSpriteComposition.js';
+
+/** 活动时钟：暂停或后台长间隔不追赶几秒钟的旧帧，避免恢复瞬间跳过动作。 */
+export class SpriteClock {
+  constructor() { this.time = 0; this.previous = null; }
+  pause() { this.previous = null; }
+  advance(wallTime) {
+    if (this.previous != null) this.time += Math.max(0, Math.min(64, wallTime - this.previous));
+    this.previous = wallTime;
+    return this.time;
+  }
+}
+
+/** 只选择预绘制的完整姿态帧，不拉伸局部像素、不计算骨骼或网格变形。 */
+export function spriteFrame(assets, state, time) {
+  const name = assets.manifest.actions[state.name] ? state.name : 'idle';
+  const clip = assets.manifest.actions[name], sequence = clip.sequence || clip.frames.map((_, index) => index);
+  const restClip = assets.manifest.actions.blink || assets.manifest.actions.idle;
+  const neutral = { image: assets.images[assets.manifest.actions.blink ? 'blink' : 'idle'], frame: restClip.frames[0], referenceHeight: restClip.frames[0].anchorY, referenceWidth: restClip.frames[0].width };
+  // 安静状态不循环全身图集；所有动作共用同一张中立姿态。
+  const progress = state.started == null || name === 'idle' ? 0 : Math.max(0, Math.min(1, state.progress || 0));
+  const position = progress * (sequence.length - 1), slot = Math.floor(position), index = sequence[slot];
+  const mix = position - slot, frameMix = mix * mix * (3 - 2 * mix);
+  const activeWeight = name === 'idle' ? 0 : motionWeight(progress);
+  const sample = { image: assets.images[name], frame: clip.frames[index], referenceHeight: clip.frames[0].anchorY, referenceWidth: clip.referenceWidth, index, name, neutral, nextFrame: clip.frames[sequence[Math.min(slot + 1, sequence.length - 1)]], frameMix, activeWeight, region: MOTION_REGIONS[name], key: `${name}:${index}`, actionKey: `${name}:${state.started ?? 'idle'}` };
+  if (name === 'idle') { sample.image = neutral.image; sample.frame = neutral.frame; sample.key = 'idle:0'; sample.index = 0; }
+  // 源帧数与合成绘制数分别统计，帧间混合不能冒充新的图片帧。
+  sample.paintKey = name === 'idle' ? 'idle:0' : `${sample.key}:${Math.round(frameMix * 60)}:${Math.round(activeWeight * 60)}`;
+  return sample;
+}
+
+/** 同一动作统一比例，按每帧脚底锚点定位；只是等比绘制完整图像，禁止形变。 */
+export function spriteGeometry(sample, width, height) {
+  return poseGeometry(sample, width, height);
+}
+
+/** 双缓冲提交完整画面：先在离屏画布完成裁切，再一次copy到常驻可见canvas。
+ * 按时间采样的帧序列和锚点借鉴PixiJS/Phaser；没有复制其源码或增加依赖。
+ */
+export class DogSpriteRenderer {
+  constructor(canvas, { diagnose = false } = {}) {
+    // 像素诊断统一使用CPU读回，避免不同Canvas后端的半透明舍入差异干扰验收。
+    this.canvas = canvas; this.context = canvas.getContext('2d', { willReadFrequently: diagnose });
+    this.buffer = document.createElement('canvas'); this.bufferContext = this.buffer.getContext('2d', { willReadFrequently: diagnose });
+    this.outgoing = document.createElement('canvas'); this.outgoingContext = this.outgoing.getContext('2d', { willReadFrequently: diagnose });
+    if (!this.context || !this.bufferContext || !this.outgoingContext) throw new Error('浏览器无法播放宠物动画，请重试。');
+    this.buffer.width = this.outgoing.width = canvas.width; this.buffer.height = this.outgoing.height = canvas.height;
+    this.painter = new DogFramePainter({ diagnose });
+    this.diagnose = diagnose; this.key = null; this.paintKey = null; this.actionKey = null; this.started = -Infinity; this.resumePending = false;
+    this.stats = { frames: 0, sourceFrames: 0, blankFrames: 0, resizes: 0 };
+  }
+  resume() { this.resumePending = true; }
+  draw(sample, time) {
+    const rect = this.canvas.getBoundingClientRect(), dpr = Math.min(2, window.devicePixelRatio || 1);
+    if (!(rect.width > 0 && rect.height > 0)) return false;
+    const width = Math.max(1, Math.round(rect.width * dpr)), height = Math.max(1, Math.round(rect.height * dpr));
+    const resized = this.canvas.width !== width || this.canvas.height !== height;
+    if (resized) {
+      this.canvas.width = this.buffer.width = this.outgoing.width = width;
+      this.canvas.height = this.buffer.height = this.outgoing.height = height;
+      this.key = null; this.paintKey = null; this.actionKey = null; this.started = -Infinity; this.stats.resizes++;
+    }
+    const transition = this.actionKey != null && (sample.actionKey !== this.actionKey || this.resumePending);
+    if (transition) {
+      this.outgoingContext.globalCompositeOperation = 'copy';
+      this.outgoingContext.drawImage(this.canvas, 0, 0);
+      this.started = time;
+    }
+    this.resumePending = false; this.actionKey = sample.actionKey;
+    const mix = Math.max(0, Math.min(1, (time - this.started) / 100));
+    if (!resized && !transition && (sample.paintKey || sample.key) === this.paintKey && mix >= 1) return false;
+    const ctx = this.bufferContext;
+    ctx.clearRect(0, 0, width, height);
+    // 动作区由真正图片帧合成，静止区固定；交接保留完整上一帧，不做像素拉伸。
+    this.painter.paint(ctx, sample, width, height);
+    if (mix < 1) { ctx.globalCompositeOperation = 'destination-in'; ctx.globalAlpha = mix; ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, width, height); }
+    ctx.globalCompositeOperation = 'lighter';
+    if (mix < 1) { ctx.globalAlpha = 1 - mix; ctx.drawImage(this.outgoing, 0, 0); }
+    ctx.globalAlpha = 1; ctx.globalCompositeOperation = 'source-over';
+    this.context.globalCompositeOperation = 'copy'; this.context.drawImage(this.buffer, 0, 0); this.context.globalCompositeOperation = 'source-over';
+    if (sample.key !== this.key) this.stats.sourceFrames++;
+    this.key = sample.key; this.paintKey = sample.paintKey || sample.key; this.stats.frames++;
+    if (this.diagnose) {
+      // 伸懒腰可能离开中心点；检查完整画布的实心像素，不将换姿势误判为空白。
+      const pixels = this.context.getImageData(0, 0, width, height).data;
+      let visible = false;
+      for (let i = 3; i < pixels.length; i += 4) if (pixels[i] >= 128) { visible = true; break; }
+      if (!visible) this.stats.blankFrames++;
+    }
+    return true;
+  }
+  dispose() { this.painter.dispose(); this.buffer.width = this.outgoing.width = 0; }
+}

@@ -1,0 +1,140 @@
+[
+  {
+    "probe": "原问题top_k20",
+    "params": {
+      "query": "我最喜欢的测试饮料是什么？",
+      "top_k": 20
+    },
+    "run_id": "570e0b11-1869-4df2-a976-2c94dbc0bd3a",
+    "target_found": false,
+    "facts": [
+      {
+        "memory_id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+        "content": "用户喜欢茉莉花的香味",
+        "rank": 1
+      },
+      {
+        "memory_id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+        "content": "用户喜欢听雨声",
+        "rank": 2
+      },
+      {
+        "memory_id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+        "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "probe": "原问题purpose_test",
+    "params": {
+      "query": "我最喜欢的测试饮料是什么？",
+      "purpose": "test",
+      "topic": "饮料"
+    },
+    "run_id": "deb85490-0a91-4f24-8926-106600b6ece9",
+    "target_found": false,
+    "facts": [
+      {
+        "memory_id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+        "content": "用户喜欢茉莉花的香味",
+        "rank": 1
+      },
+      {
+        "memory_id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+        "content": "用户喜欢听雨声",
+        "rank": 2
+      },
+      {
+        "memory_id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+        "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+        "rank": 3
+      }
+    ]
+  },
+  {
+    "probe": "用户主语改写",
+    "params": {
+      "query": "用户最喜欢的测试饮料是什么？"
+    },
+    "run_id": "6e0cec04-0faa-45ec-8d1b-e30b8c4173bd",
+    "target_found": true,
+    "facts": [
+      {
+        "memory_id": "d7bcd0b5-b224-418b-8b31-bde57571c47b",
+        "content": "用户最喜欢的测试饮料是青竹薄荷苏打",
+        "rank": 1
+      },
+      {
+        "memory_id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+        "content": "用户喜欢茉莉花的香味",
+        "rank": 2
+      },
+      {
+        "memory_id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+        "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+        "rank": 3
+      },
+      {
+        "memory_id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+        "content": "用户喜欢听雨声",
+        "rank": 4
+      }
+    ]
+  },
+  {
+    "probe": "仅属性词检索",
+    "params": {
+      "query": "最喜欢的测试饮料"
+    },
+    "run_id": "62021a05-efc1-4af8-996f-8d709ce03af2",
+    "target_found": true,
+    "facts": [
+      {
+        "memory_id": "d7bcd0b5-b224-418b-8b31-bde57571c47b",
+        "content": "用户最喜欢的测试饮料是青竹薄荷苏打",
+        "rank": 1
+      },
+      {
+        "memory_id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+        "content": "用户喜欢茉莉花的香味",
+        "rank": 2
+      },
+      {
+        "memory_id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+        "content": "用户喜欢听雨声",
+        "rank": 3
+      },
+      {
+        "memory_id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+        "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+        "rank": 4
+      }
+    ]
+  },
+  {
+    "probe": "我的主语改写",
+    "params": {
+      "query": "我的测试饮料偏好是什么？"
+    },
+    "run_id": "cbabe50d-0e9d-4564-b1f7-b2663bfce821",
+    "target_found": false,
+    "facts": [
+      {
+        "memory_id": "05b7f5fe-9287-41fa-9a2a-8b2742d0c8de",
+        "content": "用户喜欢茉莉花的香味",
+        "rank": 1
+      },
+      {
+        "memory_id": "6d052b3b-4edc-43e2-882c-819e1435ee13",
+        "content": "用户喜欢听雨声",
+        "rank": 2
+      },
+      {
+        "memory_id": "b4a7966a-e7fe-4e0d-ba62-7f2dc03484ae",
+        "content": "用户疲惫时希望先被安慰，而不是马上收到建议",
+        "rank": 3
+      }
+    ]
+  }
+]

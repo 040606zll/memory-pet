@@ -1,0 +1,72 @@
+{
+  "source": "Rive CLI 1.5.1 / RML pure vectors",
+  "artboard": "Panda",
+  "stateMachine": "Panda",
+  "viewModel": "PandaControl",
+  "autoBind": true,
+  "asset": "/assets/panda.riv",
+  "size": {
+    "width": 640,
+    "height": 700
+  },
+  "inputs": {
+    "action": "number",
+    "perform": "trigger"
+  },
+  "baseLayer": {
+    "name": "breathing",
+    "durationMs": 4000,
+    "loop": true
+  },
+  "entryBlendMs": 140,
+  "returnBlendMs": 180,
+  "actions": {
+    "idle": {
+      "value": 0,
+      "durationMs": 4000,
+      "loop": true
+    },
+    "blink": {
+      "value": 1,
+      "durationMs": 550,
+      "loop": false
+    },
+    "wave": {
+      "value": 2,
+      "durationMs": 1800,
+      "loop": false
+    },
+    "nod": {
+      "value": 3,
+      "durationMs": 1250,
+      "loop": false
+    },
+    "shake_head": {
+      "value": 4,
+      "durationMs": 1500,
+      "loop": false
+    },
+    "stretch": {
+      "value": 5,
+      "durationMs": 2800,
+      "loop": false
+    },
+    "happy": {
+      "value": 6,
+      "durationMs": 1900,
+      "loop": false
+    },
+    "sleep": {
+      "value": 7,
+      "durationMs": 4000,
+      "loop": false
+    }
+  },
+  "pause": "runtime.pause()/runtime.play()",
+  "avatar": {
+    "file": "/assets/panda-rive-avatar.png",
+    "renderer": "official CLI screenshot",
+    "alpha": false,
+    "clearColor": "#1D1D1D"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "after_fix": true,
+  "user_json_hint": false,
+  "system_layout": "separate",
+  "started_at": "2026-10-14T19:45:25.208819",
+  "model": "deepseek-v4-flash",
+  "session_id": "3d71dd4e-d373-4dc2-b969-d931a46521d3",
+  "message": "不要挥手，也不要眨眼，只安静陪着我。",
+  "history_count": 4,
+  "memories_count": 2,
+  "attempts": [
+    {
+      "mode": "json_object",
+      "repeat": 1,
+      "status": 200,
+      "seconds": 0.569,
+      "finish_reason": "stop",
+      "content_chars": 81,
+      "nonblank_chars": 81,
+      "valid_reply": true,
+      "content": "{\"reply\":\"好，我不挥手也不眨眼，就安安静静陪着你。\",\"emotion\":\"neutral\",\"actions\":[],\"candidates\":[]}"
+    },
+    {
+      "mode": "json_object",
+      "repeat": 2,
+      "status": 200,
+      "seconds": 0.583,
+      "finish_reason": "stop",
+      "content_chars": 81,
+      "nonblank_chars": 81,
+      "valid_reply": true,
+      "content": "{\"reply\":\"好，我不挥手也不眨眼，就安安静静陪着你。\",\"emotion\":\"neutral\",\"actions\":[],\"candidates\":[]}"
+    },
+    {
+      "mode": "json_object",
+      "repeat": 3,
+      "status": 200,
+      "seconds": 0.848,
+      "finish_reason": "stop",
+      "content_chars": 83,
+      "nonblank_chars": 83,
+      "valid_reply": true,
+      "content": "{\"reply\":\"好，我不挥手也不眨眼，就安安静静陪在你身边。\",\"emotion\":\"neutral\",\"actions\":[],\"candidates\":[]}"
+    }
+  ],
+  "finished_at": "2026-10-14T19:45:27.257633"
+}

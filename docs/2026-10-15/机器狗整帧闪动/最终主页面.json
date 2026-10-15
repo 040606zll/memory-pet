@@ -1,0 +1,22 @@
+{
+  "connected": true,
+  "scrollWidth": 857,
+  "stage": {
+    "action": "idle",
+    "animationVersion": "coherent-v2",
+    "blankFrames": "0",
+    "bufferResizes": "1",
+    "decodedBytes": "70197248",
+    "loadState": "ready",
+    "maxFrameGap": "15",
+    "renderFps": "0",
+    "renderFrame": "101",
+    "renderer": "spritesheet",
+    "sourceFrames": "101",
+    "spriteFps": "0",
+    "spriteIndex": "35",
+    "trigger": "idle",
+    "uniqueFrames": "170"
+  },
+  "width": 857
+}

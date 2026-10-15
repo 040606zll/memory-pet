@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>宠物名字同步隔离验证</title>
+<body>
+  <p style="margin:8px;text-align:center">仅用于名字同步验证：模拟业务接口，不连接模型、MySQL 或 MemoryOS。</p>
+  <div id="root"></div>
+  <script type="module">
+    import React from 'react';
+    import { createRoot } from 'react-dom/client';
+    import { App } from '/src/App.jsx';
+    import '/src/styles.css';
+    const originalFetch = window.fetch.bind(window);
+    let serial = 0;
+    // 仅替换本测试页业务接口，动画素材仍按真实文件加载；不修改应用的认证或请求代码。
+    window.fetch = async (url, options = {}) => {
+      if (!String(url).startsWith('/pet-api/')) return originalFetch(url, options);
+      const path = String(url).slice('/pet-api'.length);
+      let data;
+      if (path === '/status') data = { connected: true, memoryos: { configured: true }, llm: { configured: true } };
+      else if (path === '/sessions') data = { id: `visual-${++serial}`, mode: JSON.parse(options.body).mode };
+      else if (path.endsWith('/chat')) {
+        const body = JSON.parse(options.body);
+        const name = body.content === '你叫羊狗' ? '羊狗' : body.pet_name;
+        data = { user_message: { id: `user-${serial}`, role: 'user', content: body.content }, assistant_message: { id: `assistant-${serial++}`, role: 'assistant', content: `好呀，你可以叫我${name}。`, pet_name: name, candidates: [], memories: [] } };
+      } else data = { items: [], total: 0, page: 1, total_pages: 0 };
+      return new Response(JSON.stringify({ code: 0, message: '测试替身', data }), { status: 200, headers: { 'Content-Type': 'application/json' } });
+    };
+    createRoot(document.getElementById('root')).render(React.createElement(App));
+  </script>
+</body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "asset": "/assets/robot-dog-cutout.png",
+  "generatedSource": "/Users/shuque01/.codex/generated_images/01a13a17-664b-7582-95fb-5827c66fd31d/exec-65c6e3d9-1b1c-4db0-858e-69ad238c78f5.png",
+  "canvas": {
+    "width": 1490,
+    "height": 1055,
+    "mode": "RGBA"
+  },
+  "alphaExtrema": [
+    0,
+    255
+  ],
+  "zeroAlphaPixels": 1369381,
+  "lowAlphaPixels1to10": 9417,
+  "nonzeroBbox": [
+    73,
+    42,
+    1414,
+    1029
+  ],
+  "bboxByAlphaThreshold": {
+    "10": [
+      254,
+      308,
+      763,
+      865
+    ],
+    "32": [
+      254,
+      309,
+      762,
+      864
+    ],
+    "64": [
+      255,
+      310,
+      761,
+      864
+    ],
+    "128": [
+      255,
+      311,
+      760,
+      864
+    ],
+    "200": [
+      256,
+      313,
+      759,
+      863
+    ]
+  },
+  "sourceCanvas": {
+    "width": 706,
+    "height": 500
+  },
+  "sourceApproxBbox": [
+    121,
+    138,
+    354,
+    393
+  ],
+  "expectedScaledApproxBbox": [
+    255,
+    291,
+    747,
+    829
+  ],
+  "recommendation": "只消费alpha主体；不要消费生成RGB。有效主体bbox以alpha>10界定，极低alpha存在散点，需要映射回真实原稿轮廓坐标。图像未经Python像素编辑。"
+}

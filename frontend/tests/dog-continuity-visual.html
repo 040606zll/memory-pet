@@ -1,0 +1,35 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>宠物连续性实际像素验收</title>
+<style>body{margin:20px;background:#eaf4fe;color:#183958;font:14px sans-serif}canvas{width:400px;height:435px;background:url('/assets/robot-dog-room.png') center/cover}.snapshots{display:flex;flex-wrap:wrap;gap:12px}figure{margin:0}figure canvas{width:140px;height:auto}output{display:block;margin:12px 0;white-space:pre-wrap}button{padding:10px;margin:5px}</style>
+<h1>安静陪伴与局部逐帧动作</h1><p>真实生产播放器。静止区固定中立图；活动区使用真正源帧混合，没有局部像素拉伸。</p>
+<button data-name="blink">眨眼</button><button data-name="wag_tail">摇尾巴</button><button data-name="wave">挥爪</button><button data-name="happy">摸头</button><button data-name="nod">点头</button><button data-name="shake_head">摇头</button><button data-name="stretch">伸懒腰</button><button data-name="sleep">打盹</button><button data-name="pause">暂停/恢复</button>
+<div><canvas width="400" height="435" aria-label="真实连续动作宠物" role="img"></canvas></div><output>正在加载实际图集…</output><section class="snapshots"></section>
+<script type="module">
+import { loadDogSprites,SPRITE_DURATIONS } from '/src/dogSpriteAssets.js';
+import { spriteFrame,DogSpriteRenderer,SpriteClock } from '/src/dogSpritePlayer.js';
+import { DogBehavior } from '/src/dogBehavior.js';
+import { poseGeometry } from '/src/dogSpriteComposition.js';
+const assets=await loadDogSprites(new AbortController().signal),canvas=document.querySelector('canvas'),output=document.querySelector('output'),clock=new SpriteClock(),machine=new DogBehavior({durations:SPRITE_DURATIONS,now:()=>clock.time}),renderer=new DogSpriteRenderer(canvas,{diagnose:true});
+const report={bodySamples:0,maxStaticPixelChange:0,maxRawChannelDifference:0,changedStaticPixels:0,motionEvidence:{},bodyEvidence:{},staticRoiOpaquePixels:0,idleStarted:0,idleActions:[],pause:false,frames:0,sourceFrames:0,blankFrames:0};let paused=false,lastEvent='',previousBody;
+const neutral=spriteFrame(assets,{name:'idle'},0),target=poseGeometry(neutral.neutral,canvas.width,canvas.height),unit=target.scale;
+const roi={x:Math.round(target.x+190*unit),y:Math.round(target.y+230*unit),width:Math.round(48*unit),height:Math.round(46*unit)};
+// 采样静止脚部；不以整张画布无空白替代运动连续性验证。
+function staticPixels(ctx){return ctx.getImageData(roi.x,roi.y,roi.width,roi.height).data}
+const baseline=document.createElement('canvas');baseline.width=400;baseline.height=435;baseline.style.cssText='position:absolute;left:-10000px;visibility:hidden';document.body.append(baseline);new DogSpriteRenderer(baseline,{diagnose:true}).draw(neutral,0);const basePixels=staticPixels(baseline.getContext('2d')),baseFull=baseline.getContext('2d').getImageData(0,0,400,435).data;for(let i=3;i<basePixels.length;i+=4)if(basePixels[i]>128)report.staticRoiOpaquePixels++;if(!report.staticRoiOpaquePixels)throw new Error('静止区域采样为空，验收无效');
+for(const name of ['blink','wag_tail','wave','happy','nod','shake_head']){
+ const sampler=document.createElement('canvas');sampler.width=400;sampler.height=435;sampler.style.cssText='position:absolute;left:-10000px;visibility:hidden';document.body.append(sampler);const player=new DogSpriteRenderer(sampler,{diagnose:true});
+ for(let index=0;index<=30;index++){
+  const sample=spriteFrame(assets,{name,started:0,progress:index/30},index*100);player.draw(sample,index*100);const pixels=staticPixels(sampler.getContext('2d'));let maximum=0,changed=0,worst=0;
+  // 透明像素的RGB读回可为255或0，比较预乘RGBA以对应实际可见差异。
+  for(let i=0;i<pixels.length;i++){const channel=i%4,offset=i-channel,raw=Math.abs(pixels[i]-basePixels[i]);report.maxRawChannelDifference=Math.max(report.maxRawChannelDifference,raw);const a=channel===3?pixels[i]:Math.round(pixels[i]*pixels[offset+3]/255),b=channel===3?basePixels[i]:Math.round(basePixels[i]*basePixels[offset+3]/255),d=Math.abs(a-b);maximum=Math.max(maximum,d);if(d>2)changed++}
+  if(index===15){const full=sampler.getContext('2d').getImageData(0,0,400,435).data;let changes=0;for(let j=0;j<full.length;j+=4)if(Math.max(...[0,1,2,3].map(k=>Math.abs(full[j+k]-baseFull[j+k])))>10)changes++;report.motionEvidence[name]={changedPixels:changes};}
+  if(!report.bodyEvidence[name])report.bodyEvidence[name]={max:0,changed:0,failed:[]};report.bodyEvidence[name].max=Math.max(maximum,report.bodyEvidence[name].max);report.bodyEvidence[name].changed+=changed;if(maximum>2)report.bodyEvidence[name].failed.push({index,maximum});
+  report.bodySamples++;report.maxStaticPixelChange=Math.max(report.maxStaticPixelChange,maximum);report.changedStaticPixels+=changed;
+  if([9,15,21].includes(index)){const item=document.createElement('figure'),picture=document.createElement('canvas'),label=document.createElement('figcaption');picture.width=400;picture.height=435;picture.getContext('2d').drawImage(sampler,0,0);label.textContent=name+' · '+index+'/30';item.append(label,picture);document.querySelector('.snapshots').append(item)}
+ }player.dispose();sampler.remove();
+}
+function render(wall){if(paused){clock.pause();requestAnimationFrame(render);return}const time=clock.advance(wall),state=machine.tick(time),sample=spriteFrame(assets,state,time);renderer.draw(sample,time);
+ const key=state.name+':'+state.started;if(state.started!=null&&key!==lastEvent){lastEvent=key;if(state.trigger==='idle'){report.idleStarted++;report.idleActions.push({name:state.name,time:Math.round(time)})}}
+ Object.assign(report,renderer.stats,{action:state.name,spriteIndex:sample.index,time:Math.round(time),pause:paused,roi});output.textContent=JSON.stringify(report,null,2);requestAnimationFrame(render)}
+baseline.remove();requestAnimationFrame(render);
+document.querySelectorAll('button').forEach(button=>button.onclick=()=>{const name=button.dataset.name;if(name==='pause'){paused=!paused;report.pause=paused;output.textContent=JSON.stringify(report,null,2);if(!paused)renderer.resume();return}machine.enqueue([{name,trigger:'explicit'}]);});
+</script></html>

@@ -1,0 +1,299 @@
+{
+  "idle": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "transparentPixels": 293649,
+    "sourcePoseCount": 16,
+    "uniquePoseHashes": 16,
+    "footBaselineAlignedByAnchor": true,
+    "sourceSha256": "49ce6ed51ae1777a5aae0cecf2ba98c345c23bd5a9c56518bfe2e3cb21b7f8b3",
+    "subjectHeights": [
+      306,
+      294,
+      296,
+      293,
+      301,
+      298,
+      292,
+      292,
+      301,
+      292,
+      296,
+      294,
+      293,
+      290,
+      288,
+      291
+    ]
+  },
+  "blink": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "transparentPixels": 597507,
+    "sourcePoseCount": 16,
+    "uniquePoseHashes": 16,
+    "footBaselineAlignedByAnchor": true,
+    "sourceSha256": "68bb914e6a402d73be5e4e26db37d0379aef39cdba2033d4aa162efd960ccd68",
+    "subjectHeights": [
+      282,
+      282,
+      282,
+      282,
+      282,
+      281,
+      281,
+      281,
+      282,
+      282,
+      282,
+      282,
+      282,
+      281,
+      281,
+      281
+    ]
+  },
+  "wave": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "transparentPixels": 495721,
+    "sourcePoseCount": 16,
+    "uniquePoseHashes": 16,
+    "footBaselineAlignedByAnchor": true,
+    "sourceSha256": "825431dfd26142ee655f65e7df6f3c13c9b3984291c2587f1edbfb394df7f21c",
+    "subjectHeights": [
+      242,
+      240,
+      240,
+      240,
+      240,
+      240,
+      240,
+      240,
+      240,
+      239,
+      240,
+      239,
+      240,
+      239,
+      240,
+      240
+    ]
+  },
+  "nod": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "transparentPixels": 613792,
+    "sourcePoseCount": 16,
+    "uniquePoseHashes": 16,
+    "footBaselineAlignedByAnchor": true,
+    "sourceSha256": "5b0e072754b1db924b3ec6c31a22c18d21f1b0b35c7031818cb9b55c5f0946af",
+    "subjectHeights": [
+      290,
+      285,
+      278,
+      277,
+      279,
+      272,
+      265,
+      260,
+      255,
+      260,
+      280,
+      289,
+      284,
+      284,
+      285,
+      284
+    ]
+  },
+  "shake_head": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "transparentPixels": 638339,
+    "sourcePoseCount": 16,
+    "uniquePoseHashes": 16,
+    "footBaselineAlignedByAnchor": true,
+    "sourceSha256": "c41b2e434d1821774b80a815547de25635342646034cae25af621a9dd2a7cf93",
+    "subjectHeights": [
+      274,
+      274,
+      274,
+      274,
+      275,
+      275,
+      275,
+      270,
+      276,
+      276,
+      276,
+      274,
+      274,
+      274,
+      274,
+      274
+    ]
+  },
+  "stretch": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "transparentPixels": 445870,
+    "sourcePoseCount": 16,
+    "uniquePoseHashes": 16,
+    "footBaselineAlignedByAnchor": true,
+    "sourceSha256": "030ce1a350ce8cc455b8493d05b553cba8d5e6e7f0370b757145b1c0525d7ab2",
+    "subjectHeights": [
+      291,
+      280,
+      260,
+      282,
+      284,
+      281,
+      275,
+      270,
+      267,
+      271,
+      272,
+      276,
+      290,
+      294,
+      290,
+      292
+    ]
+  },
+  "happy": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "transparentPixels": 564295,
+    "sourcePoseCount": 16,
+    "uniquePoseHashes": 16,
+    "footBaselineAlignedByAnchor": true,
+    "sourceSha256": "e5bc3e871f47fadb98c7a4f99253e74fd77597ab99b7f9092f7a64f6bb8b9ca3",
+    "subjectHeights": [
+      297,
+      294,
+      296,
+      300,
+      300,
+      310,
+      299,
+      301,
+      302,
+      300,
+      298,
+      297,
+      257,
+      254,
+      256,
+      257
+    ]
+  },
+  "sleep": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "transparentPixels": 535055,
+    "sourcePoseCount": 16,
+    "uniquePoseHashes": 16,
+    "footBaselineAlignedByAnchor": true,
+    "sourceSha256": "ccd8fc884fc5b5c3a29b105043fa2a79de7c037d3472692ee672f97a086fd302",
+    "subjectHeights": [
+      300,
+      300,
+      297,
+      291,
+      289,
+      284,
+      271,
+      264,
+      264,
+      264,
+      264,
+      275,
+      296,
+      294,
+      299,
+      295
+    ]
+  },
+  "wag_tail": {
+    "size": [
+      1254,
+      1254
+    ],
+    "alphaRange": [
+      0,
+      255
+    ],
+    "transparentPixels": 630574,
+    "sourcePoseCount": 16,
+    "uniquePoseHashes": 16,
+    "footBaselineAlignedByAnchor": true,
+    "sourceSha256": "ae0aec27aee30b2fab988295cb002bbfa4d635e9edf9275fa24594cbeb103355",
+    "subjectHeights": [
+      256,
+      256,
+      256,
+      256,
+      256,
+      256,
+      256,
+      256,
+      255,
+      256,
+      256,
+      256,
+      255,
+      256,
+      256,
+      256
+    ]
+  }
+}

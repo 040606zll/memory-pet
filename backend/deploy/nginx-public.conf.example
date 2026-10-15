@@ -1,0 +1,34 @@
+# 放入已有 HTTPS 站点的 server 块或宝塔“伪静态”中；先合并已有重复 location。
+# 本文件不含 server 外壳、证书或真实账号密码，不要直接覆盖整份站点配置。
+# 根目录只放前端 dist/client 的内容，不放后端代码或配置文件。
+root /www/wwwroot/81.71.39.10;
+index index.html;
+
+# 页面使用应用内账号密码登录；HTTPS 证书在所属 server 中配置。
+# 不再强制站点 Basic 登录；需要额外入口保护时由管理员自行配置。
+
+location ^~ /pet-api/ {
+    proxy_pass http://127.0.0.1:8797/api/;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    # 应用使用 HttpOnly Cookie，代理保留 Cookie 和 X-CSRF-Token。
+    proxy_set_header Authorization "";
+    proxy_http_version 1.1;
+    proxy_buffering off;
+    proxy_cache off;
+    proxy_read_timeout 300s;
+    proxy_send_timeout 300s;
+    client_max_body_size 1m;
+}
+
+location ^~ /assets/ {
+    try_files $uri =404;
+    add_header Cache-Control "no-cache";
+}
+
+location / {
+    try_files $uri $uri/ /index.html;
+    add_header Cache-Control "no-cache";
+}

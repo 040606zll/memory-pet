@@ -1,0 +1,692 @@
+{
+  "version": 1,
+  "room": {
+    "url": "/assets/panda-room.png",
+    "width": 1173,
+    "height": 1341
+  },
+  "anchor": {
+    "x": 0.5,
+    "y": 0.98
+  },
+  "sheets": [
+    {
+      "id": "core",
+      "url": "/assets/panda-actions-core.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "alpha": true
+    },
+    {
+      "id": "extra",
+      "url": "/assets/panda-actions-extra.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 4,
+      "rows": 4,
+      "alpha": true
+    },
+    {
+      "id": "idle-hi",
+      "url": "/assets/panda-anim-idle.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2,
+      "alpha": true
+    },
+    {
+      "id": "blink-hi",
+      "url": "/assets/panda-anim-blink.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2,
+      "alpha": true
+    },
+    {
+      "id": "wave-hi",
+      "url": "/assets/panda-anim-wave.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2,
+      "alpha": true
+    },
+    {
+      "id": "stretch-hi",
+      "url": "/assets/panda-anim-stretch.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2,
+      "alpha": true
+    },
+    {
+      "id": "nod-hi",
+      "url": "/assets/panda-anim-nod.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2,
+      "alpha": true
+    },
+    {
+      "id": "shake_head-hi",
+      "url": "/assets/panda-anim-shake_head.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2,
+      "alpha": true
+    },
+    {
+      "id": "happy-hi",
+      "url": "/assets/panda-anim-happy.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2,
+      "alpha": true
+    },
+    {
+      "id": "sleep-hi",
+      "url": "/assets/panda-anim-sleep.png",
+      "width": 1254,
+      "height": 1254,
+      "columns": 2,
+      "rows": 2,
+      "alpha": true
+    }
+  ],
+  "actions": {
+    "idle": {
+      "sheet": "idle-hi",
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 627,
+          "height": 627,
+          "contentBounds": [
+            86,
+            59,
+            553,
+            608
+          ],
+          "anchorX": 313.5,
+          "anchorY": 608
+        },
+        {
+          "x": 627,
+          "y": 0,
+          "width": 627,
+          "height": 627,
+          "contentBounds": [
+            81,
+            59,
+            546,
+            608
+          ],
+          "anchorX": 313.5,
+          "anchorY": 608
+        },
+        {
+          "x": 0,
+          "y": 627,
+          "width": 627,
+          "height": 627,
+          "contentBounds": [
+            87,
+            24,
+            562,
+            576
+          ],
+          "anchorX": 313.5,
+          "anchorY": 576
+        },
+        {
+          "x": 627,
+          "y": 627,
+          "width": 627,
+          "height": 627,
+          "contentBounds": [
+            63,
+            27,
+            535,
+            576
+          ],
+          "anchorX": 313.5,
+          "anchorY": 576
+        }
+      ],
+      "fps": 5,
+      "sequence": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "blink": {
+      "sheet": "blink-hi",
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 627,
+          "height": 627,
+          "contentBounds": [
+            59,
+            61,
+            535,
+            612
+          ],
+          "anchorX": 313.5,
+          "anchorY": 612
+        },
+        {
+          "x": 627,
+          "y": 0,
+          "width": 627,
+          "height": 627,
+          "contentBounds": [
+            51,
+            62,
+            530,
+            612
+          ],
+          "anchorX": 313.5,
+          "anchorY": 612
+        },
+        {
+          "x": 0,
+          "y": 627,
+          "width": 627,
+          "height": 627,
+          "contentBounds": [
+            60,
+            28,
+            542,
+            585
+          ],
+          "anchorX": 313.5,
+          "anchorY": 585
+        },
+        {
+          "x": 627,
+          "y": 627,
+          "width": 627,
+          "height": 627,
+          "contentBounds": [
+            51,
+            29,
+            530,
+            585
+          ],
+          "anchorX": 313.5,
+          "anchorY": 585
+        }
+      ],
+      "fps": 7,
+      "sequence": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "wave": {
+      "sheet": "wave-hi",
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 625,
+          "height": 646,
+          "contentBounds": [
+            84,
+            73,
+            558,
+            629
+          ],
+          "anchorX": 313.5,
+          "anchorY": 629
+        },
+        {
+          "x": 625,
+          "y": 0,
+          "width": 629,
+          "height": 646,
+          "contentBounds": [
+            83,
+            75,
+            567,
+            630
+          ],
+          "anchorX": 315.5,
+          "anchorY": 630
+        },
+        {
+          "x": 0,
+          "y": 646,
+          "width": 625,
+          "height": 608,
+          "contentBounds": [
+            87,
+            17,
+            562,
+            577
+          ],
+          "anchorX": 313.5,
+          "anchorY": 577
+        },
+        {
+          "x": 625,
+          "y": 646,
+          "width": 629,
+          "height": 608,
+          "contentBounds": [
+            53,
+            19,
+            573,
+            577
+          ],
+          "anchorX": 315.5,
+          "anchorY": 577
+        }
+      ],
+      "fps": 7,
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "stretch": {
+      "sheet": "stretch-hi",
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 632,
+          "height": 630,
+          "contentBounds": [
+            97,
+            53,
+            556,
+            596
+          ],
+          "anchorX": 313.5,
+          "anchorY": 596
+        },
+        {
+          "x": 632,
+          "y": 0,
+          "width": 622,
+          "height": 630,
+          "contentBounds": [
+            69,
+            54,
+            560,
+            596
+          ],
+          "anchorX": 308.5,
+          "anchorY": 596
+        },
+        {
+          "x": 0,
+          "y": 630,
+          "width": 632,
+          "height": 624,
+          "contentBounds": [
+            78,
+            35,
+            580,
+            576
+          ],
+          "anchorX": 313.5,
+          "anchorY": 576
+        },
+        {
+          "x": 632,
+          "y": 630,
+          "width": 622,
+          "height": 624,
+          "contentBounds": [
+            63,
+            38,
+            592,
+            577
+          ],
+          "anchorX": 308.5,
+          "anchorY": 577
+        }
+      ],
+      "fps": 7,
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "nod": {
+      "sheet": "nod-hi",
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 631,
+          "height": 634,
+          "contentBounds": [
+            94,
+            54,
+            561,
+            619
+          ],
+          "anchorX": 313.5,
+          "anchorY": 619
+        },
+        {
+          "x": 631,
+          "y": 0,
+          "width": 623,
+          "height": 634,
+          "contentBounds": [
+            67,
+            83,
+            530,
+            620
+          ],
+          "anchorX": 309.5,
+          "anchorY": 620
+        },
+        {
+          "x": 0,
+          "y": 634,
+          "width": 631,
+          "height": 620,
+          "contentBounds": [
+            111,
+            53,
+            579,
+            579
+          ],
+          "anchorX": 313.5,
+          "anchorY": 579
+        },
+        {
+          "x": 631,
+          "y": 634,
+          "width": 623,
+          "height": 620,
+          "contentBounds": [
+            64,
+            15,
+            536,
+            581
+          ],
+          "anchorX": 309.5,
+          "anchorY": 581
+        }
+      ],
+      "fps": 7,
+      "sequence": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "shake_head": {
+      "sheet": "shake_head-hi",
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 628,
+          "height": 633,
+          "contentBounds": [
+            113,
+            51,
+            549,
+            612
+          ],
+          "anchorX": 313.5,
+          "anchorY": 612
+        },
+        {
+          "x": 628,
+          "y": 0,
+          "width": 626,
+          "height": 633,
+          "contentBounds": [
+            85,
+            53,
+            522,
+            612
+          ],
+          "anchorX": 312.5,
+          "anchorY": 612
+        },
+        {
+          "x": 0,
+          "y": 633,
+          "width": 628,
+          "height": 621,
+          "contentBounds": [
+            113,
+            21,
+            550,
+            582
+          ],
+          "anchorX": 313.5,
+          "anchorY": 582
+        },
+        {
+          "x": 628,
+          "y": 633,
+          "width": 626,
+          "height": 621,
+          "contentBounds": [
+            85,
+            22,
+            522,
+            581
+          ],
+          "anchorX": 312.5,
+          "anchorY": 581
+        }
+      ],
+      "fps": 7,
+      "sequence": [
+        0,
+        1,
+        2,
+        3
+      ]
+    },
+    "happy": {
+      "sheet": "happy-hi",
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 632,
+          "height": 638,
+          "contentBounds": [
+            96,
+            58,
+            569,
+            620
+          ],
+          "anchorX": 313.5,
+          "anchorY": 620
+        },
+        {
+          "x": 632,
+          "y": 0,
+          "width": 622,
+          "height": 638,
+          "contentBounds": [
+            57,
+            59,
+            525,
+            619
+          ],
+          "anchorX": 308.5,
+          "anchorY": 619
+        },
+        {
+          "x": 0,
+          "y": 638,
+          "width": 632,
+          "height": 616,
+          "contentBounds": [
+            108,
+            18,
+            582,
+            578
+          ],
+          "anchorX": 313.5,
+          "anchorY": 578
+        },
+        {
+          "x": 632,
+          "y": 638,
+          "width": 622,
+          "height": 616,
+          "contentBounds": [
+            79,
+            20,
+            520,
+            579
+          ],
+          "anchorX": 308.5,
+          "anchorY": 579
+        }
+      ],
+      "fps": 7,
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "sleep": {
+      "sheet": "sleep-hi",
+      "frames": [
+        {
+          "x": 0,
+          "y": 0,
+          "width": 630,
+          "height": 638,
+          "contentBounds": [
+            81,
+            43,
+            570,
+            623
+          ],
+          "anchorX": 313.5,
+          "anchorY": 623
+        },
+        {
+          "x": 630,
+          "y": 0,
+          "width": 624,
+          "height": 638,
+          "contentBounds": [
+            57,
+            53,
+            550,
+            623
+          ],
+          "anchorX": 310.5,
+          "anchorY": 623
+        },
+        {
+          "x": 0,
+          "y": 638,
+          "width": 630,
+          "height": 616,
+          "contentBounds": [
+            84,
+            15,
+            578,
+            591
+          ],
+          "anchorX": 313.5,
+          "anchorY": 591
+        },
+        {
+          "x": 630,
+          "y": 638,
+          "width": 624,
+          "height": 616,
+          "contentBounds": [
+            57,
+            23,
+            551,
+            592
+          ],
+          "anchorX": 310.5,
+          "anchorY": 592
+        }
+      ],
+      "fps": 5,
+      "sequence": [
+        0,
+        1,
+        2,
+        3,
+        2,
+        1
+      ]
+    }
+  },
+  "notes": [
+    "实际生成尺寸1254像素，按真实帧矩形切片。happy第3帧抬爪延伸到x940，右边界补1像素；第4帧起点x944，避开相邻帧。使用每帧anchorY作为地面锚点。"
+  ],
+  "stills": {
+    "training": {
+      "url": "/assets/panda-training.png",
+      "width": 1254,
+      "height": 1254,
+      "contentBounds": [
+        75,
+        28,
+        1099,
+        1231
+      ],
+      "anchorX": 627,
+      "anchorY": 1231
+    },
+    "chat": {
+      "url": "/assets/panda-chat.png",
+      "width": 1254,
+      "height": 1254,
+      "contentBounds": [
+        77,
+        29,
+        1208,
+        1226
+      ],
+      "anchorX": 627,
+      "anchorY": 1226
+    }
+  }
+}

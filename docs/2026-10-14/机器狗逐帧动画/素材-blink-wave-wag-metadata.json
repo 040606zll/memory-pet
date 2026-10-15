@@ -1,0 +1,1613 @@
+{
+  "blink": {
+    "action": "blink",
+    "file": "/assets/robot-dog-sprites-v1/blink.png",
+    "generatedSource": "/Users/shuque01/.codex/generated_images/01a13a17-664b-7582-95fb-5827c66fd31d/exec-29fb92a3-7e93-4a7c-a38b-1cd13257dbb5.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 597507,
+    "lowAlphaPixels1to10": 116377,
+    "grid": {
+      "columns": 4,
+      "rows": 4,
+      "count": 16,
+      "order": "row-major",
+      "cellWidth": 313.5,
+      "cellHeight": 313.5
+    },
+    "frames": [
+      {
+        "index": 0,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          0,
+          314,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          31,
+          26,
+          299,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          31,
+          26,
+          299,
+          310
+        ],
+        "anchorYLocal": 310,
+        "height": 284,
+        "baselinePercent": 98.73,
+        "touchesCellEdge": false,
+        "frameHash": "6f7f588aa0093b55f443967abf3dec58a23c5377cdb193ce46be93cfc9772e54"
+      },
+      {
+        "index": 1,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          0,
+          627,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          26,
+          298,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          344,
+          26,
+          612,
+          310
+        ],
+        "anchorYLocal": 310,
+        "height": 284,
+        "baselinePercent": 98.73,
+        "touchesCellEdge": false,
+        "frameHash": "8b963e775c4ebdfd2fe3dde268e95c030c62ad9ac6aa43b2c017e58c9b5cf97e"
+      },
+      {
+        "index": 2,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          0,
+          940,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          26,
+          298,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          657,
+          26,
+          925,
+          310
+        ],
+        "anchorYLocal": 310,
+        "height": 284,
+        "baselinePercent": 98.73,
+        "touchesCellEdge": false,
+        "frameHash": "11844243a7d0e9fa53d5e53f1ceb526997b596f9a6f54527efa404170925337d"
+      },
+      {
+        "index": 3,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          0,
+          1254,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          26,
+          298,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          970,
+          26,
+          1238,
+          310
+        ],
+        "anchorYLocal": 310,
+        "height": 284,
+        "baselinePercent": 98.73,
+        "touchesCellEdge": false,
+        "frameHash": "cc45bbbdf673b95a6d0f5c77bf6b609bc4ee3e29216452d0c8226cb21a97a97f"
+      },
+      {
+        "index": 4,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          314,
+          314,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          31,
+          26,
+          299,
+          309
+        ],
+        "alpha10BoundsSheet": [
+          31,
+          340,
+          299,
+          623
+        ],
+        "anchorYLocal": 309,
+        "height": 283,
+        "baselinePercent": 98.72,
+        "touchesCellEdge": false,
+        "frameHash": "d978234f7c4dab944b584801db25daee413d0a664c5fe4fe45187676f0302c77"
+      },
+      {
+        "index": 5,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          314,
+          627,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          26,
+          298,
+          309
+        ],
+        "alpha10BoundsSheet": [
+          344,
+          340,
+          612,
+          623
+        ],
+        "anchorYLocal": 309,
+        "height": 283,
+        "baselinePercent": 98.72,
+        "touchesCellEdge": false,
+        "frameHash": "69cf33498af904c453be2e4bc30079a83ef1f0713a336b5deaaa3b5d78c4c517"
+      },
+      {
+        "index": 6,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          314,
+          940,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          26,
+          298,
+          309
+        ],
+        "alpha10BoundsSheet": [
+          657,
+          340,
+          925,
+          623
+        ],
+        "anchorYLocal": 309,
+        "height": 283,
+        "baselinePercent": 98.72,
+        "touchesCellEdge": false,
+        "frameHash": "2c87bcea2e0cbc5056beb26dd806496bdfead7bc733c2c5ae6847b841e7dd77e"
+      },
+      {
+        "index": 7,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          314,
+          1254,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          26,
+          298,
+          309
+        ],
+        "alpha10BoundsSheet": [
+          970,
+          340,
+          1238,
+          623
+        ],
+        "anchorYLocal": 309,
+        "height": 283,
+        "baselinePercent": 98.72,
+        "touchesCellEdge": false,
+        "frameHash": "e4457af0c15119f3b40cabaad0e80c37a80d05f57ce9caaab67d570cc770f7a9"
+      },
+      {
+        "index": 8,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          627,
+          314,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          31,
+          26,
+          299,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          31,
+          653,
+          299,
+          937
+        ],
+        "anchorYLocal": 310,
+        "height": 284,
+        "baselinePercent": 99.04,
+        "touchesCellEdge": false,
+        "frameHash": "cdc6dbb57436329c873f8e0e6efc1e1bd7805a477d7be460858dddbc73355f93"
+      },
+      {
+        "index": 9,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          627,
+          627,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          26,
+          298,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          344,
+          653,
+          612,
+          937
+        ],
+        "anchorYLocal": 310,
+        "height": 284,
+        "baselinePercent": 99.04,
+        "touchesCellEdge": false,
+        "frameHash": "db5ffc2e504c5ffc28256eb9b1452b6eb5d70199cc543ff0e8282f5c661d1e5d"
+      },
+      {
+        "index": 10,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          627,
+          940,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          31,
+          27,
+          298,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          658,
+          654,
+          925,
+          937
+        ],
+        "anchorYLocal": 310,
+        "height": 283,
+        "baselinePercent": 99.04,
+        "touchesCellEdge": false,
+        "frameHash": "114a2278ccc7437ac18185a6234e6afea1d5c143abab4b0c3e722d7e1a0abe96"
+      },
+      {
+        "index": 11,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          627,
+          1254,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          27,
+          298,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          970,
+          654,
+          1238,
+          937
+        ],
+        "anchorYLocal": 310,
+        "height": 283,
+        "baselinePercent": 99.04,
+        "touchesCellEdge": false,
+        "frameHash": "e7993110d382e63432a22a7617512f8baad6f4ff55bef9d4e5d87c04a4fb6568"
+      },
+      {
+        "index": 12,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          940,
+          314,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          31,
+          27,
+          299,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          31,
+          967,
+          299,
+          1250
+        ],
+        "anchorYLocal": 310,
+        "height": 283,
+        "baselinePercent": 98.73,
+        "touchesCellEdge": false,
+        "frameHash": "fe0ae3f468543b112115e06aa8216c3343bfad8f276543eae2e8fb5dd93c0d86"
+      },
+      {
+        "index": 13,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          940,
+          627,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          27,
+          298,
+          309
+        ],
+        "alpha10BoundsSheet": [
+          344,
+          967,
+          612,
+          1249
+        ],
+        "anchorYLocal": 309,
+        "height": 282,
+        "baselinePercent": 98.41,
+        "touchesCellEdge": false,
+        "frameHash": "a638a6c4ffcdb9bac6851fba91ce2a2e231badbde950eb6f1edc8abf9c313c53"
+      },
+      {
+        "index": 14,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          940,
+          940,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          27,
+          298,
+          310
+        ],
+        "alpha10BoundsSheet": [
+          657,
+          967,
+          925,
+          1250
+        ],
+        "anchorYLocal": 310,
+        "height": 283,
+        "baselinePercent": 98.73,
+        "touchesCellEdge": false,
+        "frameHash": "5e4719710548faa3605d27146de132f2cb0ec42d732829ee9a5f1171dd359d2f"
+      },
+      {
+        "index": 15,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          940,
+          1254,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          30,
+          27,
+          298,
+          309
+        ],
+        "alpha10BoundsSheet": [
+          970,
+          967,
+          1238,
+          1249
+        ],
+        "anchorYLocal": 309,
+        "height": 282,
+        "baselinePercent": 98.41,
+        "touchesCellEdge": false,
+        "frameHash": "404d594abbc1464726a13e9d23cae2a6ad6906bc23687a7716fe2c25aa5b0184"
+      }
+    ],
+    "uniquePixelFrames": 16
+  },
+  "wave": {
+    "action": "wave",
+    "file": "/assets/robot-dog-sprites-v1/wave.png",
+    "generatedSource": "/Users/shuque01/.codex/generated_images/01a13a17-664b-7582-95fb-5827c66fd31d/exec-27bba310-3af6-415f-ac5f-07cc25a5b5f5.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 495721,
+    "lowAlphaPixels1to10": 466584,
+    "grid": {
+      "columns": 4,
+      "rows": 4,
+      "count": 16,
+      "order": "row-major",
+      "cellWidth": 313.5,
+      "cellHeight": 313.5
+    },
+    "frames": [
+      {
+        "index": 0,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          0,
+          314,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          51,
+          288,
+          295
+        ],
+        "alpha10BoundsSheet": [
+          65,
+          51,
+          288,
+          295
+        ],
+        "anchorYLocal": 295,
+        "height": 244,
+        "baselinePercent": 93.95,
+        "touchesCellEdge": false,
+        "frameHash": "785019072112fbe8dd2e17fb058d42e703cac9c2a774c8e9ab3d767b5d988b5b"
+      },
+      {
+        "index": 1,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          0,
+          627,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          64,
+          51,
+          287,
+          294
+        ],
+        "alpha10BoundsSheet": [
+          378,
+          51,
+          601,
+          294
+        ],
+        "anchorYLocal": 294,
+        "height": 243,
+        "baselinePercent": 93.63,
+        "touchesCellEdge": false,
+        "frameHash": "c2a14d2be57dbc1213f5048978ab963abfac890d71883f36f05ef25ae15ea305"
+      },
+      {
+        "index": 2,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          0,
+          940,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          52,
+          287,
+          294
+        ],
+        "alpha10BoundsSheet": [
+          692,
+          52,
+          914,
+          294
+        ],
+        "anchorYLocal": 294,
+        "height": 242,
+        "baselinePercent": 93.63,
+        "touchesCellEdge": false,
+        "frameHash": "ac51e6326eb793b0a0d6e707c88e55bbf1e0dce9060dd524c9d002e7fe538b7b"
+      },
+      {
+        "index": 3,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          0,
+          1254,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          52,
+          288,
+          294
+        ],
+        "alpha10BoundsSheet": [
+          1005,
+          52,
+          1228,
+          294
+        ],
+        "anchorYLocal": 294,
+        "height": 242,
+        "baselinePercent": 93.63,
+        "touchesCellEdge": false,
+        "frameHash": "1be1d03a391410077b5cc010715ffefd4a33637e78eed170ddb886a5c108c7d3"
+      },
+      {
+        "index": 4,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          314,
+          314,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          51,
+          288,
+          293
+        ],
+        "alpha10BoundsSheet": [
+          65,
+          365,
+          288,
+          607
+        ],
+        "anchorYLocal": 293,
+        "height": 242,
+        "baselinePercent": 93.61,
+        "touchesCellEdge": false,
+        "frameHash": "a6622fa84d0f34bb8a465e0f1c61160e7758ff4e46bad4903a874712eb4c54a1"
+      },
+      {
+        "index": 5,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          314,
+          627,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          54,
+          52,
+          287,
+          294
+        ],
+        "alpha10BoundsSheet": [
+          368,
+          366,
+          601,
+          608
+        ],
+        "anchorYLocal": 294,
+        "height": 242,
+        "baselinePercent": 93.93,
+        "touchesCellEdge": false,
+        "frameHash": "14e2ad776b176b768576a147a329e6046e42e1cfce54b1bedc2d2bb1c78b1ed0"
+      },
+      {
+        "index": 6,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          314,
+          940,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          51,
+          288,
+          293
+        ],
+        "alpha10BoundsSheet": [
+          692,
+          365,
+          915,
+          607
+        ],
+        "anchorYLocal": 293,
+        "height": 242,
+        "baselinePercent": 93.61,
+        "touchesCellEdge": false,
+        "frameHash": "46d6673aed385486171302a772a06feeb6ed251e04a3aee71e3d04986f44bb26"
+      },
+      {
+        "index": 7,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          314,
+          1254,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          64,
+          52,
+          288,
+          294
+        ],
+        "alpha10BoundsSheet": [
+          1004,
+          366,
+          1228,
+          608
+        ],
+        "anchorYLocal": 294,
+        "height": 242,
+        "baselinePercent": 93.93,
+        "touchesCellEdge": false,
+        "frameHash": "34bea7a8e5861ecb74d6f1d18b51d8ecb6f516149fe26b10b62e9329df26decd"
+      },
+      {
+        "index": 8,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          627,
+          314,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          52,
+          288,
+          293
+        ],
+        "alpha10BoundsSheet": [
+          65,
+          679,
+          288,
+          920
+        ],
+        "anchorYLocal": 293,
+        "height": 241,
+        "baselinePercent": 93.61,
+        "touchesCellEdge": false,
+        "frameHash": "4c22996b6bd95b823c5ff79bb5f429391e5d77e02a035b1b35dbe72fb4a0e3c1"
+      },
+      {
+        "index": 9,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          627,
+          627,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          62,
+          52,
+          287,
+          294
+        ],
+        "alpha10BoundsSheet": [
+          376,
+          679,
+          601,
+          921
+        ],
+        "anchorYLocal": 294,
+        "height": 242,
+        "baselinePercent": 93.93,
+        "touchesCellEdge": false,
+        "frameHash": "036e5e040745af788fae29f882066ed4dd4c5438d362f3e9e2230b6fdc3c0775"
+      },
+      {
+        "index": 10,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          627,
+          940,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          52,
+          288,
+          293
+        ],
+        "alpha10BoundsSheet": [
+          692,
+          679,
+          915,
+          920
+        ],
+        "anchorYLocal": 293,
+        "height": 241,
+        "baselinePercent": 93.61,
+        "touchesCellEdge": false,
+        "frameHash": "a079df5137b03abd6b3f5e6a87c656f5010642e28ac8d3b0d477c56735f7e7de"
+      },
+      {
+        "index": 11,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          627,
+          1254,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          52,
+          288,
+          293
+        ],
+        "alpha10BoundsSheet": [
+          1005,
+          679,
+          1228,
+          920
+        ],
+        "anchorYLocal": 293,
+        "height": 241,
+        "baselinePercent": 93.61,
+        "touchesCellEdge": false,
+        "frameHash": "8301622a491e148f992ce5381c1397696043fed6e4a8dc90067bf5f3cfbea985"
+      },
+      {
+        "index": 12,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          940,
+          314,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          53,
+          288,
+          294
+        ],
+        "alpha10BoundsSheet": [
+          65,
+          993,
+          288,
+          1234
+        ],
+        "anchorYLocal": 294,
+        "height": 241,
+        "baselinePercent": 93.63,
+        "touchesCellEdge": false,
+        "frameHash": "c88a7770251f2ed7730af6ebad268a0037dfa89655c9d51bd8f65704ac214efe"
+      },
+      {
+        "index": 13,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          940,
+          627,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          64,
+          53,
+          287,
+          294
+        ],
+        "alpha10BoundsSheet": [
+          378,
+          993,
+          601,
+          1234
+        ],
+        "anchorYLocal": 294,
+        "height": 241,
+        "baselinePercent": 93.63,
+        "touchesCellEdge": false,
+        "frameHash": "2deddf5b0eaf546d71a7f89fa404ed9dbc4d84fc5db37093a5270f0605ee06ad"
+      },
+      {
+        "index": 14,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          940,
+          940,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          53,
+          287,
+          295
+        ],
+        "alpha10BoundsSheet": [
+          692,
+          993,
+          914,
+          1235
+        ],
+        "anchorYLocal": 295,
+        "height": 242,
+        "baselinePercent": 93.95,
+        "touchesCellEdge": false,
+        "frameHash": "6a0d8669157070bd6843bc16188e4723332ff3d227c4b0636a79089e882c92ca"
+      },
+      {
+        "index": 15,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          940,
+          1254,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          65,
+          53,
+          288,
+          295
+        ],
+        "alpha10BoundsSheet": [
+          1005,
+          993,
+          1228,
+          1235
+        ],
+        "anchorYLocal": 295,
+        "height": 242,
+        "baselinePercent": 93.95,
+        "touchesCellEdge": false,
+        "frameHash": "1e2f499ee5fbcf9295b25e00852ad5ddaf51a202a9e8f54b004dd1dbaa8ce03a"
+      }
+    ],
+    "uniquePixelFrames": 16
+  },
+  "wag_tail": {
+    "action": "wag_tail",
+    "file": "/assets/robot-dog-sprites-v1/wag_tail.png",
+    "generatedSource": "/Users/shuque01/.codex/generated_images/01a13a17-664b-7582-95fb-5827c66fd31d/exec-15b71d7c-64ee-40c7-b916-086f85ff8169.png",
+    "width": 1254,
+    "height": 1254,
+    "mode": "RGBA",
+    "alphaExtrema": [
+      0,
+      255
+    ],
+    "transparentPixels": 630574,
+    "lowAlphaPixels1to10": 269119,
+    "grid": {
+      "columns": 4,
+      "rows": 4,
+      "count": 16,
+      "order": "row-major",
+      "cellWidth": 313.5,
+      "cellHeight": 313.5
+    },
+    "frames": [
+      {
+        "index": 0,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          0,
+          314,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          53,
+          44,
+          282,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          53,
+          44,
+          282,
+          301
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 95.86,
+        "touchesCellEdge": false,
+        "frameHash": "e57b26c137ecd7f11342c2ea6ea4e31b8aaaa9b8e0a933ec030e2d9cf0961a5b"
+      },
+      {
+        "index": 1,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          0,
+          627,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          42,
+          44,
+          281,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          356,
+          44,
+          595,
+          301
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 95.86,
+        "touchesCellEdge": false,
+        "frameHash": "b19686a65edc909818b9e8f34e13fc70a69de047cff2698c737c1fe2c44ebb18"
+      },
+      {
+        "index": 2,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          0,
+          940,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          43,
+          44,
+          282,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          670,
+          44,
+          909,
+          301
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 95.86,
+        "touchesCellEdge": false,
+        "frameHash": "ef198bf94b913b965a4e92a06d53ebb3b6e6f34fd398c03f0f1fa8997ad31608"
+      },
+      {
+        "index": 3,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 0.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          0,
+          1254,
+          314
+        ],
+        "alpha10BoundsLocal": [
+          42,
+          44,
+          282,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          982,
+          44,
+          1222,
+          301
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 95.86,
+        "touchesCellEdge": false,
+        "frameHash": "207ec9ff721d4c8c00e2813290353cb8eb0d1828ec7dbc8e3262907f0d253f94"
+      },
+      {
+        "index": 4,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          314,
+          314,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          36,
+          43,
+          282,
+          300
+        ],
+        "alpha10BoundsSheet": [
+          36,
+          357,
+          282,
+          614
+        ],
+        "anchorYLocal": 300,
+        "height": 257,
+        "baselinePercent": 95.85,
+        "touchesCellEdge": false,
+        "frameHash": "f852ca2446244d8758dd5a0fa666fe9bbd5e71ffaf5316fc8831ca498585ef70"
+      },
+      {
+        "index": 5,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          314,
+          627,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          42,
+          43,
+          281,
+          300
+        ],
+        "alpha10BoundsSheet": [
+          356,
+          357,
+          595,
+          614
+        ],
+        "anchorYLocal": 300,
+        "height": 257,
+        "baselinePercent": 95.85,
+        "touchesCellEdge": false,
+        "frameHash": "8f20a5b72eef4672f1b7e22cf0d693890aa78c04a8752b05fbbec2d386dfb198"
+      },
+      {
+        "index": 6,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          314,
+          940,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          53,
+          43,
+          282,
+          300
+        ],
+        "alpha10BoundsSheet": [
+          680,
+          357,
+          909,
+          614
+        ],
+        "anchorYLocal": 300,
+        "height": 257,
+        "baselinePercent": 95.85,
+        "touchesCellEdge": false,
+        "frameHash": "2878640962ec47d6cb1071c84a37e0cc4453edf231aa17c9d438a398bf146276"
+      },
+      {
+        "index": 7,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 313.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          314,
+          1254,
+          627
+        ],
+        "alpha10BoundsLocal": [
+          53,
+          43,
+          282,
+          300
+        ],
+        "alpha10BoundsSheet": [
+          993,
+          357,
+          1222,
+          614
+        ],
+        "anchorYLocal": 300,
+        "height": 257,
+        "baselinePercent": 95.85,
+        "touchesCellEdge": false,
+        "frameHash": "1352c57d47fae18bae7e630a10550eaea8e4fa8b7b45e8dad834d28758631f1f"
+      },
+      {
+        "index": 8,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          627,
+          314,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          53,
+          44,
+          282,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          53,
+          671,
+          282,
+          928
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 96.17,
+        "touchesCellEdge": false,
+        "frameHash": "e0f8f0feb658bae2362ad4b98edae103b9b4841403afc8a5cdbe1c89b00a2572"
+      },
+      {
+        "index": 9,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          627,
+          627,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          52,
+          44,
+          281,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          366,
+          671,
+          595,
+          928
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 96.17,
+        "touchesCellEdge": false,
+        "frameHash": "080a432f9554f65b932040756130e35a6a213be1e29139a9248720d6f601787b"
+      },
+      {
+        "index": 10,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          627,
+          940,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          46,
+          44,
+          282,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          673,
+          671,
+          909,
+          928
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 96.17,
+        "touchesCellEdge": false,
+        "frameHash": "f30f59757039bf5a96fb825cdd760bf0dff1b1c4eb96fbddd87b6e695db243ef"
+      },
+      {
+        "index": 11,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 627.0,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          627,
+          1254,
+          940
+        ],
+        "alpha10BoundsLocal": [
+          52,
+          44,
+          282,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          992,
+          671,
+          1222,
+          928
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 96.17,
+        "touchesCellEdge": false,
+        "frameHash": "78935babffe0618c95812b8371e9b6db93ece16d2b478258ad19b674aed7f6fb"
+      },
+      {
+        "index": 12,
+        "sourceRect": {
+          "x": 0.0,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          0,
+          940,
+          314,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          53,
+          45,
+          282,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          53,
+          985,
+          282,
+          1241
+        ],
+        "anchorYLocal": 301,
+        "height": 256,
+        "baselinePercent": 95.86,
+        "touchesCellEdge": false,
+        "frameHash": "244773a9699b129122669450e1fc8a295a400a652b9793b8cd883c68f327025d"
+      },
+      {
+        "index": 13,
+        "sourceRect": {
+          "x": 313.5,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          314,
+          940,
+          627,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          49,
+          44,
+          281,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          363,
+          984,
+          595,
+          1241
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 95.86,
+        "touchesCellEdge": false,
+        "frameHash": "2f2800c853730544867feeac600cb1b787eb0bd3d4ca3d9090ba69255f94d408"
+      },
+      {
+        "index": 14,
+        "sourceRect": {
+          "x": 627.0,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          627,
+          940,
+          940,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          53,
+          44,
+          282,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          680,
+          984,
+          909,
+          1241
+        ],
+        "anchorYLocal": 301,
+        "height": 257,
+        "baselinePercent": 95.86,
+        "touchesCellEdge": false,
+        "frameHash": "783a6dbef0ba75be2e58992a9714f4409a3e1ed5f1a3a2b298b6fde7219ba9d4"
+      },
+      {
+        "index": 15,
+        "sourceRect": {
+          "x": 940.5,
+          "y": 940.5,
+          "width": 313.5,
+          "height": 313.5
+        },
+        "pixelCell": [
+          940,
+          940,
+          1254,
+          1254
+        ],
+        "alpha10BoundsLocal": [
+          53,
+          45,
+          282,
+          301
+        ],
+        "alpha10BoundsSheet": [
+          993,
+          985,
+          1222,
+          1241
+        ],
+        "anchorYLocal": 301,
+        "height": 256,
+        "baselinePercent": 95.86,
+        "touchesCellEdge": false,
+        "frameHash": "c828d3fd2433c67f12031c438464d7d074fb7059942010c73fca589d083b3db0"
+      }
+    ],
+    "uniquePixelFrames": 16
+  }
+}

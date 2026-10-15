@@ -1,0 +1,131 @@
+{
+  "total": 25,
+  "passed": 25,
+  "checks": [
+    {
+      "name": "官方编译",
+      "passed": true,
+      "detail": "--verify --format=json 返回成功，无错误或警告"
+    },
+    {
+      "name": "官方结构检查",
+      "passed": true,
+      "detail": "inspect problems 为空"
+    },
+    {
+      "name": "纯矢量素材",
+      "passed": true,
+      "detail": "没有图片资产、脚本或图集对象"
+    },
+    {
+      "name": "独立部件",
+      "passed": true,
+      "detail": "61 个矢量 Shape，11 个 Node"
+    },
+    {
+      "name": "全部时间线",
+      "passed": true,
+      "detail": "八动作加常驻呼吸，60fps 和约定时长一致"
+    },
+    {
+      "name": "breathing 连续关键帧",
+      "passed": true,
+      "detail": "1 条轨道存在不同数值关键帧"
+    },
+    {
+      "name": "idle 连续关键帧",
+      "passed": true,
+      "detail": "2 条轨道存在不同数值关键帧"
+    },
+    {
+      "name": "blink 连续关键帧",
+      "passed": true,
+      "detail": "4 条轨道存在不同数值关键帧"
+    },
+    {
+      "name": "wave 连续关键帧",
+      "passed": true,
+      "detail": "3 条轨道存在不同数值关键帧"
+    },
+    {
+      "name": "nod 连续关键帧",
+      "passed": true,
+      "detail": "2 条轨道存在不同数值关键帧"
+    },
+    {
+      "name": "shake_head 连续关键帧",
+      "passed": true,
+      "detail": "3 条轨道存在不同数值关键帧"
+    },
+    {
+      "name": "stretch 连续关键帧",
+      "passed": true,
+      "detail": "5 条轨道存在不同数值关键帧"
+    },
+    {
+      "name": "happy 连续关键帧",
+      "passed": true,
+      "detail": "7 条轨道存在不同数值关键帧"
+    },
+    {
+      "name": "sleep 连续关键帧",
+      "passed": true,
+      "detail": "6 条轨道存在不同数值关键帧"
+    },
+    {
+      "name": "ViewModel 契约",
+      "passed": true,
+      "detail": "action 数字与 perform 触发器"
+    },
+    {
+      "name": "双层状态机",
+      "passed": true,
+      "detail": "常驻呼吸和动作独立，8 条动作入口均需数字与触发条件"
+    },
+    {
+      "name": "自动返回待机",
+      "passed": true,
+      "detail": "7 个 oneShot 在时间线结束后经 180ms 混合回 idle"
+    },
+    {
+      "name": "blink 运行时触发",
+      "passed": true,
+      "detail": "action=1 + perform=true 在第 13 帧与相同时间待机渲染不同"
+    },
+    {
+      "name": "wave 运行时触发",
+      "passed": true,
+      "detail": "action=2 + perform=true 在第 48 帧与相同时间待机渲染不同"
+    },
+    {
+      "name": "nod 运行时触发",
+      "passed": true,
+      "detail": "action=3 + perform=true 在第 17 帧与相同时间待机渲染不同"
+    },
+    {
+      "name": "shake_head 运行时触发",
+      "passed": true,
+      "detail": "action=4 + perform=true 在第 22 帧与相同时间待机渲染不同"
+    },
+    {
+      "name": "stretch 运行时触发",
+      "passed": true,
+      "detail": "action=5 + perform=true 在第 72 帧与相同时间待机渲染不同"
+    },
+    {
+      "name": "happy 运行时触发",
+      "passed": true,
+      "detail": "action=6 + perform=true 在第 53 帧与相同时间待机渲染不同"
+    },
+    {
+      "name": "sleep 运行时触发",
+      "passed": true,
+      "detail": "action=7 + perform=true 在第 100 帧与相同时间待机渲染不同"
+    },
+    {
+      "name": "交付二进制",
+      "passed": true,
+      "detail": "RIVE 头部；15742 字节"
+    }
+  ]
+}
