@@ -117,3 +117,42 @@ def test_unreadable_file_fails_instead_of_silent_fallback(files):
     files[0].mkdir()
     with pytest.raises(ServiceError, match="后端配置文件无法读取"):
         settings.load_settings()
+
+
+@pytest.mark.parametrize('address', ['https://memory.test:invalid', 'http://memory.test:65536', 'http://[broken'])
+def test_invalid_url_port_or_ipv6_is_an_actionable_config_error(address):
+    from pet.config import validated_url
+    with pytest.raises(ServiceError): validated_url(address)
+
+
+def test_connection_readiness_and_secret_rotation_preserve_only_valid_ownership():
+    from pet.schemas import ConnectBody
+    from dataclasses import replace
+    base = Connection('http://memory.test','old-key',USER,'https://model.test/v1','model-key','model')
+    with pytest.raises(ServiceError) as not_connected: replace(base, user_id='').ready()
+    assert not_connected.value.status == 503
+    with pytest.raises(ServiceError) as address_changed:
+        base.update(ConnectBody(memoryos={'base_url':'https://other.test'}))
+    assert address_changed.value.status == 422
+    with pytest.raises(ServiceError) as invalid_uuid:
+        base.update(ConnectBody(memoryos={'base_url':base.memory_url,'user_id':'invalid'}))
+    assert invalid_uuid.value.status == 400
+    retained=base.update(ConnectBody(memoryos={'base_url':base.memory_url}))
+    assert retained == base
+    rotated=base.update(ConnectBody(memoryos={'base_url':base.memory_url,'api_key':'new-key'}))
+    assert rotated.memory_key == 'new-key' and rotated.user_id == ''
+    explicit=base.update(ConnectBody(memoryos={'base_url':base.memory_url,'user_id':USER}))
+    assert explicit.user_id == USER and explicit.llm_key == base.llm_key
+
+
+def test_missing_model_configuration_is_actionable_before_a_remote_call():
+    with pytest.raises(ServiceError) as failure: Connection().model_ready()
+    assert failure.value.status == 428
+
+
+@pytest.mark.parametrize('configured',[False,True])
+def test_public_connection_summary_exposes_only_configuration_state(configured):
+    config=Connection('https://memory.test','private-memory' if configured else '',USER if configured else '', 'https://model.test/v1' if configured else '', 'private-model' if configured else '', 'test-model' if configured else '')
+    public=config.public()
+    assert public == {'memoryos':{'base_url':'https://memory.test','user_id':USER if configured else '', 'configured':configured},'llm':{'configured':configured}}
+    assert 'private' not in str(public) and 'test-model' not in str(public)

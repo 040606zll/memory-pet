@@ -1,0 +1,12 @@
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>合成音频经浏览器 Worklet 到真实 ASR 验收</title><div id="root"></div><script type="module">
+import React,{useState} from 'react';import{createRoot}from'react-dom/client';import{SpeechInput}from'/src/SpeechInput.jsx';
+let context,source;
+async function getMedia(){
+ context=new AudioContext();await context.resume();
+ const response=await fetch('http://127.0.0.1:18899/fixture.pcm');const raw=await response.arrayBuffer();const pcm=new Int16Array(raw);const buffer=context.createBuffer(1,pcm.length,24000);const out=buffer.getChannelData(0);for(let i=0;i<pcm.length;i++)out[i]=pcm[i]/32768;
+ const destination=context.createMediaStreamDestination();source=context.createBufferSource();source.buffer=buffer;source.connect(destination);return destination.stream;
+}
+function openSocket(){const socket=new WebSocket('ws://127.0.0.1:18899/pet-api/speech/asr');socket.addEventListener('open',()=>socket.send(JSON.stringify({csrf_token:'local-speech-qa'})));socket.addEventListener('message',e=>{if(JSON.parse(e.data).type==='ready')source.start(context.currentTime+.2);});return socket;}
+function QA(){const[text,setText]=useState('');const[error,setError]=useState('');const[active,setActive]=useState(false);return React.createElement('main',{},React.createElement('h1',{},'真实 ASR 浏览器管线验收'),React.createElement('p',{},'测试输入为生成的固定问候音频，不采集麦克风。'),React.createElement(SpeechInput,{value:'',onChange:setText,onError:setError,onActive:setActive,getMedia,openSocket}),React.createElement('p',{role:'status'},active?'识别中':'已停止'),React.createElement('output',{},text),React.createElement('p',{role:'alert'},error));}
+createRoot(document.getElementById('root')).render(React.createElement(QA));
+</script></html>

@@ -1,5 +1,6 @@
 """在临时项目中验证 Shell 启动入口，不读取密钥或停止开发服务。"""
 import json
+import re
 import os
 from pathlib import Path
 import subprocess
@@ -39,10 +40,9 @@ sys.exit(subprocess.call([sys.executable, *sys.argv[6:]]))
     def invoke(*args, conda_path=None, env_name="xyd", **overrides):
         # 仅改临时副本的固定配置，模拟运维在脚本中填写路径和环境名。
         source = SOURCE.read_text()
-        assert 'CONDA_BIN="/opt/anaconda3/bin/conda"' in source
+        assert re.search(r'^CONDA_BIN="[^"]+"$', source, re.M)
         assert 'ENV_NAME="xyd"' in source
-        script.write_text(source.replace('CONDA_BIN="/opt/anaconda3/bin/conda"',
-                                         f'CONDA_BIN="{conda_path if conda_path is not None else conda}"')
+        script.write_text(re.sub(r'^CONDA_BIN="[^"]+"$', lambda _: f'CONDA_BIN="{conda_path if conda_path is not None else conda}"', source, flags=re.M)
                          .replace('ENV_NAME="xyd"', f'ENV_NAME="{env_name}"'))
         return subprocess.run(["bash", str(script), *args], cwd=tmp_path,
                               env={**env, **overrides}, capture_output=True, text=True, timeout=10)

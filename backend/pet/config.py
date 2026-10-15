@@ -9,7 +9,10 @@ from .settings import load_settings
 
 
 def validated_url(value: str) -> str:
-    parsed = urlparse(value.strip())
+    try:
+        parsed = urlparse(value.strip())
+    except ValueError:
+        raise ServiceError("服务地址无效，请填写完整的 HTTP 或 HTTPS 地址") from None
     if parsed.scheme not in {"http", "https"} or not parsed.hostname or parsed.username or parsed.password or parsed.query or parsed.fragment:
         raise ServiceError("服务地址必须是完整的 HTTP 或 HTTPS 地址，不能包含账号、查询参数或片段")
     try:

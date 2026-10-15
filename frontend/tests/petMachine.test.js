@@ -2,6 +2,20 @@ import { describe, it, expect } from 'vitest';
 import { PetMachine } from '../src/petMachine.js';
 
 describe('宠物动作调度', () => {
+  it('缺省动作和未知触发来源具有稳定的低优先级，伸展使用独立闲置时长', () => {
+    const machine = new PetMachine({ now: () => 0, random: () => .7 });
+    machine.enqueue(); machine.enqueue([{ name: 'wave' }]);
+    expect(machine.tick(0)).toMatchObject({ trigger: 'emotion', duration_ms: 2400 });
+    machine.enqueue([{ name: 'blink', trigger: 'unknown' }, { name: 'nod', trigger: 'idle' }]);
+    expect(machine.tick(100).name).toBe('wave');
+    expect(machine.queue.map(action => action.name)).toEqual(['blink', 'nod']);
+    const unknown = new PetMachine({ now: () => 0 });
+    unknown.enqueue([{ name: 'blink', trigger: 'unknown' }]); unknown.tick(0);
+    unknown.enqueue([{ name: 'wave', trigger: 'explicit' }]);
+    expect(unknown.tick(1).name).toBe('wave');
+    const idle = new PetMachine({ now: () => 0, random: () => .7 });
+    expect(idle.tick(3500)).toMatchObject({ name: 'stretch', duration_ms: 3500 });
+  });
   it('无人操作时自行开始动作，完成后留出自然停顿', () => {
     const machine = new PetMachine({ random: () => 0, now: () => 0 });
     expect(machine.tick(0).name).toBe('idle');

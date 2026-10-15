@@ -4,8 +4,56 @@ import { beforeEach, expect, it, vi } from 'vitest';
 vi.mock('@rive-app/webgl2', () => import('./riveMock.js'));
 import { Panda, PandaAvatar } from '../src/Panda.jsx';
 import { bindPetControl, RIVE_PET } from '../src/rivePet.js';
-import { instances, RuntimeLoader } from './riveMock.js';
-beforeEach(() => { instances.length = 0; });
+import { instances, RuntimeLoader, behavior } from './riveMock.js';
+beforeEach(() => { instances.length = 0; behavior.deferLoad = false; });
+
+it('运行时加载超时暂停实例并提供重试，不无限显示加载中', async () => {
+  behavior.deferLoad = true; vi.useFakeTimers();
+  try {
+    render(<Panda />);
+    await act(async () => vi.advanceTimersByTimeAsync(20000));
+    expect(screen.getByRole('alert')).toHaveTextContent('熊猫动画加载超时');
+    expect(instances[0].pause).toHaveBeenCalled();
+    expect(screen.getByRole('button', { name: '重试动画' })).toBeEnabled();
+  } finally { vi.useRealTimers(); behavior.deferLoad = false; }
+});
+
+it('加载前尺寸变化和卸载后的迟到运行时事件不会访问已释放实例', async () => {
+  const view = render(<Panda />), instance = instances[0];
+  fireEvent(window, new Event('resize'));
+  act(() => instance.options.onAdvance());
+  expect(instance.resizeDrawingSurfaceToCanvas).not.toHaveBeenCalled();
+  view.unmount();
+  await act(async () => {
+    instance.options.onLoad(); instance.options.onLoadError(); instance.options.onAdvance();
+  });
+  expect(instance.cleanup).toHaveBeenCalledOnce();
+  expect(instance.resizeDrawingSurfaceToCanvas).not.toHaveBeenCalled();
+  expect(screen.queryByRole('alert')).toBeNull();
+});
+
+it('没有 ResizeObserver 或设备像素倍率时仍能加载并响应窗口缩放', async () => {
+  vi.stubGlobal('ResizeObserver', undefined);
+  vi.stubGlobal('devicePixelRatio', 0);
+  try {
+    await act(async () => { render(<Panda />); });
+    fireEvent(window, new Event('resize'));
+    expect(instances[0].resizeDrawingSurfaceToCanvas).toHaveBeenLastCalledWith(1);
+  } finally { vi.unstubAllGlobals(); }
+});
+
+it('ResizeObserver 驱动绘图尺寸更新，卸载会断开观察器', async () => {
+  let notify;
+  const observe = vi.fn(), disconnect = vi.fn();
+  vi.stubGlobal('ResizeObserver', class { constructor(callback) { notify = callback; } observe = observe; disconnect = disconnect; });
+  try {
+    const view = render(<Panda />); await act(async () => {});
+    expect(observe).toHaveBeenCalledWith(screen.getByRole('img'));
+    act(() => notify());
+    expect(instances[0].resizeDrawingSurfaceToCanvas).toHaveBeenCalledTimes(2);
+    view.unmount(); expect(disconnect).toHaveBeenCalledOnce();
+  } finally { vi.unstubAllGlobals(); }
+});
 
 it('加载同源 Rive 状态机与 WASM，尺寸变化交给运行时', async () => {
   await act(async () => { render(<Panda />); });

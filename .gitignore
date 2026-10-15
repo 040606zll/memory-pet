@@ -39,6 +39,7 @@ htmlcov/
 .vscode/
 .DS_Store
 ._*
+docs/*
 
 # 原始生成模型体积大，只提交处理后的 puppy.glb
 tools/blender/source/

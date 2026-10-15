@@ -139,3 +139,42 @@ it('多次校验采用最新结果，旧账号查询的迟到成功不能覆盖�
   await act(async () => old.resolve(ok(account('alice'))));
   expect(screen.queryByText('账号：alice')).not.toBeInTheDocument();
 });
+
+it('旧账号检查失败也不能清除已经通过校验的新账号', async () => {
+  const old = deferred(); routes['/api/auth/me'] = () => old.promise;
+  setup();
+  routes['/api/auth/me'] = () => ok(account('bob')); routes['/api/status'] = () => ok({});
+  act(() => window.dispatchEvent(new Event('focus')));
+  await screen.findByText('账号：bob');
+  await act(async () => old.resolve(Promise.reject(new Error('旧检查失败'))));
+  expect(screen.getByText('账号：bob')).toBeVisible();
+  expect(screen.queryByRole('alert')).toBeNull();
+});
+
+it.each(['success', 'failure'])('旧退出请求迟到 %s 不影响另一个标签已登录的账号', async outcome => {
+  const pending = deferred();
+  routes['/api/auth/me'] = () => ok(account()); routes['/api/status'] = () => ok({});
+  routes['/api/auth/logout'] = () => pending.promise;
+  setup(); await screen.findByText('账号：alice');
+  fireEvent.click(screen.getByRole('button', { name: '退出登录' }));
+  routes['/api/auth/me'] = () => ok(account('bob'));
+  act(() => window.dispatchEvent(new Event('focus')));
+  await screen.findByText('账号：bob');
+  await act(async () => pending.resolve(outcome === 'success' ? ok(null) : Promise.reject(new Error('旧退出失败'))));
+  expect(screen.getByText('账号：bob')).toBeVisible();
+  expect(screen.queryByRole('alert')).toBeNull();
+});
+
+it('注册返回登录清空密码，待处理期间重复提交只创建一个登录请求', async () => {
+  const pending = deferred(); routes['/api/auth/login'] = () => pending.promise;
+  setup(); await screen.findByRole('heading', { name: '欢迎回来' });
+  fireEvent.click(screen.getByRole('button', { name: '创建账号' }));
+  fireEvent.change(screen.getByLabelText('密码'), { target: { value: 'old-password' } });
+  fireEvent.click(screen.getByRole('button', { name: '返回登录' }));
+  expect(screen.getByLabelText('密码')).toHaveValue('');
+  await login();
+  fireEvent.submit(screen.getByLabelText('用户名').closest('form'));
+  expect(requests.filter(item => item.url.endsWith('/login'))).toHaveLength(1);
+  await act(async () => pending.resolve(denied('登录失败')));
+  expect(await screen.findByRole('alert')).toHaveTextContent('登录失败');
+});

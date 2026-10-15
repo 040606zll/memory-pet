@@ -1,6 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react';
-import { PawPrint, Link, X, GraduationCap, ChatCircleDots, PencilSimple, User, Heart, PaperPlaneTilt, Note, CheckCircle, BookOpen, DotsThree, ArrowClockwise, Trash } from '@phosphor-icons/react';
-import { api, patch, post } from './api.js';
+import { PawPrint, Link, X, GraduationCap, ChatCircleDots, PencilSimple, User, Heart, PaperPlaneTilt, Note, CheckCircle, DotsThree, ArrowClockwise, Trash } from '@phosphor-icons/react';
+import { api, patch, post, streamChat } from './api.js';
+import { SpeechPlayer } from './speechPlayer.js';
+import { SpeechInput } from './SpeechInput.jsx';
 import { newRequestId } from './requestId.js';
 import { AccountControls, useAuth } from './AuthProvider.jsx';
 import { HistoryDialog } from './HistoryDialog.jsx';
@@ -45,7 +47,9 @@ export function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [historyOpen, setHistoryOpen] = useState(false);
   const [paused, setPaused] = useState(false);
-  const [voiceEnabled, setVoiceEnabled] = useState(false);
+  const [voiceEnabled, setVoiceEnabled] = useState(true);
+  const [recording, setRecording] = useState(false);
+  const playerRef = useRef(null);
   const [name, setName] = useState(() => readPetName(nameKey));
   const nameRevision = useRef(0);
   const [renaming, setRenaming] = useState(false);
@@ -65,7 +69,7 @@ export function App() {
 
   useEffect(() => {
     api('/status').then(setStatus).catch(e => setError(e.message));
-    return () => { abortRef.current?.abort(); window.speechSynthesis?.cancel(); };
+    return () => { abortRef.current?.abort(); playerRef.current?.stop(); };
   }, []);
   useEffect(() => {
     const query = window.matchMedia('(prefers-reduced-motion: reduce)');
@@ -110,12 +114,12 @@ export function App() {
     setDraft(view?.draft || ''); setLastRequest(view?.lastRequest || null); setError(view?.error || '');
     setMessagePage(view?.messagePage || 1); setTotalMemories(view?.totalMemories || 0);
     setEarlierBusy(false); setEditing(false); setEditValues({}); setActions([]);
-    window.speechSynthesis?.cancel();
+    playerRef.current?.stop();
     setMode(next);
   }
 
   async function send(retry = null) {
-    if (requestLock.current || candidateBusy) return;
+    if (requestLock.current || candidateBusy || recording) return;
     if (preview) { setError('当前是静态原型预览，请退出预览并连接服务后开始对话。'); return; }
     const content = (retry?.content || draft).trim();
     if (!content) return;
@@ -123,26 +127,47 @@ export function App() {
     requestLock.current = true; setBusy(true); setError('');
     const controller = new AbortController(); abortRef.current = controller;
     const startingNameRevision = nameRevision.current;
+    let player = null;
+    let streamed = '';
+    const streamId = `stream-${retry?.request_id || 'current'}`;
+    const showText = text => {
+      if (controller.signal.aborted) return;
+      setMessages(previous => [...previous.filter(m => m.id !== streamId), { id: streamId, role: 'assistant', content: text, streaming: true }]);
+    };
     try {
+      if (voiceEnabled && status?.speech?.configured) {
+        player = new SpeechPlayer(showText); playerRef.current = player;
+        try { await player.unlock(); }
+        catch (error) { player.stop(); player = null; setError(error.message); }
+      }
       // 编号生成也可能失败，必须释放等待状态并保留尚未提交的草稿。
       const request = retry || { content, pet_name: name, request_id: newRequestId() };
       setLastRequest(request); setDraft('');
       setMessages(previous => [...previous.filter(message => message.id !== `pending-${request.request_id}`), { id: `pending-${request.request_id}`, role: 'user', content: request.content, created_at: new Date().toISOString(), pending: true }]);
       const currentSession = await ensureSession();
-      const result = await post(`/sessions/${currentSession.id}/chat`, request, controller.signal);
+      const result = await streamChat(`/sessions/${currentSession.id}/chat`, request, {
+        signal: controller.signal, voice: Boolean(player),
+        onEvent: (kind, data) => {
+          if (kind === 'delta') { streamed += data.text; if (player) player.appendText(data.text); else showText(streamed); }
+          else if (kind === 'audio' && player) player.push(data);
+          else if (kind === 'timing' && player) player.timing(data);
+          else if (kind === 'voice_error') { player?.stop(); player = null; showText(streamed); setError(data.message); }
+        },
+      });
+      if (player) await player.finish(controller.signal);
       // 只采用后端已解析的名字；用户在等待期间手动改名时，旧响应不能覆盖新选择。
       const nextName = validPetName(result.assistant_message.pet_name);
       if (nextName && startingNameRevision === nameRevision.current) { setName(nextName); savePetName(nameKey, nextName); }
-      setMessages(previous => [...previous.filter(m => ![`pending-${request.request_id}`, result.user_message.id, result.assistant_message.id].includes(m.id)), result.user_message, result.assistant_message]);
+      setMessages(previous => [...previous.filter(m => ![streamId, `pending-${request.request_id}`, result.user_message.id, result.assistant_message.id].includes(m.id)), result.user_message, result.assistant_message]);
       setActions(result.assistant_message.actions || []);
       setLastRequest(null);
-      if (voiceEnabled && window.speechSynthesis) {
-        const utterance = new SpeechSynthesisUtterance(result.assistant_message.content); utterance.lang = 'zh-CN'; window.speechSynthesis.speak(utterance);
-      }
       await loadMemories(currentSession.id);
     } catch (e) {
+      player?.stop();
+      setMessages(previous => previous.filter(m => m.id !== streamId));
       setError(e.name === 'AbortError' ? '本次对话已取消。你可以重试这条消息。' : e.message);
     } finally {
+      player?.stop(); playerRef.current = null;
       requestLock.current = false; setBusy(false); abortRef.current = null; textareaRef.current?.focus();
     }
   }
@@ -235,9 +260,9 @@ export function App() {
         <AccountControls />
         <a className="surface-link" href="/memory"><ChatCircleDots weight="bold" /><span>记忆对话</span></a>
         <span className={`connection-status ${status?.connected || preview ? 'online' : ''}`}><span className="status-dot" />{preview ? '原型预览' : status?.connected ? '记忆已连接' : '尚未连接'}</span>
-        <button className="connect-button" onClick={() => setConnectionOpen(true)} disabled={busy || candidateBusy}><Link weight="bold" />记忆服务</button>
+        <button className="connect-button" onClick={() => setConnectionOpen(true)} disabled={busy || candidateBusy || recording}><Link weight="bold" />记忆服务</button>
         <div className="menu-wrap"><button className="close-button" aria-label={preview ? '退出原型预览' : '打开菜单'} onClick={() => preview ? setPreview(false) : setMenuOpen(!menuOpen)}>{preview ? <X weight="bold" /> : <DotsThree weight="bold" />}</button>
-          {menuOpen && <div className="app-menu"><button onClick={togglePreview}>查看原型预览</button><button onClick={startNewSession} disabled={busy || candidateBusy}>开启新对话</button><button onClick={openHistory} disabled={busy || candidateBusy}>历史对话</button><button onClick={() => { setPaused(!paused); setMenuOpen(false); }}>{paused ? '继续陪伴' : '暂停宠物动作'}</button><button onClick={() => { setVoiceEnabled(!voiceEnabled); setMenuOpen(false); }}>{voiceEnabled ? '关闭' : '开启'}语音朗读</button></div>}
+          {menuOpen && <div className="app-menu"><button onClick={togglePreview} disabled={busy || recording}>查看原型预览</button><button onClick={startNewSession} disabled={busy || candidateBusy || recording}>开启新对话</button><button onClick={openHistory} disabled={busy || candidateBusy || recording}>历史对话</button><button onClick={() => { setPaused(!paused); setMenuOpen(false); }}>{paused ? '继续陪伴' : '暂停宠物动作'}</button><button disabled={busy || recording} onClick={() => { setVoiceEnabled(!voiceEnabled); if (voiceEnabled) playerRef.current?.stop(); setMenuOpen(false); }}>{voiceEnabled ? '关闭' : '开启'}语音朗读</button></div>}
         </div>
       </div>
     </header>
@@ -248,23 +273,23 @@ export function App() {
         <PetStage name={name} actions={actions} preview={preview} mode={mode} reducedMotion={reducedMotion || paused} onSay={showPetSpeech} userId={userId} />
       </section>
       <section className={`conversation ${mode} ${preview ? "prototype-preview" : ""}`} aria-label={modeTitle}>
-        <div role="tablist" className="mode-tabs" aria-label="选择对话模式"><button role="tab" aria-selected={mode === 'training'} id="tab-training" aria-controls="conversation-panel" className={mode === 'training' ? 'selected' : ''} onClick={() => changeMode('training')} disabled={busy || candidateBusy}><GraduationCap weight="fill" />训练</button><button role="tab" aria-selected={mode === 'chat'} id="tab-chat" aria-controls="conversation-panel" className={mode === 'chat' ? 'selected' : ''} onClick={() => changeMode('chat')} disabled={busy || candidateBusy}><ChatCircleDots weight="fill" />正式对话</button></div>
+        <div role="tablist" className="mode-tabs" aria-label="选择对话模式"><button role="tab" aria-selected={mode === 'training'} id="tab-training" aria-controls="conversation-panel" className={mode === 'training' ? 'selected' : ''} onClick={() => changeMode('training')} disabled={busy || candidateBusy || recording}><GraduationCap weight="fill" />训练</button><button role="tab" aria-selected={mode === 'chat'} id="tab-chat" aria-controls="conversation-panel" className={mode === 'chat' ? 'selected' : ''} onClick={() => changeMode('chat')} disabled={busy || candidateBusy || recording}><ChatCircleDots weight="fill" />正式对话</button></div>
         <div className="conversation-heading"><h1>{modeTitle}</h1><p>{mode === 'training' ? '通过聊天教我，确认后记住。' : '我记得你的偏好，也会一直陪着你。'}</p></div>
         <div className="conversation-content" ref={scrollRef} id="conversation-panel" role="tabpanel" aria-labelledby={`tab-${mode}`}>
           {!displayedMessages.length && <div className="empty-chat"><RobotDogAvatar name={name} /><h2>{mode === 'training' ? '从了解你开始' : '今天想和我聊什么？'}</h2><p>{mode === 'training' ? '告诉我你的偏好，或纠正我的回答。\n你确认的内容才会成为我们的长期记忆。' : '聊聊今天的事，试试让我摇尾巴或眨眨眼。\n我会带着已确认的记忆陪你聊天。'}</p>{!status?.connected && <button className="secondary" onClick={() => setConnectionOpen(true)}>检查记忆服务，开始聊天</button>}</div>}
           {!preview && messagePage > 1 && <button className="earlier-messages" disabled={earlierBusy || busy || candidateBusy} onClick={loadEarlier}>{earlierBusy ? "正在读取历史…" : "查看更早的消息"}</button>}
           <div className="messages" aria-live="polite" aria-relevant="additions text">{displayedMessages.map(message => <div key={message.id} className={`message-row ${message.role}`}>
             {message.role === 'assistant' && <RobotDogAvatar name={name} />}
-            <div className="message-body"><div className="message-bubble">{message.content}</div><div className="message-meta"><time>{formatTime(message.created_at)}</time>{message.pending && <span className="pending-label">{busy ? "正在发送" : "尚未完成"}</span>}{message.role === 'assistant' && message.memories?.map(memory => <span key={memory.id} className="memory-reference" title={memory.source || '来自记忆服务'}><BookOpen weight="bold" />用到记忆：{memory.content}</span>)}</div></div>
+            <div className="message-body"><div className="message-bubble">{message.content}</div><div className="message-meta"><time>{formatTime(message.created_at)}</time>{message.pending && <span className="pending-label">{busy ? "正在发送" : "尚未完成"}</span>}</div></div>
             {message.role === 'user' && <span className="user-avatar"><User weight="fill" /></span>}
           </div>)}</div>
-          {busy && <div className="thinking" role="status"><RobotDogAvatar name={name} /><span>{name}正在想一想<span className="thinking-dots">…</span></span></div>}
+          {busy && !messages.some(m => m.streaming) && <div className="thinking" role="status"><RobotDogAvatar name={name} /><span>{name}正在想一想<span className="thinking-dots">…</span></span></div>}
           {candidates.length > 0 && mode === 'training' && <section className="memory-card"><div className="memory-card-heading"><span className="memory-card-icon"><ChatCircleDots weight="fill" /></span><h2>待确认的记忆</h2></div><div className="memory-items">{candidates.map(candidate => <div className="memory-item" key={candidate.id}><Note weight="bold" />{editing ? <input aria-label="修改记忆内容" value={editValues[candidate.id] ?? candidate.content} onChange={e => setEditValues({ ...editValues, [candidate.id]: e.target.value })} maxLength={2000} /> : <span>{candidate.content}</span>}{!preview && <button className="reject-button" aria-label={`拒绝记忆：${candidate.content}`} onClick={() => rejectCandidate(candidate.id)} disabled={candidateBusy}><Trash /></button>}</div>)}</div><div className="memory-buttons">{editing ? <><button className="primary" onClick={saveCandidates} disabled={candidateBusy}>保存修改</button><button className="secondary" onClick={() => setEditing(false)} disabled={candidateBusy}>取消</button></> : <><button className="primary" onClick={confirmCandidates} disabled={candidateBusy || busy}>{candidateBusy ? '正在记住…' : '确认记住'}</button><button className="secondary" onClick={() => { setEditing(true); setEditValues({}); }} disabled={candidateBusy}>修改</button></>}</div></section>}
           {mode === 'training' && (learned > 0 || candidates.length > 0) && <p className="learned-count"><CheckCircle weight="fill" />已学会 {learned} 条偏好</p>}
 
         </div>
         {error && <div className="error-banner" role="alert"><span>{error}</span>{lastRequest && !busy && <button onClick={() => send(lastRequest)}><ArrowClockwise />重试</button>}<button aria-label="关闭错误提示" onClick={() => setError('')}><X /></button></div>}
-        <form className="composer" onSubmit={e => { e.preventDefault(); send(); }}><textarea ref={textareaRef} aria-label={mode === 'training' ? '训练消息' : '对话消息'} rows={1} value={draft} onChange={e => setDraft(e.target.value)} maxLength={4096} placeholder={mode === 'training' ? `告诉${name}你的偏好，或纠正它的回答…` : `和${name}聊聊今天的事…`} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); send(); } }} disabled={busy || candidateBusy} />{busy ? <button className="send-button cancel" aria-label="取消本次对话" type="button" onClick={() => abortRef.current?.abort()}><X weight="bold" /></button> : <button className="send-button" aria-label="发送消息" disabled={candidateBusy || !draft.trim()}><PaperPlaneTilt weight="fill" /></button>}</form>
+        <form className="composer" onSubmit={e => { e.preventDefault(); send(); }}><textarea ref={textareaRef} aria-label={mode === 'training' ? '训练消息' : '对话消息'} rows={1} value={draft} onChange={e => setDraft(e.target.value)} maxLength={4096} placeholder={mode === 'training' ? `告诉${name}你的偏好，或纠正它的回答…` : `和${name}聊聊今天的事…`} onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey && !e.nativeEvent.isComposing) { e.preventDefault(); send(); } }} disabled={busy || candidateBusy || recording} /><SpeechInput key={`${mode}:${session?.id || "new"}:${preview}`} disabled={busy || candidateBusy || preview || !status?.connected} value={draft} onChange={setDraft} onError={setError} onActive={setRecording} />{busy ? <button className="send-button cancel" aria-label="取消本次对话" type="button" onClick={() => { playerRef.current?.stop(); abortRef.current?.abort(); }}><X weight="bold" /></button> : <button className="send-button" aria-label="发送消息" disabled={candidateBusy || recording || !draft.trim()}><PaperPlaneTilt weight="fill" /></button>}</form>
       </section>
     </section>
     {connectionOpen && <ConnectionDialog status={status} onClose={() => setConnectionOpen(false)} onConnected={connected} />}

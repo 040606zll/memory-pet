@@ -4,6 +4,14 @@ import { createDogMesh } from '../src/dogRenderer.js';
 import { PetMachine } from '../src/petMachine.js';
 
 const zero = { head: 0, headY: 0, body: 0, paw: 0, tail: 0, ear: 0, blink: 0 };
+it('恢复时以暂停姿态开始过渡，不跳到墙上时钟的新相位', () => {
+  const motion = new DogMotion(), state = { name: 'idle' };
+  motion.sample(state, 0);
+  const frozen = motion.sample(state, 2400);
+  motion.resume();
+  expect(motion.sample(state, 50000)).toEqual(frozen);
+  expect(motion.sample(state, 50220)).not.toEqual(frozen);
+});
 describe('机器狗原型纹理与连续姿态', () => {
   it('中性姿态完全保留原始顶点，所有三角形共用原图纹理坐标', () => {
     const mesh = createDogMesh();

@@ -12,7 +12,7 @@
 - 浏览器使用本项目账号密码登录，HttpOnly Cookie 与 CSRF 保护会话；服务 Key 由后端统一管理，每个本地账号固定关联独立的 MemoryOS 用户。
 - 运行时仅连接独立 MySQL 8 数据库，没有 SQLite 回退；本次采用全新库，不迁移旧 SQLite 数据。连接信息由管理员后续填写。
 - 账号、消息和记忆已按登录账号隔离；进程内请求互斥锁及启动恢复仍未完成跨进程验收，本版必须使用 **1 个 worker**，不能因切换 MySQL 直接开启多进程。
-- 输入只允许文字；回复朗读仍是可选输出能力。训练与正式对话分别保存会话、消息、草稿和重试状态。
+- 输入支持文字与流式语音转写，回复默认流式朗读并按播放时间显示文字。生产麦克风需要 HTTPS；训练与正式对话分别保存会话、消息、草稿和重试状态。
 
 本方案不修改本机访问限制，通过 SSH 保持浏览器访问地址为本机 URL。不要通过清空 Origin／Sec-Fetch-Site 或伪造回环 Host 将匿名公网请求包装成本机请求。
 
@@ -38,6 +38,7 @@ export const API_BASE_URL = '/pet-api';
 proxy: {
   '/pet-api': {
     target: 'http://127.0.0.1:8797',
+    ws: true,
     rewrite: (path) => path.replace(/^\/pet-api(?=\/|$)/, '/api'),
   },
 },
@@ -50,6 +51,8 @@ location /pet-api/ {
     proxy_pass http://127.0.0.1:8797/api/;
     proxy_set_header Host $proxy_host;
     proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
     proxy_buffering off;
     proxy_cache off;
     proxy_read_timeout 300s;
@@ -64,13 +67,15 @@ location /pet-api/ {
 ```bash
 conda activate xyd
 cd /srv/memory-pet
-python -m pip install -r backend/requirements.txt
+python -m pip install -r backend/requirements.lock.txt
 cd frontend
 pnpm install --frozen-lockfile
 pnpm build
 ```
 
 本项目实际构建产物是 **`frontend/dist/client`**，不是 MemoryOS 的 `frontend/dist`。整个 `client` 目录都要部署，包含 assets、动画素材和懒加载分包。
+
+`requirements.lock.txt` 是在干净 Python 3.11 环境安装并回归的依赖快照；`requirements.txt` 保留更新范围。安装后执行 `python -m pip check`，避免共用 Conda 环境内其他项目的依赖冲突。更新快照时在独立环境重新解析范围、导出固定版本，并完成后端 MySQL 回归与真实语音链路验收。
 
 `pnpm build` 同时生成 `dist/server/index.js` 和 `dist/.openai/hosting.json`，用于既有 Sites 静态托管兼容流程。该 Worker 只处理静态资源和 SPA 回退，**没有实现 Python 后端或 `/api` 代理**；只上传静态产物无法完成记忆对话。
 
@@ -276,6 +281,8 @@ server {
         # 用 /api/ 替换公开前缀：/pet-api/auth/me → 后端 /api/auth/me。
         proxy_pass http://127.0.0.1:8797/api/;
         proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
         proxy_set_header Host $proxy_host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -427,3 +434,9 @@ sudo journalctl -u memory-pet -n 100 --no-pager
 本次已实现账号密码登录、Cookie/CSRF、按账号固定的 MemoryOS 用户和业务隔离。公开注册会消耗上游用户额度，当前没有邮箱验证、邀请制、找回密码或后台账号管理；对外开放注册前应按业务需求补充。当前 MySQL 版本仍限制单 worker，多进程和多副本需进一步验证启动恢复、请求锁、配额与运维策略。
 
 本文未在目标 Linux 机器执行安装、域名或 HTTPS 验收，不能把本地模板检查当成已上线。
+
+## 实时语音部署补充（2026-10-15）
+
+服务端配置 `[speech]` 后重启，确认指定音色真实调用成功。生产通过 HTTPS/WSS，`/pet-api/` 反向代理需转发 WebSocket Upgrade，关闭 SSE 缓冲及缓存，保留 Cookie 和 X-CSRF-Token；示例已更新。语音配置和接口详见 [流式语音接口](docs/2026-10-15/流式语音/API接口文档.md)。
+
+不要部署 `tests/speech_browser_server.py`；该进程仅为本机语音验收提供固定测试身份和内存会话。当前仍只运行单 worker，应用内并发上限不能代替入口限流。

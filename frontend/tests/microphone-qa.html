@@ -1,0 +1,10 @@
+<!doctype html><meta charset="utf-8"><title>麦克风与 Worklet 本机诊断</title><button id="start">检查麦克风和音频编码</button><button id="stop">停止并释放</button><pre id="result"></pre><script type="module">
+const result = document.querySelector('#result'); let context, stream, node, source;
+const stop = () => {stream?.getTracks().forEach(track=>track.stop()); node?.disconnect(); source?.disconnect(); context?.close();};
+document.querySelector('#stop').onclick=stop;
+document.querySelector('#start').onclick=async()=>{
+ let step='AudioContext';
+ try {context=new AudioContext(); await context.resume();step='getUserMedia';stream=await navigator.mediaDevices.getUserMedia({audio:true});step='AudioWorklet.addModule';await context.audioWorklet.addModule(new URL('/src/pcm-capture.worklet.js',location.href));step='AudioWorkletNode';node=new AudioWorkletNode(context,'pcm-capture');source=context.createMediaStreamSource(stream);source.connect(node);node.connect(context.destination);node.port.onmessage=event=>{result.textContent='成功：PCM16 音频块 '+event.data.byteLength+' bytes';};}
+ catch(error){result.textContent=JSON.stringify({step,name:error.name,message:error.message});stop();}
+};
+</script>

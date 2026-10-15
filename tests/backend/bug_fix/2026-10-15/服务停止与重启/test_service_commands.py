@@ -1,6 +1,7 @@
 """在临时目录和随机端口验证脚本生命周期，不触碰正在运行的项目服务。"""
 import fcntl
 import json
+import re
 import os
 from pathlib import Path
 import signal
@@ -29,8 +30,7 @@ def service(tmp_path):
     conda.write_text(f"#!{sys.executable}\nimport subprocess, sys\nsys.exit(subprocess.call([sys.executable, *sys.argv[6:]]))\n")
     conda.chmod(0o755)
     script = backend / "start.sh"
-    script.write_text((ROOT / "backend/start.sh").read_text()
-                      .replace('CONDA_BIN="/opt/anaconda3/bin/conda"', f'CONDA_BIN="{conda}"')
+    script.write_text(re.sub(r'^CONDA_BIN="[^"]+"$', lambda _: f'CONDA_BIN="{conda}"', (ROOT / "backend/start.sh").read_text(), flags=re.M)
                       .replace('ENV_NAME="xyd"', 'ENV_NAME="memory"'))
     (backend / "start_service.py").write_text((ROOT / "backend/start_service.py").read_text()
         .replace("PORT = 8797", f"PORT = {port}").replace("STOP_TIMEOUT = 15", "STOP_TIMEOUT = 0.4"))

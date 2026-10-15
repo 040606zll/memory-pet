@@ -4,9 +4,9 @@ import hmac
 from contextlib import asynccontextmanager
 
 import httpx
-from fastapi import Depends, FastAPI, Query, Request
+from fastapi import Depends, FastAPI, Query, Request, WebSocket, WebSocketDisconnect
 from fastapi.exceptions import RequestValidationError
-from fastapi.responses import JSONResponse
+from fastapi.responses import JSONResponse, StreamingResponse
 from starlette.middleware.base import BaseHTTPMiddleware
 
 from app.common.response import response
@@ -22,6 +22,8 @@ from .schemas import ACTIONS, AccountBody, CandidateBody, ChatBody, ConfirmBody,
 from .service import PetService
 from .settings import load_settings
 from .store import Store
+from .speech import Speech, SpeechConfig, SPEECH_ERRORS
+from .streaming import chat_events
 
 
 class AccessMiddleware(BaseHTTPMiddleware):
@@ -33,6 +35,10 @@ class AccessMiddleware(BaseHTTPMiddleware):
         message = self.policy.rejection(request.headers)
         if message:
             return JSONResponse(response(message=message, code=403), status_code=403)
+        # 在框架解析正文前校验，确保不同 FastAPI 版本均拒绝非 JSON 登录请求。
+        if (request.method == 'POST' and request.url.path in {'/api/auth/login', '/api/auth/register'}
+                and request.headers.get('content-type', '').split(';', 1)[0].strip().lower() != 'application/json'):
+            return JSONResponse(response(message='登录请求格式无效，请从登录页面重试', code=415), status_code=415)
         result = await call_next(request)
         # 登录和业务结果含账号私有数据，同源代理与浏览器均不得缓存。
         if request.url.path.startswith('/api/'):
@@ -74,6 +80,9 @@ def create_app(*, database=None, connection=None, transport=None):
     if database is None:
         database = SQLiteConfig(settings['PET_SQLITE_PATH']) if settings.get('PET_SQLITE_PATH') else DatabaseConfig.from_settings(settings)
     app.state.store = Store(database)
+    app.state.speech = Speech(SpeechConfig.from_settings(settings))
+    app.state.voice_accounts = set()
+    app.state.stream_accounts = set()
     app.state.accounts = Accounts(app.state.store)
     app.state.auth = Auth(app.state.accounts)
     # 此处只存服务端配置，不存当前用户或全局登录状态。
@@ -101,8 +110,6 @@ def create_app(*, database=None, connection=None, transport=None):
         return current
 
     async def sign_in(body, request, register=False):
-        if request.headers.get("content-type", "").split(";", 1)[0].strip().lower() != "application/json":
-            raise ServiceError("登录请求格式无效，请从登录页面重试", 415)
         current = await app.state.auth.credentials(body.username, body.password, request.client.host if request.client else "unknown", register=register)
         token, csrf = await run_db(app.state.accounts.new_session, current["id"], request.cookies.get(COOKIE_NAME))
         result = JSONResponse(response({"user": public_user(current), "csrf_token": csrf}))
@@ -144,7 +151,7 @@ def create_app(*, database=None, connection=None, transport=None):
                 raise
             memory_validated, memory_error = False, exc.message
         llm_validated = bool(c.llm_url and c.llm_key and c.model)
-        return response({"memoryos": {"configured": bool(c.memory_key), "user_id": c.user_id if memory_validated else None}, "llm": {"configured": llm_validated}, "actions": ACTIONS, "connected": memory_validated and llm_validated, "memory_validated": memory_validated, "llm_validated": llm_validated, "memory_error": memory_error or (None if llm_validated else "管理员尚未配置完整的大模型服务")})
+        return response({"memoryos": {"configured": bool(c.memory_key), "user_id": c.user_id if memory_validated else None}, "llm": {"configured": llm_validated}, "speech": app.state.speech.config.public(), "actions": ACTIONS, "connected": memory_validated and llm_validated, "memory_validated": memory_validated, "llm_validated": llm_validated, "memory_error": memory_error or (None if llm_validated else "管理员尚未配置完整的大模型服务")})
 
     @app.get("/api/status")
     async def status(current=Depends(account)):
@@ -183,7 +190,57 @@ def create_app(*, database=None, connection=None, transport=None):
 
     @app.post("/api/sessions/{session_id}/chat")
     async def chat(session_id: str, body: ChatBody, request: Request, c=Depends(authorized_connection)):
+        if 'text/event-stream' in request.headers.get('accept', ''):
+            owner = c.local_account_id or c.scope
+            # 在响应头发送前校验归属；校验完成后同步占位，避免并发检查间的竞态。
+            await run_db(app.state.store.session, session_id, c.scope)
+            if owner in app.state.stream_accounts or len(app.state.stream_accounts) >= 16:
+                raise ServiceError('当前对话正在处理中，请稍后再试', 429)
+            app.state.stream_accounts.add(owner)
+            async def stream():
+                try:
+                    async for event in chat_events(app.state.service, app.state.speech, c, session_id, body,
+                                                  voice=request.headers.get('x-voice-enabled') == 'true'):
+                        yield event
+                finally:
+                    app.state.stream_accounts.discard(owner)
+            return StreamingResponse(stream(), media_type='text/event-stream',
+                                     headers={'X-Accel-Buffering': 'no', 'Cache-Control': 'no-store'})
         return response(await disconnect_aware(request, app.state.service.chat(c, session_id, body)))
+
+    @app.websocket('/api/speech/asr')
+    async def asr(websocket: WebSocket):
+        policy = AccessPolicy.from_settings(settings)
+        if not websocket.headers.get('origin') or policy.rejection(websocket.headers):
+            await websocket.close(code=1008)
+            return
+        owner = None
+        accepted = False
+        try:
+            current = await run_db(app.state.accounts.authenticate, websocket.cookies.get(COOKIE_NAME))
+            await websocket.accept()
+            accepted = True
+            async with asyncio.timeout(10):
+                first = await websocket.receive_json()
+            supplied = first.get('csrf_token', '')
+            if not isinstance(supplied, str) or not supplied or not hmac.compare_digest(supplied.encode('utf-8', errors='replace'), current['csrf_token'].encode()):
+                raise ServiceError('页面安全验证已失效，请刷新页面后重试', 403)
+            if current['id'] in app.state.voice_accounts or len(app.state.voice_accounts) >= 8:
+                raise ServiceError('语音服务繁忙，请稍后再试', 429)
+            owner = current['id']
+            app.state.voice_accounts.add(owner)
+            async with asyncio.timeout(75):
+                await app.state.speech.recognize(websocket)
+        except WebSocketDisconnect:
+            pass
+        except (ServiceError, *SPEECH_ERRORS, AttributeError):
+            if accepted and websocket.client_state.name != 'DISCONNECTED':
+                await websocket.send_json({'type': 'error', 'message': '语音识别暂不可用，请重试或使用文字输入。'})
+        finally:
+            if owner:
+                app.state.voice_accounts.discard(owner)
+            if websocket.client_state.name != 'DISCONNECTED':
+                await websocket.close(code=1000 if accepted else 1008)
 
     @app.patch("/api/sessions/{session_id}/candidates/{candidate_id}")
     async def edit_candidate(session_id: str, candidate_id: str, body: CandidateBody, c=Depends(authorized_connection)):

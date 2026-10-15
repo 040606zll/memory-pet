@@ -229,3 +229,46 @@ def test_registration_rate_limit_is_shared_across_usernames(isolated):
         import time
         db.execute("INSERT INTO login_attempts(bucket,attempts,expires_at) VALUES(%s,%s,%s)", (bucket, 30, int(time.time()) + 900))
     assert client.post("/api/auth/register", json={"username": "new_account", "password": "Test-password-123"}).status_code == 429
+
+
+def test_account_lookup_and_empty_throttle_are_safe(mysql_store):
+    from pet.accounts import Accounts
+    accounts = Accounts(mysql_store)
+    assert accounts.get('unknown') is None
+    created = accounts.create('lookup_test', 'test-hash')
+    assert accounts.get(created['id']) == created
+    accounts.throttle([])
+    with mysql_store.db() as db:
+        assert db.execute('SELECT count(*) AS total FROM login_attempts').fetchone()['total'] == 0
+
+
+def test_memory_binding_requires_current_lease_and_exclusive_remote_user(mysql_store):
+    from pet.accounts import Accounts
+    from pet.errors import ServiceError
+    accounts = Accounts(mysql_store)
+    first = accounts.create('first_binding', 'test-hash')['id']
+    second = accounts.create('second_binding', 'test-hash')['id']
+    service = 'https://memory.test'
+    lease = accounts.claim(first, service)
+    with pytest.raises(ServiceError) as stale:
+        accounts.bind(first, service, 'wrong-owner', USER, KEY_ID)
+    assert stale.value.status == 409
+    accounts.bind(first, service, lease, USER, KEY_ID)
+    lease2 = accounts.claim(second, service)
+    with pytest.raises(ServiceError) as duplicate:
+        accounts.bind(second, service, lease2, USER, KEY_ID)
+    assert duplicate.value.status == 409
+    assert accounts.binding(first, service)['memory_user_id'] == USER
+    assert accounts.binding(second, service)['memory_user_id'] is None
+    accounts.release(second, service, lease2)
+    assert accounts.binding(second, service)['provision_owner'] is None
+
+
+@pytest.mark.parametrize('encoded', [
+    'argon2$16384$8$1$00$invalid', 'scrypt$16385$8$1$00$invalid',
+    'scrypt$16384$7$1$00$invalid', 'scrypt$16384$8$2$00$invalid',
+    'scrypt$16384$8$1$not-hex$invalid',
+])
+def test_unexpected_or_corrupt_password_algorithm_is_rejected(encoded):
+    from pet.auth import verify_password
+    assert not verify_password('test-password', encoded)

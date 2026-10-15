@@ -70,3 +70,31 @@ it('诊断真实空白像素，Canvas不可用时提供中文错误', () => {
   player.draw(spriteFrame(assets, { name: 'idle' }, 0), 0); expect(player.stats.blankFrames).toBe(1);
   canvas.getContext = () => null; expect(() => new DogSpriteRenderer(canvas)).toThrow('浏览器');
 });
+it('兼容图集尺寸缺省值与刚性帧格式，动作进度缺省时选择首帧', () => {
+  const clip = makeClip(); delete clip.referenceHeight; delete clip.referenceWidth;
+  const legacy = { manifest: { format: 'coherent-rigid-frames', actions: { idle: clip, blink: clip, wave: clip } }, images: { idle: {}, blink: {}, wave: {} } };
+  const sample = spriteFrame(legacy, { name: 'wave', started: 0 }, 100);
+  expect(sample.index).toBe(0); expect(sample.key).toBe('atlas:0:0');
+  expect(sample.neutral.image).toBe(legacy.images.blink);
+  expect(sample.neutral.referenceHeight).toBe(clip.frames[0].anchorY);
+  expect(sample.neutral.referenceWidth).toBe(clip.frames[0].width);
+  expect(sample.referenceHeight).toBe(clip.frames[0].anchorY);
+});
+it('缺少设备像素倍率仍绘制标准大小，恢复闲置帧不会虚增源帧数', () => {
+  vi.stubGlobal('devicePixelRatio', 0);
+  try {
+    const player = new DogSpriteRenderer(canvas), idle = spriteFrame(assets, { name: 'idle' }, 0);
+    player.draw(idle, 0); player.resume(); player.draw(idle, 1000);
+    expect(canvas.width).toBe(320);
+    expect(player.stats).toMatchObject({ frames: 2, sourceFrames: 1 });
+  } finally { vi.unstubAllGlobals(); }
+});
+it('恢复后半段动作沿最近端点前进，动作打断恢复立即采用新帧', () => {
+  const player = new DogSpriteRenderer(canvas), idle = spriteFrame(assets, { name: 'idle' }, 0);
+  const pose = { ...spriteFrame(assets, { name: 'wave', started: 0 }, 0), index: 12, frame: assets.manifest.actions.wave.frames[12] };
+  player.draw(pose, 0); player.resume(); player.draw(idle, 1000);
+  player.draw(idle, 1034); expect(player.lastSample.index).toBe(13);
+  player.draw(pose, 1050); expect(player.recovery).toBeNull();
+  player.resume(); player.draw(idle, 2000); player.draw(idle, 2200);
+  expect(player.lastSample.frame).toBe(idle.frame);
+});

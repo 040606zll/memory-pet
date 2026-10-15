@@ -1,6 +1,6 @@
 # 机器狗记忆宠物
 
-支持账号密码登录的宠物与记忆对话网页。前端使用 React、Vite 和预加载精灵图集的 Canvas 逐帧动画；后端使用 Python、FastAPI、LangChain Agent、httpx 和 MySQL 8。长期记忆由当前 MemoryOS 服务维护，训练与正式对话统一通过 LangChain `create_agent(...).ainvoke(...)` 生成回复与训练候选；候选仍须用户确认后才写入长期记忆。
+支持账号密码登录的宠物与记忆对话网页。前端使用 React、Vite 和预加载精灵图集的 Canvas 逐帧动画；后端使用 Python、FastAPI、LangChain Agent、httpx 和 MySQL 8。长期记忆由当前 MemoryOS 服务维护，训练与正式对话通过 LangChain Agent 生成回复与训练候选，宠物页使用 `astream` 实时接收正文；候选仍须用户确认后才写入长期记忆。
 
 ## 当前访问地址
 
@@ -11,14 +11,14 @@
 
 ## 本机启动
 
-需要 Python 3.11 或更高、Node.js 22 或更高和 pnpm。当前可使用已存在的 conda `xyd` 环境；安装依赖时须包含 SQLAlchemy、PyMySQL 和 Alembic。
+需要 Python 3.11 或更高、Node.js 22.12+（22.x）或 24.x和 pnpm。当前可使用已存在的 conda `xyd` 环境；安装依赖时须包含 SQLAlchemy、PyMySQL 和 Alembic。
 
 第一次准备独立项目的依赖：
 
 ```bash
 conda activate xyd
 cd /Volumes/ORICO/project/memory-pet
-python -m pip install -r backend/requirements.txt
+python -m pip install -r backend/requirements.lock.txt
 cd frontend
 pnpm install
 ```
@@ -72,7 +72,7 @@ pnpm dev
 2. 在“训练”中告诉机器狗偏好或纠正回答。候选可以修改、拒绝，确认成功后才写入 MemoryOS。
 3. 切换“正式对话”，机器狗调用真实召回结果回答；更换本地会话也能使用已确认的长期记忆。
 4. 对它说“挥挥手，然后眨眨眼”，它会顺序执行。当前动作包括眨眼、挥手、点头、摇头、伸懒腰、开心微笑、打盹和摇尾巴。空闲时也会自主动作。
-5. 菜单可以创建新对话、查看历史、暂停动作及开关语音播报。语音输入和播报依赖浏览器支持；没有麦克风权限时可正常文字聊天。
+5. 菜单可以创建新对话、查看历史、暂停动作及开关语音播报。语音输入经后端接入真实百炼 ASR，识别文字持续更新草稿，停止后点击发送；回复默认使用 `longjielidou_v3.6` 流式合成并按播放时间同步显示文字。菜单可关闭语音。没有麦克风设备或权限时可使用文字。
 
 训练与正式对话各自保留会话、消息、草稿和重试状态。账号之间独立隔离；退出会卸载当前业务界面，旧账号的迟到响应不能进入下一账号。
 
@@ -80,14 +80,14 @@ pnpm dev
 
 ```bash
 cd /Volumes/ORICO/project/memory-pet
-python -m pytest tests/backend --cov=backend/pet --cov-report=term-missing --cov-fail-under=80
+python -m pytest tests/backend --cov=backend/pet --cov-branch --cov-report=term-missing --cov-fail-under=100
 cd frontend
 pnpm test:coverage
 pnpm test:sites
 pnpm build
 ```
 
-真实 MySQL 业务测试需要通过安全配置提供 `PET_TEST_MYSQL_URL`，且只能指向明确授权的独立测试库；未配置时这些用例跳过，不能据此声称完整链路或 80% 整体覆盖率已通过。当前验证范围和数字见 [MySQL 测试报告](docs/2026-10-15/MySQL存储/测试报告.md)。
+真实 MySQL 业务测试需要通过安全配置提供 `PET_TEST_MYSQL_URL`，且只能指向明确授权的独立测试库；未配置时这些用例跳过，不能据此声称完整链路或 100% 整体覆盖率已通过。当前验证范围和数字见 [流式语音测试报告](docs/2026-10-15/流式语音/测试报告.md)。
 
 真实链路测试需要已配置的专用 MySQL 测试库、已启动的后端、可用模型和 MemoryOS，会向专属宠物测试用户写入明确标注的测试偏好，并生成不含 Key 的结果文件：
 
@@ -121,3 +121,7 @@ GitHub参考：
 历史的DogFramePainter局部混合版本虽然静止脚部ROI通过，用户仍观察到严重抽动；完整连续帧证实头部出现双脸重影。因此该版本的视觉通过结论撤回，当前播放器不再使用该合成器。DogBehavior的稀疏自主动作节奏保留。
 
 旧报告docs/2026-10-15/宠物动作持续抽动/仅用于追溯，不能把该轮像素检查或覆盖率当作当前画面自然度保证。
+
+## 实时语音配置
+
+在服务端私有配置中增加 `[speech]`，字段及无密钥示例见 `backend/config.server.example.toml`。浏览器仅取得音频与时间戳；不使用浏览器内置识别和朗读。公网麦克风需要 HTTPS，反向代理须支持 WebSocket 升级并关闭 SSE 缓冲。接口、限流和故障恢复见 [流式语音文档](docs/2026-10-15/流式语音/API接口文档.md)。

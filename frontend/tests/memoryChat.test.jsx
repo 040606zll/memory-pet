@@ -36,6 +36,25 @@ async function setup() { const view = render(<MemoryChat />); await screen.findB
 function write(content = '我的偏好') { fireEvent.change(screen.getByLabelText('普通助手消息'), { target: { value: content } }); }
 async function send(content) { write(content); fireEvent.click(screen.getByRole('button', { name: '发送' })); await screen.findByText('已整理为待确认候选。'); }
 
+it('无标题会话显示对应模式名称，顶栏连接入口可打开服务状态', async () => {
+  route('GET', '/sessions?surface=memory&page=1&limit=20', () => response({ items: [{ id: 'training', mode: 'training' }, { id: 'chat', mode: 'chat' }] }));
+  route('GET', '/status', () => response({ connected: true, memory_validated: false, memory_error: '上次连接已恢复', llm: { configured: true } }));
+  await setup();
+  await screen.findByRole('button', { name: /记忆写入对话/ });
+  expect(screen.getByRole('button', { name: /记忆召回验证/ })).toBeInTheDocument();
+  fireEvent.click(within(document.querySelector('.mc-topbar')).getByRole('button', { name: '记忆服务' }));
+  expect(screen.getByRole('dialog')).toHaveTextContent('记忆服务：已连接');
+});
+
+it('记忆抽屉只响应 Escape，普通按键保留抽屉', async () => {
+  await setup(); fireEvent.click(screen.getByRole('button', { name: '查看长期记忆' }));
+  await screen.findByRole('complementary', { name: '长期记忆查看' });
+  fireEvent.keyDown(window, { key: 'a' });
+  expect(screen.getByRole('complementary', { name: '长期记忆查看' })).toBeVisible();
+  fireEvent.keyDown(window, { key: 'Escape' });
+  expect(screen.queryByRole('complementary', { name: '长期记忆查看' })).toBeNull();
+});
+
 it('编号准备失败时保留普通助手草稿并释放锁，不提交会话或聊天接口', async () => {
   vi.stubGlobal('crypto', {});
   try {

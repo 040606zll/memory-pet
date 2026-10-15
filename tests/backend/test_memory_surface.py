@@ -113,11 +113,16 @@ def test_mysql_initialize_is_idempotent_and_preserves_existing_content(mysql_sto
 
 
 def test_mysql_surface_rejects_invalid_values(mysql_store):
-    from sqlalchemy.exc import IntegrityError, DataError
+    from sqlalchemy.exc import IntegrityError
+    from pet.errors import ServiceError
     sid = mysql_store.create_session("owner", "chat", "测试约束")["id"]
-    with pytest.raises((IntegrityError, DataError)):
+    # MySQL 8 CHECK 返回 IntegrityError；较早版本的 ENUM/DataError 经数据库边界封装为 ServiceError。
+    with pytest.raises((IntegrityError, ServiceError)) as error:
         with mysql_store.db() as db:
             db.execute("UPDATE sessions SET surface=%s WHERE id=%s", ("unknown", sid))
+    if isinstance(error.value, ServiceError):
+        assert error.value.status == 503
+    assert mysql_store.session(sid, "owner")["surface"] == "pet"
 
 
 def test_memory_model_failure_and_uncertain_write_do_not_fake_success(world):

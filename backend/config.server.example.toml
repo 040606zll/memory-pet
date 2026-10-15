@@ -15,3 +15,12 @@ port = 3306
 database = "memory_pet"
 user = "memory_pet"
 password = ""
+
+[speech]
+# 仅放服务端。支持 PET_SPEECH_API_KEY / PET_SPEECH_URL / PET_TTS_MODEL / PET_TTS_VOICE / PET_ASR_MODEL 环境覆盖。
+api_key = ""
+# 使用工作空间级 Key 时，将 WorkspaceId 替换为该 Key 所属的真实业务空间。
+url = "wss://WorkspaceId.cn-beijing.maas.aliyuncs.com/api-ws/v1/inference"
+tts_model = "qwen-audio-3.0-tts-flash"
+voice = "longjielidou_v3.6"
+asr_model = "fun-asr-realtime"

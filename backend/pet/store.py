@@ -41,6 +41,9 @@ class Store(MySQLDatabase):
             db.execute("UPDATE operations SET state='failed' WHERE state='running'")
 
     def session(self, session_id, scope):
+        # 标识列为 ASCII；不存在的 Unicode/超长编号应返回 404，而非触发 MySQL 排序规则错误。
+        if not session_id.isascii() or len(session_id) > 64:
+            raise ServiceError("会话不存在或不属于当前连接", 404)
         with self.db() as db:
             row = db.execute("SELECT * FROM sessions WHERE id=%s AND scope=%s", (session_id, scope)).fetchone()
         if row is None:
@@ -123,6 +126,8 @@ class Store(MySQLDatabase):
 
     def candidate(self, session_id, scope, candidate_id):
         self.session(session_id, scope)
+        if not candidate_id.isascii() or len(candidate_id) > 64:
+            raise ServiceError("训练候选不存在", 404)
         with self.db() as db:
             row = db.execute("SELECT * FROM candidates WHERE id=%s AND session_id=%s", (candidate_id, session_id)).fetchone()
         if row is None:
