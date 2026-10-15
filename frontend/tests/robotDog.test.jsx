@@ -80,6 +80,18 @@ it('正常取消不显示错误提示', async () => {
 it('头像继续使用用户原稿，主角色没有调用旧网格播放器', () => {
   render(<RobotDogAvatar />); expect(screen.getByRole('img', { name: '小忆' }).querySelector('img')).toHaveAttribute('src', '/assets/robot-dog-reference.png');
 });
+it('抚摸角色驱动开心动作，未变化的画面不虚增帧数，卸载后迟到回调无副作用', async () => {
+  const view = render(<RobotDog />); await load(); frame(0);
+  fireEvent.click(screen.getByRole('button', { name: '摸摸小忆' })); frame(16);
+  expect(document.querySelector('.robot-dog-stage').dataset.action).toBe('happy');
+  const stage = document.querySelector('.robot-dog-stage'), before = stage.dataset.renderFrame;
+  mock.instances[0].draw.mockReturnValue(false); frame(32);
+  expect(stage.dataset.renderFrame).toBe(before);
+  const callback = [...mock.frames.values()].at(-1), count = mock.instances[0].draw.mock.calls.length;
+  view.unmount(); act(() => callback(48));
+  expect(mock.instances[0].draw).toHaveBeenCalledTimes(count);
+  expect(mock.frames.size).toBe(0);
+});
 it('改名同步头像与动作无障碍文案，不重新创建画布或加载动作素材', async () => {
   const view = render(<><RobotDog name="羊狗" /><RobotDogAvatar name="羊狗" /></>); await load();
   const canvas = screen.getByRole('img', { name: /机器狗羊狗/ });

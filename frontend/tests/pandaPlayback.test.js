@@ -56,17 +56,18 @@ describe('真实高清动作的连续播放', () => {
     const snapshotContext = { clearRect: vi.fn(), drawImage: vi.fn() };
     vi.spyOn(HTMLCanvasElement.prototype, 'getContext').mockReturnValue(snapshotContext);
     const paint = createPandaPainter(canvas, context);
+    paint(sampleMotion(assets, { name: 'idle' }), { name: 'idle' }, 0);
     paint(sampleMotion(assets, state('wave', 0.5)), state('wave', 0.5), 900);
     draws.length = 0;
     paint(sampleMotion(assets, state('blink', 0)), state('blink', 0), 916);
-    expect(snapshotContext.drawImage).toHaveBeenCalledExactlyOnceWith(canvas, 0, 0);
+    expect(snapshotContext.drawImage).toHaveBeenLastCalledWith(canvas, 0, 0);
     expect(draws.at(-1).alpha).toBe(1);
     paint(sampleMotion(assets, state('blink', 0.05)), state('blink', 0.05), 996);
     expect(draws.at(-1).alpha).toBeCloseTo(0.5);
     draws.length = 0;
     paint(sampleMotion(assets, state('blink', 0.1)), state('blink', 0.1), 1076);
     expect(draws.every(draw => draw.args.length === 9)).toBe(true);
-    expect(snapshotContext.drawImage).toHaveBeenCalledTimes(1);
+    expect(snapshotContext.drawImage).toHaveBeenCalledTimes(2);
   });
   it('缓冲画布不可用时仍能播放，不留下零透明度的熊猫', () => {
     const canvas = document.createElement('canvas'); canvas.width = 640; canvas.height = 640;

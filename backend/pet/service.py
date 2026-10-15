@@ -32,7 +32,7 @@ class PetService:
                 await run_db(self.store.fail_operation, key)
             raise
 
-    async def chat(self, c, session_id, body):
+    async def chat(self, c, session_id, body, on_delta=None):
         c.ready()
         key = f"{session_id}:{body.request_id}"
         # 同一会话按顺序处理，避免并发回复丢失上一轮上下文。
@@ -48,12 +48,14 @@ class PetService:
                 ids = [r["id"] for r in previous["assistant_message"]["candidates"]]
                 candidates = await run_db(self.store.candidates_by_ids, session_id, c.scope, ids)
                 previous["assistant_message"]["candidates"] = [self.candidate_public(candidates[cid]) for cid in ids]
+                if on_delta is not None:
+                    await on_delta(previous["assistant_message"]["content"])
                 return previous
             try:
                 history = await run_db(self.store.history, session_id, c.scope)
                 remote_request_id = str(uuid.uuid5(uuid.NAMESPACE_URL, f"memory-pet:{session_id}:{body.request_id}"))
                 memories = await self.providers.recall(c, body.content, session_id, remote_request_id)
-                output = await self.providers.reply(c, session["mode"], body.content, history, memories, body.pet_name, surface)
+                output = await self.providers.reply(c, session["mode"], body.content, history, memories, body.pet_name, surface, **({"on_delta": on_delta} if on_delta is not None else {}))
                 user = {"id": str(uuid.uuid4()), "role": "user", "content": body.content, "emotion": "neutral", "actions": [], "memories": [], "candidates": [], "created_at": now()}
                 assistant = {"id": str(uuid.uuid4()), "role": "assistant", "content": output.reply, "emotion": output.emotion, "actions": resolve_actions(body.content, output) if surface == "pet" else [], "memories": memories, "candidates": [{"id": str(uuid.uuid4()), "content": text, "status": "pending", "memory_ids": []} for text in output.candidates], "created_at": now()}
                 # 随消息 JSON 保存已解析的称呼，前端重试和历史读取复用同一结果；不新增记忆写入。

@@ -55,7 +55,8 @@ class Providers:
     @staticmethod
     def normalize(row):
         content = row.get("content") or row.get("text") or row.get("summary") or ""
-        evidence = row.get("evidence") or []
+        evidence = row.get("evidence")
+        evidence = evidence if isinstance(evidence, list) else []
         source = row.get("source") or row.get("source_label") or (evidence[0].get("source") if evidence and isinstance(evidence[0], dict) else None) or "MemoryOS"
         return {"id": str(row.get("memory_id") or row.get("id") or row.get("item_id") or ""), "content": str(content), "source": str(source), "status": row.get("status", "active"), "created_at": row.get("created_at")}
 
@@ -70,7 +71,7 @@ class Providers:
         items, remote_page = [], 1
         while remote_page <= 500:
             rows = await self.memory(c, "GET", "/memories", params={"user_id": c.user_id, "page": remote_page, "limit": 200, "status": "active", **({"q": query} if query else {})})
-            if not isinstance(rows, list):
+            if not isinstance(rows, list) or any(not isinstance(row, dict) for row in rows):
                 raise ServiceError("记忆服务清单格式不符合接口契约", 502)
             items.extend(self.normalize(r) for r in rows)
             if len(rows) < 200:
@@ -85,15 +86,21 @@ class Providers:
         result = await self.memory(c, "POST", "/ingest", json={"user_id": c.user_id, "text": candidate["content"], "source": source, "source_id": candidate["source_id"], "ingest_mode": "extract"})
         if not isinstance(result, dict):
             raise ServiceError("记忆服务写入格式不符合接口契约", 502)
-        ids = list(result.get("memory_ids") or [])
-        ids.extend(str(r.get("memory_id") or r.get("id")) for r in result.get("strengthened", []) if isinstance(r, dict) and (r.get("memory_id") or r.get("id")))
+        ids = result.get("memory_ids")
+        ids = [] if ids is None else ids
+        strengthened = result.get("strengthened")
+        strengthened = [] if strengthened is None else strengthened
+        if not isinstance(ids, list) or any(not isinstance(value, str) or not value.strip() for value in ids) or not isinstance(strengthened, list):
+            raise ServiceError("记忆服务写入格式不符合接口契约", 502)
+        ids = list(ids)
+        ids.extend(str(r.get("memory_id") or r.get("id")) for r in strengthened if isinstance(r, dict) and (r.get("memory_id") or r.get("id")))
         if result.get("conflicts") or result.get("clarifications"):
             raise ServiceError("记忆服务发现冲突或需要澄清，请调整训练内容后重新确认", 409)
         if not ids:
             raise ServiceError("记忆服务没有生成有效记忆，请把训练内容写成明确的事实或偏好", 422)
         return list(dict.fromkeys(ids))
 
-    async def reply(self, c, mode, content, history, memories, pet_name="小忆", surface="pet"):
+    async def reply(self, c, mode, content, history, memories, pet_name="小忆", surface="pet", on_delta=None):
         # JSON模式偶发空输出，明确示例与非空要求；不自动重试、不生成假正文。
         # 官方说明：https://api-docs.deepseek.com/guides/json_mode/
         prompt = """你是用户的毛绒机器狗宠物，中文表达温暖自然，保持小狗的活泼、好奇和陪伴感。外形是柔软毛绒外壳与可表达情绪的机械眼睛。
@@ -131,13 +138,23 @@ training 模式明确起名时，候选应准确表达“用户给宠物起的�
         if surface == "pet":
             request_content = "请依据以下用户消息生成完整 json 对象，包含 reply、emotion、actions、candidates 和 pet_name 五个字段，reply 自称与名字优先级确定的 pet_name 保持一致。用户消息：\n" + content
         messages = [{"role": "system", "content": prompt}, {"role": "system", "content": "可用记忆数据：" + json.dumps(memories, ensure_ascii=False)}, *history, {"role": "user", "content": request_content}]
+        streamed = []
+        async def forward_delta(text):
+            streamed.append(text)
+            await on_delta(text)
         try:
-            raw = await run_model_agent(self.client, c, messages)
+            raw = await run_model_agent(self.client, c, messages, **({"on_delta": forward_delta} if on_delta is not None else {}))
             if raw.strip().startswith("```"):
                 raw = raw.strip().split("\n", 1)[1].rsplit("```", 1)[0]
             output = ModelOutput.from_model(json.loads(raw))
         except (KeyError, IndexError, TypeError, ValueError, ValidationError):
             raise ServiceError("大模型未返回有效的回复结构，请重试或检查模型兼容性", 502) from None
+        if on_delta is not None:
+            # 兼容旧模型的 JSON 围栏；确认最终正文与已播放的增量相同。
+            if not streamed:
+                await on_delta(output.reply)
+            elif ''.join(streamed).strip() != output.reply:
+                raise ServiceError("大模型流式正文与最终回复不一致，请重试", 502)
         if mode == "chat":
             output.candidates = []
         if surface == "memory":

@@ -23,6 +23,94 @@ beforeEach(() => {
   }));
 });
 
+it('状态查询失败可关闭提示，系统减少动画设置变化即时生效，空昵称恢复默认值', async () => {
+  let change;
+  vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: false, addEventListener: (_, callback) => { change = callback; }, removeEventListener: vi.fn() });
+  routes['/api/status'] = () => { throw new Error('状态暂不可用'); };
+  render(<App />);
+  expect(await screen.findByText('状态暂不可用')).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: '关闭错误提示' }));
+  expect(document.querySelector('.error-banner')).toBeNull();
+  act(() => change({ matches: true }));
+  expect(screen.getByText('安静陪着你')).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('tab', { name: '训练' }));
+  fireEvent.click(screen.getByRole('button', { name: '修改宠物名字' }));
+  const name = screen.getByLabelText('宠物名字');
+  fireEvent.change(name, { target: { value: '  ' } });
+  fireEvent.keyDown(name, { key: 'a' }); expect(screen.getByLabelText('宠物名字')).toBeInTheDocument();
+  fireEvent.keyDown(name, { key: 'Enter' });
+  expect(screen.getByRole('heading', { name: '教小忆更懂你' })).toBeInTheDocument();
+});
+
+it('空消息不提交，未连接空态入口可打开连接说明', async () => {
+  routes['/api/status'] = () => ok({ ...configured, connected: false });
+  render(<App />); await screen.findByText('尚未连接');
+  fireEvent.submit(screen.getByLabelText('训练消息').closest('form'));
+  expect(calls.some(call => call.options.method === 'POST')).toBe(false);
+  fireEvent.click(screen.getByRole('button', { name: '检查记忆服务，开始聊天' }));
+  expect(screen.getByRole('dialog')).toHaveTextContent('记忆服务：等待连接');
+});
+
+it('修改和拒绝候选失败时保持候选，显示具体错误并释放操作锁', async () => {
+  routes['/api/sessions/s1/chat'] = () => ok({ user_message: { id: 'u', role: 'user', content: '偏好' }, assistant_message: { id: 'a', role: 'assistant', content: '请确认', candidates: [{ id: 'c', content: '原始偏好', status: 'pending' }] } });
+  routes['/api/sessions/s1/candidates/c'] = () => { throw new Error('候选服务不可用'); };
+  render(<App />); await screen.findByText('记忆已连接');
+  const input = screen.getByLabelText('训练消息');
+  fireEvent.change(input, { target: { value: '偏好' } }); fireEvent.submit(input.closest('form'));
+  await screen.findByText('原始偏好');
+  fireEvent.click(screen.getByRole('button', { name: '修改', exact: true }));
+  fireEvent.change(screen.getByLabelText('修改记忆内容'), { target: { value: '改后的偏好' } });
+  fireEvent.click(screen.getByRole('button', { name: '保存修改' }));
+  expect(await screen.findByText('候选服务不可用')).toBeInTheDocument();
+  expect(screen.getByRole('button', { name: '保存修改' })).toBeEnabled();
+  fireEvent.click(screen.getByRole('button', { name: '取消', exact: true }));
+  expect(screen.getByText('原始偏好')).toBeInTheDocument();
+  fireEvent.click(screen.getByRole('button', { name: '拒绝记忆：原始偏好' }));
+  await waitFor(() => expect(screen.getByRole('button', { name: '拒绝记忆：原始偏好' })).toBeEnabled());
+  expect(document.querySelector('.error-banner')).toHaveTextContent('候选服务不可用');
+  expect(screen.getByText('原始偏好')).toBeInTheDocument();
+});
+
+it.each([false, true])('历史加载失败只影响当前请求，关闭后迟到错误被忽略：%s', async stale => {
+  let reject;
+  routes['/api/sessions?page=1&limit=20'] = () => ok({ items: [{ id: 'failed', mode: 'training', title: '异常历史' }] });
+  routes['/api/sessions/failed/messages?page=1&limit=100'] = () => new Promise((_, fail) => { reject = fail; });
+  render(<App />); await screen.findByText('记忆已连接');
+  fireEvent.click(screen.getByRole('button', { name: '打开菜单' })); fireEvent.click(screen.getByRole('button', { name: '历史对话' }));
+  fireEvent.click(await screen.findByRole('button', { name: /异常历史/ }));
+  await waitFor(() => expect(reject).toBeDefined());
+  if (stale) fireEvent.click(screen.getByRole('button', { name: '关闭历史对话' }));
+  await act(async () => reject(new Error('读取会话失败')));
+  if (stale) expect(document.querySelector('.error-banner')).toBeNull();
+  else expect(document.querySelector('.error-banner')).toHaveTextContent('读取会话失败');
+});
+
+it.each(['current-error', 'stale-error', 'stale-success'])('更早消息请求的错误与会话切换隔离：%s', async scenario => {
+  let resolve, reject;
+  routes['/api/sessions?page=1&limit=20'] = () => ok({ items: [{ id: 'pages', mode: 'training', title: '分页历史' }] });
+  routes['/api/sessions/pages/messages?page=1&limit=100'] = () => ok({ items: [], total_pages: 3 });
+  routes['/api/sessions/pages/messages?page=3&limit=100'] = () => ok({ items: [{ id: 'a', role: 'assistant', content: '最后一页' }] });
+  routes['/api/sessions/pages/messages?page=2&limit=100'] = () => new Promise((done, fail) => { resolve = done; reject = fail; });
+  render(<App />); await screen.findByText('记忆已连接');
+  fireEvent.click(screen.getByRole('button', { name: '打开菜单' })); fireEvent.click(screen.getByRole('button', { name: '历史对话' }));
+  fireEvent.click(await screen.findByRole('button', { name: /分页历史/ }));
+  await screen.findAllByText('最后一页');
+  fireEvent.click(screen.getByRole('button', { name: '查看更早的消息' }));
+  await waitFor(() => expect(resolve).toBeDefined());
+  if (scenario !== 'current-error') {
+    fireEvent.click(screen.getByRole('button', { name: '打开菜单' })); fireEvent.click(screen.getByRole('button', { name: '开启新对话' }));
+  }
+  await act(async () => scenario === 'stale-success' ? resolve(ok({ items: [{ id: 'late', role: 'user', content: '迟到的上一页' }] })) : reject(new Error('读取上一页失败')));
+  if (scenario === 'current-error') {
+    expect(document.querySelector('.error-banner')).toHaveTextContent('读取上一页失败');
+    expect(screen.getByRole('button', { name: '查看更早的消息' })).toBeEnabled();
+  } else {
+    expect(document.querySelector('.error-banner')).toBeNull();
+    expect(screen.queryByText('迟到的上一页')).toBeNull();
+    expect(screen.getByText('从了解你开始')).toBeInTheDocument();
+  }
+});
+
 describe('宠物名字与对话同步', () => {
   function reply(petName, index = 1) {
     return ok({ user_message: { id: `name-u${index}`, role: 'user', content: '你的名字叫羊狗' }, assistant_message: { id: `name-a${index}`, role: 'assistant', content: `名字回复${index}`, pet_name: petName, candidates: [{ id: `name-c${index}`, content: '宠物名字是羊狗', status: 'pending' }] } });
@@ -221,14 +309,14 @@ describe('真实对话与记忆确认界面', () => {
     expect(calls.find(c => c.url === '/api/connection').data).toEqual({});
     expect(JSON.stringify({ ...localStorage })).not.toContain('secret');
   });
-  it('正式对话使用独立会话展示真实召回来源，不自动确认', async () => {
+  it('正式对话使用独立会话，隐藏记忆标签且不自动确认', async () => {
     const user = userEvent.setup();
     routes['/api/sessions'] = options => ok({ id: 'chat-only', mode: JSON.parse(options.body).mode });
     routes['/api/sessions/chat-only/chat'] = () => ok({ user_message: { id: 'u1', role: 'user', content: '你好' }, assistant_message: { id: 'a1', role: 'assistant', content: '你好呀', memories: [{ id: 'm1', content: '喜欢雨声', source: 'memoryos' }] } });
     render(<App />); await screen.findByText('记忆已连接');
     await user.click(screen.getByRole('tab', { name: '正式对话' }));
     await user.type(screen.getByRole('textbox', { name: '对话消息' }), '你好{enter}'); await screen.findAllByText('你好呀');
-    expect(screen.getByText('用到记忆：喜欢雨声')).toBeInTheDocument();
+    expect(screen.queryByText('用到记忆：喜欢雨声')).not.toBeInTheDocument();
     expect(calls.find(c => c.url === '/api/sessions').data.mode).toBe('chat');
     expect(calls.filter(c => c.url.endsWith('/memories/confirm'))).toHaveLength(0);
   });
@@ -282,7 +370,7 @@ describe('补充交互与异常边界', () => {
     await user.click(screen.getByRole('button', { name: '打开菜单' })); await user.click(screen.getByRole('button', { name: '继续陪伴' }));
     expect(screen.queryByText('安静陪着你')).not.toBeInTheDocument();
   });
-  it('训练和正式对话只提供文字输入，不调用浏览器录音或语音识别', async () => {
+  it('训练和正式对话提供语音入口，未经点击不启动录音', async () => {
     const user = userEvent.setup();
     const recognition = vi.fn();
     const getUserMedia = vi.fn();
@@ -293,9 +381,9 @@ describe('补充交互与异常边界', () => {
       render(<App />); await screen.findByText('记忆已连接');
       for (const mode of ['训练消息', '对话消息']) {
         if (mode === '对话消息') await user.click(screen.getByRole('tab', { name: /正式对话/ }));
-        expect(screen.queryByRole('button', { name: /语音输入/ })).not.toBeInTheDocument();
+        expect(screen.getByRole('button', { name: '开始语音输入' })).toBeInTheDocument();
         const input = screen.getByRole('textbox', { name: mode });
-        expect(input.closest('form').querySelectorAll('button')).toHaveLength(1);
+        expect(input.closest('form').querySelectorAll('button')).toHaveLength(2);
         await user.type(input, '文字输入');
         expect(input).toHaveValue('文字输入');
         expect(screen.getByRole('button', { name: '发送消息' })).toBeEnabled();
@@ -305,7 +393,7 @@ describe('补充交互与异常边界', () => {
       expect(getUserMedia).not.toHaveBeenCalled();
     } finally { vi.unstubAllGlobals(); }
   });
-  it('文字发送仍可按需朗读模型回复', async () => {
+  it('语音朗读默认开启，可切换为文字且不调用浏览器朗读', async () => {
     const user = userEvent.setup();
     vi.stubGlobal('speechSynthesis', { speak: vi.fn(), cancel: vi.fn() });
     vi.stubGlobal('SpeechSynthesisUtterance', class { constructor(content) { this.text = content; } });
@@ -313,9 +401,10 @@ describe('补充交互与异常边界', () => {
     try {
       render(<App />); await screen.findByText('记忆已连接');
       await user.type(screen.getByRole('textbox', { name: '训练消息' }), '文字输入');
-      await user.click(screen.getByRole('button', { name: '打开菜单' })); await user.click(screen.getByRole('button', { name: '开启语音朗读' }));
+      await user.click(screen.getByRole('button', { name: '打开菜单' })); await user.click(screen.getByRole('button', { name: '关闭语音朗读' }));
       await user.click(screen.getByRole('button', { name: '发送消息' })); await screen.findAllByText('收到文字消息');
-      expect(window.speechSynthesis.speak).toHaveBeenCalledWith(expect.objectContaining({ text: '收到文字消息' }));
+      expect(window.speechSynthesis.speak).not.toHaveBeenCalled();
+      expect(calls.find(call => call.url.endsWith('/chat')).options.headers['X-Voice-Enabled']).toBe('false');
     } finally { vi.unstubAllGlobals(); }
   });
   it('连接验证失败保留状态弹窗，不宣称已连接；可关闭', async () => {
@@ -415,7 +504,7 @@ describe('训练与正式对话消息隔离', () => {
     expect(screen.getByRole('textbox', { name: '对话消息' })).toHaveValue('');
     await user.type(screen.getByRole('textbox', { name: '对话消息' }), '正式专属消息{enter}');
     await screen.findAllByText('正式专属回复');
-    expect(screen.getByText('用到记忆：已确认偏好')).toBeInTheDocument();
+    expect(screen.queryByText('用到记忆：已确认偏好')).not.toBeInTheDocument();
     await user.type(screen.getByRole('textbox', { name: '对话消息' }), '正式草稿');
     await user.click(screen.getByRole('tab', { name: '训练' }));
     expect(screen.getByText('训练专属消息')).toBeInTheDocument();

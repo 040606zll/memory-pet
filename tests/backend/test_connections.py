@@ -153,3 +153,19 @@ def test_account_binding_unique_constraints_and_idempotent_initialization(world)
     with pytest.raises(IntegrityError):
         with app.state.store.db() as db:
             db.execute("INSERT INTO account_memory_bindings(account_id,service_url,service_hash,memory_user_id,api_key_id) VALUES(%s,%s,%s,%s,%s)", (account["id"], "http://memory", hashlib.sha256(b"http://memory").digest(), USER, KEY_ID))
+
+
+@pytest.mark.parametrize('payload', [[], {}, {'items':None,'total':0}, {'items':[],'total':True}])
+def test_account_directory_contract_failure_releases_provisioning_lease(world, payload):
+    client, remote, app = world
+    account=fresh_account(client)
+    original=remote.handle
+    def handle(request):
+        if request.method == 'GET' and request.url.path == '/users': return httpx.Response(200,json=payload)
+        return original(request)
+    app.state.providers.client._transport=httpx.MockTransport(handle)
+    response=client.post('/api/connection',json={})
+    assert response.status_code == 502
+    with app.state.store.db() as db:
+        binding=db.execute('SELECT * FROM account_memory_bindings WHERE account_id=%s',(account['id'],)).fetchone()
+    assert binding['memory_user_id'] is None and binding['provision_owner'] is None and binding['lease_until'] == 0

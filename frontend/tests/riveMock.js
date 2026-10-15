@@ -1,5 +1,6 @@
 import { vi } from 'vitest';
 export const instances = [];
+export const behavior = { deferLoad: false };
 export class Rive {
   constructor(options) {
     this.options = options; this.playing = true;
@@ -10,7 +11,7 @@ export class Rive {
     this.pause = vi.fn(() => { this.playing = false; });
     this.cleanup = vi.fn(() => { this.playing = false; });
     instances.push(this);
-    queueMicrotask(() => { if (!this.cleanup.mock.calls.length) options.onLoad(); });
+    queueMicrotask(() => { if (!behavior.deferLoad && !this.cleanup.mock.calls.length) options.onLoad(); });
   }
   advance() { if (this.playing) this.options.onAdvance(); }
 }

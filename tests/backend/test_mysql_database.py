@@ -11,6 +11,22 @@ from pet.errors import ServiceError
 from pet.store import Store
 
 
+@pytest.mark.parametrize('identifier', ['不存在', 'x' * 65])
+def test_unknown_non_ascii_and_oversized_ids_are_not_database_failures(mysql_store, identifier):
+    session = mysql_store.create_session('owner', 'training', '编号边界')
+    with pytest.raises(ServiceError) as missing_session:
+        mysql_store.session(identifier, 'owner')
+    assert missing_session.value.status == 404
+    with pytest.raises(ServiceError) as missing_candidate:
+        mysql_store.candidate(session['id'], 'owner', identifier)
+    assert missing_candidate.value.status == 404
+    # 无效输入不会破坏后续事务或越过归属检查。
+    assert mysql_store.session(session['id'], 'owner')['title'] == '编号边界'
+    with pytest.raises(ServiceError) as wrong_owner:
+        mysql_store.candidate(session['id'], 'someone-else', identifier)
+    assert wrong_owner.value.status == 404
+
+
 @pytest.mark.parametrize("port", [3306, "3307"])
 def test_mysql_configuration_accepts_file_and_environment_port_types(port):
     config = DatabaseConfig.from_settings({"PET_MYSQL_HOST": "db.example.test", "PET_MYSQL_PORT": port, "PET_MYSQL_DATABASE": "pet_test", "PET_MYSQL_USER": "pet", "PET_MYSQL_PASSWORD": "secret:@/密码"})
@@ -276,3 +292,17 @@ def test_cancelled_account_claim_waits_for_commit_and_releases_exact_lease_owner
         asyncio.run(scenario())
     finally:
         release.set()
+
+
+def test_inflight_request_is_not_started_twice_and_empty_candidates_are_scoped(mysql_store):
+    session = mysql_store.create_session('owner','chat','请求并发')
+    assert mysql_store.begin_operation('once',session['id'],'f' * 64) is None
+    with pytest.raises(ServiceError) as active:
+        mysql_store.begin_operation('once',session['id'],'f' * 64)
+    assert active.value.status == 409
+    assert mysql_store.candidates_by_ids(session['id'],'owner',[]) == {}
+    with pytest.raises(ServiceError) as unauthorized:
+        mysql_store.candidates_by_ids(session['id'],'other',[])
+    assert unauthorized.value.status == 404
+    mysql_store.fail_operation('once')
+    assert mysql_store.begin_operation('once',session['id'],'f' * 64) is None

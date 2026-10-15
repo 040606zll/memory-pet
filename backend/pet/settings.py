@@ -8,6 +8,7 @@ from .errors import ServiceError
 CONFIG_FILE = Path(__file__).resolve().parents[1] / "config.toml"
 LOCAL_CONFIG_FILE = CONFIG_FILE.with_name("config.local.toml")
 FIELDS = {
+    "speech": {"api_key": "PET_SPEECH_API_KEY", "url": "PET_SPEECH_URL", "tts_model": "PET_TTS_MODEL", "voice": "PET_TTS_VOICE", "asr_model": "PET_ASR_MODEL"},
     "llm": {"base_url": "LLM_BASE_URL", "api_key": "LLM_API_KEY", "model": "LLM_MODEL"},
     "memoryos": {"base_url": "MEMORYOS_BASE_URL", "api_key": "MEMORYOS_API_KEY", "user_id": "MEMORYOS_USER_ID"},
     "mysql": {"host": "PET_MYSQL_HOST", "port": "PET_MYSQL_PORT", "database": "PET_MYSQL_DATABASE", "user": "PET_MYSQL_USER", "password": "PET_MYSQL_PASSWORD"},

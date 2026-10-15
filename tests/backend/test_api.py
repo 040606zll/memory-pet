@@ -627,3 +627,41 @@ def test_current_user_message_reminds_json_without_changing_memory_query_or_user
     assert [c for c in remote.calls if c[1] == "/recall"][-1][2]["query"] == content
     assert result["user_message"]["content"] == content
     assert result["assistant_message"]["actions"] == []
+
+
+def test_public_docs_do_not_receive_private_api_cache_policy_and_unexpected_errors_are_sanitized(world, monkeypatch):
+    client, _, app = world
+    docs = client.get('/docs')
+    assert docs.status_code == 200 and 'cache-control' not in docs.headers
+    def broken(*args): raise RuntimeError('private-marker internal error')
+    monkeypatch.setattr(app.state.store, 'sessions', broken)
+    result = client.get('/api/sessions')
+    assert result.status_code == 500 and result.json()['message'] == '服务处理失败，请稍后重试'
+    assert 'private-marker' not in result.text
+
+
+@pytest.mark.parametrize('path', ['/api/auth/login', '/api/auth/register'])
+@pytest.mark.parametrize('content_type', [None, '', 'text/plain', 'application/x-www-form-urlencoded'])
+def test_login_requires_json_content_type_even_when_body_is_valid_json(world, path, content_type):
+    client, _, _ = world
+    headers = {} if content_type is None else {'Content-Type':content_type}
+    result = client.post(path, content=json.dumps({'username':'tester','password':'Test-password-123'}), headers=headers)
+    assert result.status_code == 415
+    assert result.json()['code'] == 415
+    assert 'set-cookie' not in result.headers
+
+
+def test_disconnect_wrapper_cancels_upstream_before_returning_on_outer_cancellation():
+    from pet.main import disconnect_aware
+    from unittest.mock import AsyncMock
+    async def scenario():
+        started, finished = asyncio.Event(), asyncio.Event()
+        async def work():
+            started.set()
+            try: await asyncio.Future()
+            finally: finished.set()
+        task=asyncio.create_task(disconnect_aware(type('Request',(),{'is_disconnected':AsyncMock(return_value=False)})(),work()))
+        await started.wait(); task.cancel()
+        with pytest.raises(asyncio.CancelledError): await task
+        assert finished.is_set()
+    asyncio.run(scenario())

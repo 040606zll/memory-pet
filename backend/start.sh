@@ -21,7 +21,7 @@ usage() {
 
 Conda 路径和环境名：直接编辑本脚本顶部的 CONDA_BIN 和 ENV_NAME。
 不读取 CONDA_EXE、PET_CONDA_ENV，也不自动查找系统 Conda。
-首次安装依赖请自行执行：conda run -n xyd python -m pip install -r backend/requirements.txt
+首次安装依赖请自行执行：conda run -n xyd python -m pip install -r backend/requirements.lock.txt
 后端地址：http://127.0.0.1:8797（单进程）
 后台 PID：../.runtime/backend.pid；后台日志：../.runtime/backend.log（相对后端目录）
 配置由应用读取本目录 config.toml、config.local.toml 及进程环境变量。

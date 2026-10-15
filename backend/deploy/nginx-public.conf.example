@@ -16,6 +16,8 @@ location ^~ /pet-api/ {
     # 应用使用 HttpOnly Cookie，代理保留 Cookie 和 X-CSRF-Token。
     proxy_set_header Authorization "";
     proxy_http_version 1.1;
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
     proxy_buffering off;
     proxy_cache off;
     proxy_read_timeout 300s;

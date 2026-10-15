@@ -43,10 +43,16 @@ it('像素密度上限为2，尺寸取整避免亚像素抖动引起反复重建
   expect(drawingSize(canvas, 3)).toEqual({ width: 1000, height: 1088 });
 });
 it('GPU不可用或资源编译失败时明确报错', () => {
+  expect(() => new DogRenderer(canvas, new Image())).toThrow('透明轮廓');
   gl.getShaderParameter.mockReturnValue(false);
   expect(() => new DogRenderer(canvas, new Image(), { maskImage: new Image() })).toThrow('着色器');
   gl.getShaderParameter.mockReturnValue(true); gl.getProgramParameter.mockReturnValue(false);
   expect(() => new DogRenderer(canvas, new Image(), { maskImage: new Image() })).toThrow('渲染器');
   canvas.getContext = () => null;
   expect(() => new DogRenderer(canvas, new Image(), { maskImage: new Image() })).toThrow('硬件加速');
+});
+it('系统未提供像素倍率时以标准像素尺寸绘制', () => {
+  vi.stubGlobal('devicePixelRatio', 0);
+  try { expect(drawingSize(canvas)).toEqual({ width: 500, height: 544 }); }
+  finally { vi.unstubAllGlobals(); }
 });

@@ -14,6 +14,7 @@ it('起手和收势为同一中立图，运动中段才完整显示动作', () =
   expect(motionWeight(.08)).toBeCloseTo(.5);
 });
 it('同一等比比例及固定脚底，不随生成帧高变动把整个动物拉长压扁', () => {
+  expect(poseGeometry(neutral, 320, 350)).toEqual(poseGeometry({ ...neutral, neutral }, 320, 350));
   const target = poseGeometry(sample, 320, 350); const moved = poseGeometry({ ...sample, frame: { ...frame, height: 270, anchorY: 267 } }, 320, 350);
   expect(target.scale).toBe(moved.scale); expect(target.width/frame.width).toBe(target.height/frame.height);
   expect(moved.y + 267 * moved.scale).toBe(350);

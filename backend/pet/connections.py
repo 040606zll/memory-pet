@@ -1,6 +1,5 @@
 """连接验证及 API Key 到远端用户的固定绑定，不保存明文 Key。"""
 from dataclasses import replace
-from sqlalchemy.exc import IntegrityError
 import uuid
 
 from .errors import ServiceError
@@ -29,7 +28,7 @@ class Connections:
         if not isinstance(result, dict) or not isinstance(result.get("items"), list) or type(result.get("total")) is not int:
             raise ServiceError("记忆服务用户目录格式无效", 502)
         rows, total = result["items"], result["total"]
-        if total < 0 or len(rows) != min(total, 2):
+        if total < 0 or len(rows) != min(total, 2) or any(not isinstance(row, dict) for row in rows):
             raise ServiceError("记忆服务用户目录数量不一致", 502)
         return rows, total
 
@@ -40,14 +39,14 @@ class Connections:
 
     def bind(self, c, key_id):
         # 网络调用全部结束后才开启短事务，唯一约束确保一对一且禁止静默换绑。
-        try:
-            with self.store.db() as db:
-                db.execute("INSERT INTO memory_user_bindings(service_url,service_hash,api_key_id,user_id) VALUES(%s,UNHEX(SHA2(%s,256)),%s,%s) ON DUPLICATE KEY UPDATE api_key_id=api_key_id", (c.memory_url, c.memory_url, key_id, c.user_id))
-                actual = db.execute("SELECT user_id FROM memory_user_bindings WHERE service_url=%s AND api_key_id=%s", (c.memory_url, key_id)).fetchone()
-                if actual["user_id"] != c.user_id:
-                    raise ServiceError("该 API Key 已绑定其他用户，不能更换记忆归属", 409)
-        except IntegrityError:
-            raise ServiceError("该记忆用户已有其他 API Key 绑定，请联系管理员处理", 409) from None
+        with self.store.db() as db:
+            db.execute("INSERT INTO memory_user_bindings(service_url,service_hash,api_key_id,user_id) VALUES(%s,UNHEX(SHA2(%s,256)),%s,%s) ON DUPLICATE KEY UPDATE api_key_id=api_key_id", (c.memory_url, c.memory_url, key_id, c.user_id))
+            actual = db.execute("SELECT user_id FROM memory_user_bindings WHERE service_url=%s AND api_key_id=%s", (c.memory_url, key_id)).fetchone()
+            # 用户唯一键冲突也会触发 ON DUPLICATE；此时新 Key 没有对应行。
+            if actual is None:
+                raise ServiceError("该记忆用户已有其他 API Key 绑定，请联系管理员处理", 409)
+            if actual["user_id"] != c.user_id:
+                raise ServiceError("该 API Key 已绑定其他用户，不能更换记忆归属", 409)
 
     async def validate(self, c):
         if not c.memory_key:

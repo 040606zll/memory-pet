@@ -39,3 +39,4 @@ htmlcov/
 .vscode/
 .DS_Store
 ._*
+docs/*
