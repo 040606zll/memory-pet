@@ -2,44 +2,55 @@ import * as THREE from 'three';
 
 /**
  * 真实三维眼睛（贴图模型用）：眼球是 GLB 里独立的球体（tools/blender/rig_tripo_dog.py 生成），
- * 看向时整颗眼球转动；眼睑是包在眼球外的半球壳，绕眼睛横轴转下来盖住眼球；
- * 反光点固定在眼窝里，不随眼球转动。接口与 EyeTexture 相同：draw({ expression, open, lookX, lookY })。
+ * 看向时整颗眼球转动；反光点固定在眼窝里，不随眼球转动。接口与 EyeTexture 相同：draw({ expression, open, lookX, lookY })。
  *
- * 眼睑几何：半球壳的极点在静止时朝后（整个壳藏在脸后），绕 X 轴转 α 后极点转向上方/前方。
- * 上眼睑 α>0、下眼睑 α<0；两个眼睑的边缘都经过眼球左右两端，从正面看，
- * 上眼睑边缘是 ∩ 形、最前端高度 R·cos α，下眼睑同理，组合出眨眼、笑眼、困倦等形状。
+ * 眼睑：一片只覆盖眼眶开口的薄球冠（半径略大于眼球，范围取 GLB extras.opening），
+ * 由着色器决定哪部分可见。以眼轴为前方、向上为上，球冠上一点的"仰角" e = atan2(y, z)：
+ * 上眼睑盖住 e > upper 的部分，下眼睑盖住 e < lower 的部分。边界是经过眼角两端的大圆，
+ * 正面看上眼睑边缘呈 ∩、下眼睑抬过眼心后也呈 ∩（笑眼）；两者在眼心略下方相合即闭眼。
+ * 眼睑永远不超出眼眶，不会像整颗球壳那样鼓出脸外。
  */
 
 const LOOK_YAW = 0.32;
 const LOOK_PITCH = 0.26;
-const LID_SCALE = [1.06, 1.055];
 const DEG = Math.PI / 180;
+const OPEN_UPPER = 90;
+const OPEN_LOWER = -90;
 
-/** 各表情的眼睑目标角度（度）：upper 上眼睑、lower 下眼睑、tilt 让内眼角一侧更低。 */
+/** 各表情眼睑边缘的仰角（度）：upper 以上被上眼睑盖住，lower 以下被下眼睑盖住；tilt 让内眼角一侧更低。 */
 const LID_POSES = {
-  open: { upper: 0, lower: 0, tilt: 0 },
-  surprised: { upper: 0, lower: 0, tilt: 0 },
-  heart: { upper: 8, lower: 0, tilt: 0 },
-  happy: { upper: 32, lower: 112, tilt: 0 },
-  closed: { upper: 104, lower: 76, tilt: 0 },
-  sleepy: { upper: 74, lower: 12, tilt: 0 },
-  sad: { upper: 52, lower: 0, tilt: 16 },
+  open: { upper: OPEN_UPPER, lower: OPEN_LOWER, tilt: 0 },
+  surprised: { upper: OPEN_UPPER, lower: OPEN_LOWER, tilt: 0 },
+  heart: { upper: 48, lower: OPEN_LOWER, tilt: 0 },
+  happy: { upper: 62, lower: 16, tilt: 0 },
+  closed: { upper: -12, lower: -12, tilt: 0 },
+  sleepy: { upper: 6, lower: -48, tilt: 0 },
+  sad: { upper: 26, lower: OPEN_LOWER, tilt: 18 },
 };
-/** 眨眼闭合时两眼睑在眼心略下方相合。 */
-const BLINK = { upper: 104, lower: 76 };
+/** 眨眼闭合位置：两眼睑在眼心略下方相合。 */
+const BLINK = -12;
 
-function lidTexture() {
-  // 半球壳 UV：v=1 在极点、v=0 在边缘。边缘一圈深色睑缘，往里渐变到原色。
-  const canvas = document.createElement('canvas');
-  canvas.width = 4; canvas.height = 128;
-  const ctx = canvas.getContext('2d');
-  const gradient = ctx.createLinearGradient(0, 128, 0, 0);
-  gradient.addColorStop(0, '#2a2b30'); gradient.addColorStop(0.06, '#3a3a40');
-  gradient.addColorStop(0.16, '#d8d8d8'); gradient.addColorStop(0.4, '#ffffff'); gradient.addColorStop(1, '#ffffff');
-  ctx.fillStyle = gradient; ctx.fillRect(0, 0, 4, 128);
-  const texture = new THREE.CanvasTexture(canvas);
-  texture.colorSpace = THREE.SRGBColorSpace;
-  return texture;
+function lidMaterial(color) {
+  const material = new THREE.MeshStandardMaterial({ color, roughness: 0.8, metalness: 0 });
+  material.userData.uniforms = { uUpper: { value: OPEN_UPPER * DEG }, uLower: { value: OPEN_LOWER * DEG }, uTilt: { value: 0 } };
+  material.onBeforeCompile = shader => {
+    Object.assign(shader.uniforms, material.userData.uniforms);
+    shader.vertexShader = shader.vertexShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vLidDir;')
+      .replace('#include <begin_vertex>', '#include <begin_vertex>\nvLidDir = position;');
+    shader.fragmentShader = shader.fragmentShader
+      .replace('#include <common>', '#include <common>\nvarying vec3 vLidDir;\nuniform float uUpper;\nuniform float uLower;\nuniform float uTilt;')
+      .replace('#include <color_fragment>', `#include <color_fragment>
+        vec3 lidDir = normalize(vLidDir);
+        float tiltedY = lidDir.y * cos(uTilt) + lidDir.x * sin(uTilt);
+        float upperEdge = atan(tiltedY, lidDir.z) - uUpper;
+        float lowerEdge = uLower - atan(lidDir.y, lidDir.z);
+        if (upperEdge < 0.0 && lowerEdge < 0.0) discard;
+        // 睑缘：边缘一窄条深色，再往里一点略暗，像有厚度的眼睑边。
+        float edge = max(upperEdge, lowerEdge);
+        diffuseColor.rgb *= mix(0.22, 1.0, smoothstep(0.015, 0.06, edge)) * mix(0.85, 1.0, smoothstep(0.06, 0.2, edge));`);
+  };
+  return material;
 }
 
 function catchlightTexture() {
@@ -61,7 +72,7 @@ export class EyeRig {
     this.side = side;
     this.radius = ball.userData.radius || ball.geometry.boundingSphere?.radius || 0.14;
     this.restQuaternion = ball.quaternion.clone();
-    this.state = { upper: 0, lower: 0, tilt: 0 };
+    this.state = { upper: OPEN_UPPER, lower: OPEN_LOWER, tilt: 0 };
     this.expression = 'open';
     this.key = '';
     this.disposables = [];
@@ -89,28 +100,31 @@ export class EyeRig {
     this.socket.quaternion.copy(ball.quaternion);
     ball.parent.add(this.socket);
 
-    const lidColor = new THREE.Color(ball.userData.lid_color || '#555255');
-    const rim = lidTexture();
-    this.disposables.push(rim);
-    this.lids = LID_SCALE.map((scale, index) => {
-      const geometry = new THREE.SphereGeometry(this.radius * scale, 48, 16, 0, Math.PI * 2, 0, Math.PI / 2);
-      geometry.rotateX(-Math.PI / 2); // 极点朝后（-Z），整个壳在眼球中心平面之后
-      const material = new THREE.MeshStandardMaterial({ color: lidColor, map: rim, roughness: 0.78, metalness: 0, side: THREE.DoubleSide });
-      const lid = new THREE.Mesh(geometry, material);
-      lid.name = index === 0 ? 'eyelid-upper' : 'eyelid-lower';
-      lid.castShadow = true; lid.receiveShadow = true;
-      lid.visible = false;
-      this.socket.add(lid);
-      this.disposables.push(geometry, material);
-      return lid;
-    });
+    // 眼睑球冠：几何在"眼睑坐标"里建（+Z 为眼眶开口方向，+Y 朝上），再整体转到眼窝坐标。
+    const openingAxis = new THREE.Vector3(...(ball.userData.opening_axis || ball.userData.axis || [0, 0, 1])).normalize();
+    const lidUp = new THREE.Vector3(0, 1, 0).addScaledVector(openingAxis, -openingAxis.y).normalize();
+    const lidRight = new THREE.Vector3().crossVectors(lidUp, openingAxis).normalize();
+    const reach = Math.min(85, (ball.userData.opening || 60) + 5) * DEG;
+    const geometry = new THREE.SphereGeometry(this.radius * 1.025, 72, 28, 0, Math.PI * 2, 0, reach);
+    geometry.rotateX(Math.PI / 2); // 极点 +Y → +Z
+    this.lidMaterial = lidMaterial(new THREE.Color(ball.userData.lid_color || '#555255'));
+    this.lid = new THREE.Mesh(geometry, this.lidMaterial);
+    this.lid.name = 'eyelid';
+    this.lid.quaternion.setFromRotationMatrix(new THREE.Matrix4().makeBasis(lidRight, lidUp, openingAxis));
+    this.lid.castShadow = false; this.lid.receiveShadow = true;
+    this.lid.visible = false;
+    this.socket.add(this.lid);
+    this.disposables.push(geometry, this.lidMaterial);
 
-    // 固定反光点：大的在上方靠鼻梁一侧，小的在下方外侧（与原模型画的高光位置一致）。
+    // 固定反光点：沿眼睛实际朝向（GLB extras.axis），大的偏上方靠鼻梁一侧，小的在下方外侧，
+    // 都落在瞳孔范围内，与原模型画的高光位置一致；不随眼球转动。
     const glint = catchlightTexture();
     this.disposables.push(glint);
-    const nose = -side;
-    for (const [direction, size, opacity] of [[[0.36 * nose, 0.5, 1], 0.2, 0.95], [[-0.3 * nose, -0.42, 1], 0.085, 0.8]]) {
-      const normal = new THREE.Vector3(...direction).normalize();
+    const axis = new THREE.Vector3(...(ball.userData.axis || [0, 0, 1])).normalize();
+    const nose = new THREE.Vector3(-side, 0, 0);
+    const up = new THREE.Vector3(0, 1, 0);
+    for (const [upward, inward, size, opacity] of [[0.42, 0.26, 0.17, 0.95], [-0.3, -0.22, 0.075, 0.8]]) {
+      const normal = axis.clone().addScaledVector(up, upward).addScaledVector(nose, inward).normalize();
       const geometry = new THREE.CircleGeometry(this.radius * size, 24);
       const material = new THREE.MeshBasicMaterial({ map: glint, transparent: true, opacity, depthWrite: false, toneMapped: false });
       const spot = new THREE.Mesh(geometry, material);
@@ -148,10 +162,15 @@ export class EyeRig {
     s.lower += (target.lower - s.lower) * k;
     s.tilt += (target.tilt - s.tilt) * k;
     const blink = 1 - Math.max(0, Math.min(1, open));
-    const upper = Math.max(s.upper, BLINK.upper * blink);
-    const lower = Math.max(s.lower, BLINK.lower * blink);
-    this.setLid(this.lids[0], upper, s.tilt);
-    this.setLid(this.lids[1], -lower, -s.tilt * 0.4);
+    // 眨眼：上眼睑从当前位置落到相合线，下眼睑从当前位置升到相合线。
+    const upper = s.upper + (BLINK - s.upper) * blink;
+    const lower = s.lower + (BLINK - s.lower) * blink;
+    const uniforms = this.lidMaterial.userData.uniforms;
+    uniforms.uUpper.value = upper * DEG;
+    uniforms.uLower.value = lower * DEG;
+    // 内眼角（靠鼻梁一侧）更低：左眼鼻梁在 +X。
+    uniforms.uTilt.value = s.tilt * DEG * -this.side;
+    this.lid.visible = upper < OPEN_UPPER - 25 || lower > OPEN_LOWER + 25;
 
     if ((expression === 'heart') !== (this.expression === 'heart')) this.paint(expression === 'heart');
     this.expression = expression;
@@ -159,14 +178,6 @@ export class EyeRig {
     const look = expression === 'closed' ? 0 : 1;
     tmpEuler.set(lookY * LOOK_PITCH * look, lookX * LOOK_YAW * look, 0, 'YXZ');
     this.ball.quaternion.copy(this.restQuaternion).multiply(tmpQuat.setFromEuler(tmpEuler));
-  }
-
-  setLid(lid, degrees, tiltDegrees) {
-    lid.visible = Math.abs(degrees) > 1.5;
-    if (!lid.visible) return;
-    // 先绕前后轴倾斜（内眼角一侧更低），再绕横轴合上。
-    tmpQuat.setFromAxisAngle(AXIS_Z, tiltDegrees * this.side * DEG);
-    lid.quaternion.copy(tmpQuat).multiply(tmpQuat2.setFromAxisAngle(AXIS_X, degrees * DEG));
   }
 
   dispose() {
@@ -177,8 +188,5 @@ export class EyeRig {
   }
 }
 
-const AXIS_X = new THREE.Vector3(1, 0, 0);
-const AXIS_Z = new THREE.Vector3(0, 0, 1);
 const tmpQuat = new THREE.Quaternion();
-const tmpQuat2 = new THREE.Quaternion();
 const tmpEuler = new THREE.Euler();
